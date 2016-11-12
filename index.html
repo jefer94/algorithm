@@ -5,8 +5,34 @@
     <title>Algotithm</title>
     <script type="text/javascript" src="./lang/es.js"></script>
     <script type="text/javascript" src="./core/algorithm.js"></script>
+    <script type="text/javascript" src="./core/tabs.js"></script>
+    <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
+    <style media="screen">
+
+    </style>
   </head>
   <body>
+    <nav id="tabs">
+      <ul>
+        <li id="tab1" onclick="tab(1);" class="tab-active">Editor</li>
+        <li id="tab2" onclick="tab(2);" class="tab">Interprete</li>
+        <li id="tab3" onclick="tab(3);" class="tab">Consola</li>
+      </ul>
+    </nav>
+
+    <div class="screen" contentEditable="true">
+      <div id="content1" class="show-content">
+        a
+      </div>
+      <div id="content2" class="hidden-content">
+        b
+      </div>
+      <div id="content3" class="hidden-content">
+        <div class="lines">student@algorithm:~$ algorithm<br>&gt;</div>
+        <div class="lines">&gt;</div>
+      </div>
+    </div>
+    <!--
     <div class="log">
       <p id="result">
 
@@ -26,5 +52,6 @@
 
     <input type="text" name="" placeholder="Insertar instrucción" id="execute" onkeydown="algorithm.to_js(event)";>
     <input type="button" name="name" value="Ejecutar" onclick="algorithm.to_js();">
+  -->
   </body>
 </html>
