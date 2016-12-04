@@ -6,10 +6,31 @@
     <script type="text/javascript" src="./lang/es.js"></script>
     <script type="text/javascript" src="./core/algorithm.js"></script>
     <script type="text/javascript" src="./core/tabs.js"></script>
-    <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
-    <style media="screen">
+    <!-- CodeMirror -->
+    <script src="./vendor/codemirror/lib/codemirror.js"></script>
+    <script src="./vendor/codemirror/mode/algorithm/algorithm.es.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
 
-    </style>
+              var editor = CodeMirror.fromTextArea( document.getElementById("code") , {
+                mode: "algorithm.es",
+                lineNumbers: true,
+                lineWrapping: true,
+                showCursorWhenSelecting: true,
+                //extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                //foldGutter: true,
+                //gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+              });
+              editor.setOption("theme", "material")
+
+              //$code = new inCode( editor, $('.consola'), $('.tools') );
+        }
+    </script>
+
+    <link rel="stylesheet" href="./vendor/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./vendor/codemirror/theme/material.css">
+    <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
+
   </head>
   <body>
     <nav id="tabs">
@@ -22,7 +43,10 @@
 
     <div class="screen" contentEditable="true">
       <div id="content1" class="show-content">
-        a
+<textarea id="code" name="code" class="caja">para (i=1 hasta i=9) hacer
+	mostrar 3 + " * " + i + " = " + 3*i
+finpara</textarea>
+
       </div>
       <div id="content2" class="hidden-content">
         b

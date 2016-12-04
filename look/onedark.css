@@ -47,3 +47,15 @@ body {
   font-size: 16px;
   line-height: 23px;
 }
+.cm-s-material {
+  background-color: #282C34;
+  color: rgba(233, 237, 237, 1);
+}
+.cm-s-material .CodeMirror-gutters {
+  background: #282C34;
+  color: rgb(83,127,126);
+  border: none;
+}
+.CodeMirror {
+  height: 100%;
+}
