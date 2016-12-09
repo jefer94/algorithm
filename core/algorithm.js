@@ -8,6 +8,18 @@ var tokens = {
   ">":          ">"
 }
 
+function write(output) {
+  return output;
+}
+
+function read(input) {
+
+}
+
+//read().prototype.container(input) {
+//  var input = document.querySelector("#" + input);
+//}
+
 class Algorithm {
   constructor() {
     this.js = "";

@@ -43,9 +43,39 @@ body {
 .show-content {
   display: block;
 }
+.console {
+  padding: 4px 0px;
+}
 .lines {
-  font-size: 16px;
-  line-height: 23px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: pre-wrap;
+  word-break: normal;
+  word-wrap: break-word;
+  cursor: text;
+  padding: 0px 4px 0px 0pxx;
+}
+.lines input {
+  margin-left: 8px;
+  background-color: #282C34;
+  border: 0px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: pre-wrap;
+  word-break: normal;
+  word-wrap: break-word;
+  cursor: text;
+  outline: 0px;
+  color: #D7DAE0;
+}
+.arrow {
+  color: rgb(83,127,126);
+}
+.margin-line {
+  margin-left: 24px;
+  float: left;
 }
 .cm-s-material {
   background-color: #282C34;

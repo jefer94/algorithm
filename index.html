@@ -9,6 +9,7 @@
     <!-- CodeMirror -->
     <script src="./vendor/codemirror/lib/codemirror.js"></script>
     <script src="./vendor/codemirror/mode/algorithm/algorithm.es.js"></script>
+    <script src="./vendor/codemirror/mode/javascript/javascript.js"></script>
     <script type="text/javascript">
         window.onload = function() {
 
@@ -21,10 +22,71 @@
                 //foldGutter: true,
                 //gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
               });
-              editor.setOption("theme", "material")
-
-              //$code = new inCode( editor, $('.consola'), $('.tools') );
+              editor.setOption("theme", "material");
+              var result = CodeMirror.fromTextArea( document.getElementById("code2") , {
+                mode: "javascript",
+                lineNumbers: true,
+                lineWrapping: true,
+                showCursorWhenSelecting: true,
+              });
+              result.setOption("theme", "material")
         }
+
+        /* from try git
+    CSConsole.prototype.initConsole = function(el) {
+     var keyActions,
+       _this = this;
+     el.className += " cs-console cs-console-height cs-console-width";
+     keyActions = new KeyActions(this.options);
+     this.console = window.CodeMirror(el, {
+       value: this.options.initialValue || '',
+       mode: {
+         name: this.options.syntax,
+         useCPP: true
+       },
+       gutter: this.options.lineNumbers,
+       lineNumbers: this.options.lineNumbers,
+       theme: this.options.theme || "vibrant-ink",
+       indentUnit: 2,
+       tabSize: 2,
+       keyMap: 'console',
+       lineWrapping: true,
+       onKeyEvent: this.focusInput,
+       undoDepth: 0,
+       autoFocus: this.options.autoFocus,
+       extraKeys: {
+         "Enter": this.submit,
+         "Ctrl-M": this.submit,
+         "Tab": this.noop,
+         "Left": keyActions.goCharLeft,
+         "Ctrl-B": keyActions.goCharLeft,
+         "Backspace": keyActions.delCharBefore,
+         "Cmd-Up": keyActions.goDocStart,
+         "Cmd-Down": keyActions.goDocEnd,
+         "Cmd-Left": keyActions.goLineStart,
+         "Home": keyActions.goLineStart,
+         "Ctrl-A": keyActions.goLineStart,
+         "Alt-Backspace": keyActions.delGroupBefore,
+         "Ctrl-W": keyActions.delGroupBefore,
+         "Cmd-Backspace": keyActions.deleteLine,
+         "Up": this.nextHistory,
+         "Down": this.previousHistory,
+         "Ctrl-P": this.nextHistory,
+         "Ctrl-N": this.previousHistory,
+         "Shift-Cmd-Right": this.noop,
+         "Shift-Cmd-Left": this.noop,
+         "Shift-Right": this.noop,
+         "Shift-Alt-Right": this.noop,
+         "Shift-Alt-Left": this.noop,
+         "Ctrl-Enter": this.noop,
+         "Alt-Enter": this.noop,
+         "Shift-Tab": this.noop,
+         "Cmd-S": this.noop,
+         "Ctrl-Z": this.noop,
+         "Cmd-Z": this.noop
+       }
+     });
+        */
     </script>
 
     <link rel="stylesheet" href="./vendor/codemirror/lib/codemirror.css">
@@ -36,24 +98,28 @@
     <nav id="tabs">
       <ul>
         <li id="tab1" onclick="tab(1);" class="tab-active">Editor</li>
-        <li id="tab2" onclick="tab(2);" class="tab">Interprete</li>
+        <li id="tab2" onclick="tab(2);" class="tab">Traductor</li>
         <li id="tab3" onclick="tab(3);" class="tab">Consola</li>
       </ul>
     </nav>
 
-    <div class="screen" contentEditable="true">
+    <div class="screen">
       <div id="content1" class="show-content">
 <textarea id="code" name="code" class="caja">para (i=1 hasta i=9) hacer
 	mostrar 3 + " * " + i + " = " + 3*i
 finpara</textarea>
-
       </div>
       <div id="content2" class="hidden-content">
-        b
+<textarea id="code2" name="code" class="caja">for (i=1; i<9; i++) {
+	write(3 + " * " + i + " = " + 3*i);
+}</textarea>
       </div>
       <div id="content3" class="hidden-content">
-        <div class="lines">student@algorithm:~$ algorithm<br>&gt;</div>
-        <div class="lines">&gt;</div>
+        <div class="console">
+          <div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> student@algorithm:~$ algorithm.js</div></div>
+          <div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"><input></div></div>
+        </div>
+
       </div>
     </div>
     <!--
