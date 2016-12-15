@@ -31,75 +31,18 @@
               });
               result.setOption("theme", "material")
         }
-
-        /* from try git
-    CSConsole.prototype.initConsole = function(el) {
-     var keyActions,
-       _this = this;
-     el.className += " cs-console cs-console-height cs-console-width";
-     keyActions = new KeyActions(this.options);
-     this.console = window.CodeMirror(el, {
-       value: this.options.initialValue || '',
-       mode: {
-         name: this.options.syntax,
-         useCPP: true
-       },
-       gutter: this.options.lineNumbers,
-       lineNumbers: this.options.lineNumbers,
-       theme: this.options.theme || "vibrant-ink",
-       indentUnit: 2,
-       tabSize: 2,
-       keyMap: 'console',
-       lineWrapping: true,
-       onKeyEvent: this.focusInput,
-       undoDepth: 0,
-       autoFocus: this.options.autoFocus,
-       extraKeys: {
-         "Enter": this.submit,
-         "Ctrl-M": this.submit,
-         "Tab": this.noop,
-         "Left": keyActions.goCharLeft,
-         "Ctrl-B": keyActions.goCharLeft,
-         "Backspace": keyActions.delCharBefore,
-         "Cmd-Up": keyActions.goDocStart,
-         "Cmd-Down": keyActions.goDocEnd,
-         "Cmd-Left": keyActions.goLineStart,
-         "Home": keyActions.goLineStart,
-         "Ctrl-A": keyActions.goLineStart,
-         "Alt-Backspace": keyActions.delGroupBefore,
-         "Ctrl-W": keyActions.delGroupBefore,
-         "Cmd-Backspace": keyActions.deleteLine,
-         "Up": this.nextHistory,
-         "Down": this.previousHistory,
-         "Ctrl-P": this.nextHistory,
-         "Ctrl-N": this.previousHistory,
-         "Shift-Cmd-Right": this.noop,
-         "Shift-Cmd-Left": this.noop,
-         "Shift-Right": this.noop,
-         "Shift-Alt-Right": this.noop,
-         "Shift-Alt-Left": this.noop,
-         "Ctrl-Enter": this.noop,
-         "Alt-Enter": this.noop,
-         "Shift-Tab": this.noop,
-         "Cmd-S": this.noop,
-         "Ctrl-Z": this.noop,
-         "Cmd-Z": this.noop
-       }
-     });
-        */
     </script>
 
     <link rel="stylesheet" href="./vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="./vendor/codemirror/theme/material.css">
     <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
-
   </head>
   <body>
     <nav id="tabs">
       <ul>
         <li id="tab1" onclick="tab(1);" class="tab-active">Editor</li>
         <li id="tab2" onclick="tab(2);" class="tab">Traductor</li>
-        <li id="tab3" onclick="tab(3);" class="tab">Consola</li>
+        <li id="tab3" onclick="tab(3);algorithm.to_js();" class="tab">Consola</li>
       </ul>
     </nav>
 
@@ -108,40 +51,20 @@
 <textarea id="code" name="code" class="caja">para (i=1 hasta i=9) hacer
 	mostrar 3 + " * " + i + " = " + 3*i
 finpara</textarea>
+        <!--button type="button" name="button" class="button"><img src="./icons/play.png" alt="" /></button-->
       </div>
       <div id="content2" class="hidden-content">
-<textarea id="code2" name="code" class="caja">for (i=1; i<9; i++) {
+<textarea id="code2" name="code2" class="caja">for (i=1; i<9; i++) {
 	write(3 + " * " + i + " = " + 3*i);
 }</textarea>
       </div>
       <div id="content3" class="hidden-content">
-        <div class="console">
+        <div class="console" id="console">
           <div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> algorithm run unname.js</div></div>
-          <div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"><input></div></div>
+          <!--div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"><input></div></div-->
         </div>
 
       </div>
     </div>
-    <!--
-    <div class="log">
-      <p id="result">
-
-      </p>
-    </div>
-    <div class="transform">
-      <p id="transpiled">
-
-      </p>
-    </div>
-    <div class="console">
-      <p id="commands">
-
-      </p>
-    </div>
-
-
-    <input type="text" name="" placeholder="Insertar instrucción" id="execute" onkeydown="algorithm.to_js(event)";>
-    <input type="button" name="name" value="Ejecutar" onclick="algorithm.to_js();">
-  -->
   </body>
 </html>
