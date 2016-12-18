@@ -9,35 +9,39 @@ body {
 }
 #tabs {
   width: 100%;
-  height: 48px;
   background-color: #21252B;
+  display: table;
 }
 #tabs ul {
   list-style-type: none;
   margin: 0;
   padding: 0 10px;
+  height: 48px;
+  overflow: hidden;
+  display: table-cell;
+  vertical-align: middle;
 }
 #tabs ul li {
-  display: inline-block;
+  position: relative;
+  float: left;
   width: 100px;
   text-align: center;
   border-radius: 3px 3px 0px 0px;
-  top: 0;
-  padding: 10px 50px;
+  padding: 11px 50px;
   font-size: 16px;
-  line-height: 23px;
   margin-top: 6px;
+  line-height: 20px;
 }
 #tabs ul .tab-hamburger {
-  margin-top: 0px;
-  width: 23px;
-  padding: 13px 20px 13px 10px;
+  margin: 2px 0px;
+  width: 24px;
+  padding: 10px 20px 10px 10px;
 }
-.tab {
+#tabs ul .tab {
   background-color: #21252B;
   color: #6B717D;
 }
-.tab-active {
+#tabs ul .tab-active {
   border-left: 3px solid #568AF2;
   background-color: #282C34;
   color: #D7DAE0;
@@ -106,31 +110,69 @@ body {
   padding: 10px;
   margin: 0px;
   border: 0;
-
   /*box-shadow: 0px 0px 20px 2px;*/
 }
 .hamburger {
-  width: 23px;
-  height: 23px;
+  width: 24px;
+  height: 24px;
   overflow: hidden;
   content: "";
-
 }
 .hamburger .line {
-  border-radius: 1.916px;
-  width: 23px;
-  height: 3.83px;
-  margin: 3.83px 0px;
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 3px 0px;
   content: "";
   background-color: #6B717D;
   transition-property: background-color;
   transition-duration: 0.2s;
 }
 .hamburger .line_over {
-  border-radius: 1.916px;
-  width: 23px;
-  height: 3.83px;
-  margin: 3.83px 0px;
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 3px 0px;
+  content: "";
+  background-color: #D7DAE0;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+.hamburger .line:first-child {
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 0px 0px 3px 0px;
+  content: "";
+  background-color: #6B717D;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+.hamburger .line_over:first-child {
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 0px 0px 3px 0px;
+  content: "";
+  background-color: #D7DAE0;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+.hamburger .line:last-child {
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 3px 0px 0px 0px;
+  content: "";
+  background-color: #6B717D;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+.hamburger .line_over:last-child {
+  border-radius: 2px;
+  width: 24px;
+  height: 6px;
+  margin: 3px 0px 0px 0px;
   content: "";
   background-color: #D7DAE0;
   transition-property: background-color;
