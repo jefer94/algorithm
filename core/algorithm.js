@@ -45,7 +45,6 @@ class Algorithm {
     for (i in line){
       // each word is separated into a array
       var word = line[i].split(" ");
-      console.log(word);
       // this loop is to search in various dictionaries, and transform that code
       for (var i in word) {
         // dictionaries of words
@@ -58,19 +57,17 @@ class Algorithm {
         else
           this.js += word[i] + " ";
       }
-      if (word[word.length-1].search("{") != -1 || word[word.length-1].search("}") != -1) {
+      var last_line = this.js.split("\n")[this.js.split("\n").length-1];
+      if (last_line.search("{") != -1 || last_line.search("}") != -1) {
         this.js += "\n";
-        console.log("a");
       }
       else if (word[0].search("mostrar") != -1 || word[0].search("imprimir") != -1) {
         this.js = this.js.replace("mostrar", "write(");
         this.js = this.js.replace("imprimir", "write(");
         this.js += ");\n";
-        console.log("b");
       }
       else {
         this.js += ";\n";
-        console.log("c");
       }
     }
     console.log(this.js);
