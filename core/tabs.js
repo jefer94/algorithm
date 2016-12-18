@@ -24,3 +24,19 @@ function tab(n) {
     }
   } while (i < 3);
 }
+function hamburger_over() {
+  // is important know is, a node when it is deleted(for rename a class), this
+  // Disappears from the array, for this ever you do use the node 0
+  var hamburger = document.getElementsByClassName("line");
+  hamburger[0].className = "line_over";
+  hamburger[0].className = "line_over";
+  hamburger[0].className = "line_over";
+}
+function hamburger_out() {
+  // is important know is, a node when it is deleted(for rename a class), this
+  // Disappears from the array, for this ever you do use the node 0
+  var hamburger = document.getElementsByClassName("line_over");
+  hamburger[0].className = "line";
+  hamburger[0].className = "line";
+  hamburger[0].className = "line";
+}

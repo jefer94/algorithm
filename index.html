@@ -40,6 +40,13 @@
   <body>
     <nav id="tabs">
       <ul>
+        <li class="tab-hamburger">
+          <div class="hamburger" id="menu" onmouseover="hamburger_over()" onmouseout="hamburger_out()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </li>
         <li id="tab1" onclick="tab(1);" class="tab-active">Editor</li>
         <li id="tab2" onclick="tab(2);" class="tab">Traductor</li>
         <li id="tab3" onclick="tab(3);algorithm.to_js();" class="tab">Consola</li>

@@ -28,6 +28,11 @@ body {
   line-height: 23px;
   margin-top: 6px;
 }
+#tabs ul .tab-hamburger {
+  margin-top: 0px;
+  width: 23px;
+  padding: 13px 20px 13px 10px;
+}
 .tab {
   background-color: #21252B;
   color: #6B717D;
@@ -103,4 +108,31 @@ body {
   border: 0;
 
   /*box-shadow: 0px 0px 20px 2px;*/
+}
+.hamburger {
+  width: 23px;
+  height: 23px;
+  overflow: hidden;
+  content: "";
+
+}
+.hamburger .line {
+  border-radius: 1.916px;
+  width: 23px;
+  height: 3.83px;
+  margin: 3.83px 0px;
+  content: "";
+  background-color: #6B717D;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+.hamburger .line_over {
+  border-radius: 1.916px;
+  width: 23px;
+  height: 3.83px;
+  margin: 3.83px 0px;
+  content: "";
+  background-color: #D7DAE0;
+  transition-property: background-color;
+  transition-duration: 0.2s;
 }
