@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Algotithm</title>
-    <script type="text/javascript" src="./lang/es.js"></script>
-    <script type="text/javascript" src="./core/algorithm.js"></script>
+    <link rel="stylesheet" href="./vendor/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./vendor/codemirror/theme/material.css">
+    <link rel="stylesheet" href="./vendor/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
+
     <script type="text/javascript" src="./core/tabs.js"></script>
     <!-- CodeMirror -->
     <script src="./vendor/codemirror/lib/codemirror.js"></script>
@@ -13,30 +16,21 @@
     <script src="./vendor/codemirror/mode/algorithm/algorithm.es.js"></script>
     <script src="./vendor/codemirror/mode/javascript/javascript.js"></script>
     <script type="text/javascript">
+      var editor;
+      var result;
       window.onload = function() {
         CodeMirror.commands.autocomplete = function(cm) {
           cm.showHint({hint: CodeMirror.hint.anyword});
         }
-          var editor = CodeMirror.fromTextArea( document.getElementById("code") , {
+        editor = CodeMirror.fromTextArea( document.getElementById("code") , {
           mode: "algorithm.es",
           lineNumbers: true,
           lineWrapping: true,
           showCursorWhenSelecting: true,
           extraKeys: {"Ctrl-Space": "autocomplete"}
         });
-        /*
-        var code;
-        if (localStorage.getItem("code") != null) {
-        }
-        else {
-          code = "para (i=1 hasta i=9) hacer\n" +
-          	"\tmostrar 3 + \" * \" + i + \" = \" + 3*i\n" +
-            "finpara\n";
-          localStorage.setItem("code", code);
-        }
-        */
         editor.setOption("theme", "material");
-        var result = CodeMirror.fromTextArea( document.getElementById("code2") , {
+        result = CodeMirror.fromTextArea( document.getElementById("code2") , {
           mode: "javascript",
           lineNumbers: true,
           lineWrapping: true,
@@ -46,11 +40,10 @@
         result.setOption("theme", "material")
       }
     </script>
+    <script type="text/javascript" src="./lang/es.js"></script>
+    <script type="text/javascript" src="./core/console.js"></script>
+    <script type="text/javascript" src="./core/algorithm.js"></script>
 
-    <link rel="stylesheet" href="./vendor/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="./vendor/codemirror/theme/material.css">
-    <link rel="stylesheet" href="./vendor/codemirror/addon/hint/show-hint.css">
-    <link rel="stylesheet" href="./look/onedark.css" title="One Dark">
   </head>
   <body>
     <nav id="tabs">
@@ -70,10 +63,10 @@
 
     <div class="screen">
       <div id="content1" class="show-content">
-<textarea id="code" name="code" class="caja">para (i=1 hasta i=9) hacer
-	mostrar 3 + " * " + i + " = " + 3*i
-finpara</textarea>
-        <!--button type="button" name="button" class="button"><img src="./icons/play.png" alt="" /></button-->
+<textarea id="code" name="code" class="caja">mostrar "ingrese un valor a multiplicar por 3"
+leer b
+// not working you can view window.__result
+//mostrar 3+b</textarea>
       </div>
       <div id="content2" class="hidden-content">
 <textarea id="code2" name="code2" class="caja">for (i=1; i<9; i++) {
@@ -82,7 +75,7 @@ finpara</textarea>
       </div>
       <div id="content3" class="hidden-content">
         <div class="console" id="console">
-          <div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> algorithm run unname.js</div></div>
+          <!--div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> algorithm run unname.js</div></div-->
           <!--div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"><input></div></div-->
         </div>
 

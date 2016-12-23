@@ -4,7 +4,7 @@ var transpiler = {
   "mientras":    "while",
   "para":        "for",
   "repetir":     "do",
-  "":            "var",
+  //"":            "var",
   "hacer":       "{",
   "entonces":    "{",
   "finsi":       "}",

@@ -1,33 +1,22 @@
 var tokens = {
   // js           // native
   "=":          "==",
-  "<>":         "=!",
+  "<>":         "!=",
   "<=":         "<=",
   ">=":         ">=",
   "<":          "<",
   ">":          ">"
 }
-
-function write(output) {
-  return output;
-}
-
-function read(input) {
-
-}
-
-//read().prototype.container(input) {
-//  var input = document.querySelector("#" + input);
-//}
-
+var the_console = new Console();
 class Algorithm {
   constructor() {
     this.js = "";
   }
   // transform to javascript
   to_js() {
+    this.js = "";
     // get container result in a var
-    this.code = document.getElementById("code");
+    this.code = editor.getValue();
     // get container of box executor
     this.console = document.getElementById("console");
 
@@ -35,13 +24,14 @@ class Algorithm {
     //result.innerHTML += execute.value + '<div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> algorithm run unname.js</div></div>'
     // and execute a interpreter
     this.scanner();
-    // to finish to clean execute box
-    //execute.value = "";
+
+    // show the output
+    the_console.run(this.js);
   }
   // transform between native languaje and javascipt
   scanner() {
     // each line is separated into a array
-    var line = this.code.value.split("\n");
+    var line = this.code.split("\n");
     for (i in line){
       // each word is separated into a array
       var word = line[i].split(" ");
@@ -66,11 +56,15 @@ class Algorithm {
         this.js = this.js.replace("imprimir", "write(");
         this.js += ");\n";
       }
+      else if (word[0].search("leer") != -1) {
+        this.js = this.js.replace("leer", "read(\"");
+        this.js += "\");\n";
+      }
       else {
         this.js += ";\n";
       }
     }
-    console.log(this.js);
+    //console.log(this.js);
   }
 }
 
