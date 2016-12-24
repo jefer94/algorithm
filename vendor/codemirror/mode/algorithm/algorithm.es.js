@@ -17,10 +17,10 @@ CodeMirror.defineMode("algorithm.es", function() {
     for (var i = 0; i < words.length; ++i) obj[words[i]] = true;
     return obj;
   }
-  var keywords = words("y arreglo begin caso constante hacer sino fin para entero " +
+  var keywords = words("y arreglo caso constante hacer sino inicio fin para entero " +
                        "booleano carapter funcion si mod null no o procedimiento " +
-                       "finpara finsi finmientras hasta" +
-                       "programa repetir entonces mientras imprimir mostrar leer");
+                       "finpara finsi finmientras hasta algoritmo " +
+                       "variables repetir entonces mientras imprimir mostrar leer");
   var atoms = {"null": true};
 
   var isOperatorChar = /[+\-*&%=<>!?|\/]/;
