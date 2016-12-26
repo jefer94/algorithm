@@ -4,7 +4,7 @@ class Console {
     // what happen with this?
 		//window.__variables = null;
 	}
-  run(title, code) {
+  run(title, literals, code) {
     window.__variables = [];
     var the_console = document.getElementById("console");
     the_console.innerHTML = "";
@@ -17,7 +17,7 @@ class Console {
     console.log(code);
     //console.log(read);
     //console.log(write);
-    eval(code);
+    eval(literals+code);
   }
   read(to_read) {
     var the_console = document.getElementById("console");
