@@ -1,0 +1,133 @@
+grey = #282C34
+grey-tab = #21252B
+grey-text-tab = #6B717D
+tab-active = #568AF2
+white = #D7DAE0
+white-codemirror = rgba(233, 237, 237, 1)
+green-codemirror = rgb(83,127,126)
+
+.toolbox
+  width 48
+  background-color white-codemirror
+  position fixed
+  
+.toolbox-space
+  margin-left 48px
+
+.font-size 
+  font-size 14px
+  line-height 21px
+
+body
+  background-color grey 
+  color white
+  margin 0
+  padding 0
+  @extend .font-size
+  box-sizing border-box
+
+#tabs
+  width 100%
+  background-color grey-tab
+  display table
+  ul
+    list-style-type none
+    margin 0
+    padding 0 10px
+    height 48px
+    overflow hidden
+    display table-cell
+    vertical-align middle
+    li
+      position relative
+      float left
+      width 100px
+      text-align center
+      border-radius 3px 3px 0px 0px
+      padding 11px 50px
+      font-size 16px
+      margin-top 6px
+      line-height 20px
+    .tab-hamburger
+      margin 2px 0px
+      width 24px
+      padding 10px 20px 10px 10px
+    .tab
+      background-color grey-tab
+      color grey-text-tab
+    .tab-active
+      border-left 3px solid tab-active
+      background-color grey
+      color white
+
+.hidden-content
+  display none
+
+.show-content
+  display block
+
+.console
+  padding 4px 0px
+
+.lines
+  font-family monospace
+  @extend .font-size
+  white-space pre-wrap
+  word-break normal
+  word-wrap break-word
+  cursor text
+  padding 0px 4px 0px 0px
+  input
+    margin-left 8px
+    background-color grey
+    border 0px
+    font-family monospace
+    @extend .font-size
+    white-space pre-wrap
+    word-break normal
+    word-wrap break-word
+    cursor text
+    outline 0px
+    color white
+
+.arrow
+  color green-codemirror
+
+.margin-line
+  margin-left 24px
+  float left
+
+.cm-s-material
+  background-color grey
+  color white-codemirror
+  .CodeMirror-gutters
+    background grey
+    color green-codemirror
+    border none
+
+.CodeMirror
+  height 100%
+
+.hamburger
+  width 24px
+  height 24px
+  overflow hidden
+  content ""
+  .line
+    border-radius 2px
+    width 24px
+    height 5px
+    margin 2px 0px
+    content ""
+    background-color grey-text-tab
+    transition-property background-color
+    transition-duration 0.2s
+  .line_over
+    border-radius 2px
+    width 24px
+    height 5px
+    margin 2px 0px
+    content ""
+    background-color white
+    transition-property background-color
+    transition-duration 0.2s
