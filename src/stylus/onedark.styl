@@ -5,14 +5,13 @@ tab-active = #568AF2
 white = #D7DAE0
 white-codemirror = rgba(233, 237, 237, 1)
 green-codemirror = rgb(83,127,126)
+oracle = #f50
 
-.toolbox
-  width 48
-  background-color white-codemirror
-  position fixed
+.screen
+  float left
   
 .toolbox-space
-  margin-left 48px
+  margin-left 60px
 
 .font-size 
   font-size 14px
@@ -97,14 +96,6 @@ body
   margin-left 24px
   float left
 
-.cm-s-material
-  background-color grey
-  color white-codemirror
-  .CodeMirror-gutters
-    background grey
-    color green-codemirror
-    border none
-
 .CodeMirror
   height 100%
 
@@ -131,3 +122,59 @@ body
     background-color white
     transition-property background-color
     transition-duration 0.2s
+    
+.modal
+  x 0
+  y 0
+  z-index 255
+  position: absolute
+  width 100%
+  height 100%
+  background-color white
+  content " "
+  transition-property opacity
+  transition-duration 0.5s
+  .settings
+    x 64px
+    display flex
+    flex-direction column
+    flex-wrap wrap
+    align-content center
+    overflow-y hidden
+    width 100%
+    height 100vh
+    position absolute 
+    .setting
+      background lightblue
+      
+      padding .5em
+      margin .2em
+      color grey
+      width 600px
+  .ide
+    x 0
+    y 0
+    z-index 256
+    width 64px
+    height 100%
+    position absolute
+    background-color grey
+    content " "
+    ul
+      margin 0
+      padding 0
+      .tab-hamburger
+        filter: brightness(150%)      
+        margin 2px 0px
+        width 24px
+        padding 10px 20px 10px 20px
+
+img:hover
+  filter: brightness(150%)
+  transition-duration 0.2s
+
+.show
+  opacity 1
+  
+.hidden
+  display none

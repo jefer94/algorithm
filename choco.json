@@ -1,0 +1,8 @@
+{
+  "server": {
+    "path": "./",
+    "port": 3000,
+    "key": "../choco/node-http/server.key",
+    "cert": "../choco/node-http/server.crt"
+  }
+}

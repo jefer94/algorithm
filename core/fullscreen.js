@@ -1,24 +1,22 @@
-function launchFullScreen(element) {
-  if(element.requestFullScreen) {
+function launchFullScreen (element) {
+  if (element.requestFullScreen)
     element.requestFullScreen();
-  } else if(element.mozRequestFullScreen) {
+  else if (element.mozRequestFullScreen)
     element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullScreen) {
+  else if (element.webkitRequestFullScreen)
     element.webkitRequestFullScreen();
-  }
 }
 
 // Lanza en pantalla completa en navegadores que lo soporten
-//launchFullScreen(document.documentElement); // la página entera
+// launchFullScreen(document.documentElement); // la página entera
 
-function cancelFullscreen() {
-  if(document.cancelFullScreen) {
+function cancelFullscreen () {
+  if (document.cancelFullScreen)
     document.cancelFullScreen();
-  } else if(document.mozCancelFullScreen) {
+  else if (document.mozCancelFullScreen)
     document.mozCancelFullScreen();
-  } else if(document.webkitCancelFullScreen) {
+  else if (document.webkitCancelFullScreen)
     document.webkitCancelFullScreen();
-  }
 }
 
-//cancelFullscreen();
+// cancelFullscreen();

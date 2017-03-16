@@ -1,0 +1,24 @@
+{
+  "name": "choco-cli",
+  "version": "0.0.4",
+  "description": "Chocoland.js toolkits",
+  "main": "./bin/choco.js",
+  "scripts": {
+    "test": "eslint lang/*.js core/*.js --fix"
+  },
+  "keywords": [
+    "chocoland.js",
+    "choco",
+    "toolkit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jefer94/algorithm.git"
+  },
+  "author": "Jeferson De Freitas",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-plugin-promise": "^3.5.0"
+  }
+}
