@@ -1,29 +1,47 @@
 'use strict';
 class Console {
   constructor () {
-    // what happen with this?
-		// window.__variables = null;
   }
   run (title, literals, code) {
     var the_console = document.getElementById('console');
     the_console.innerHTML = '';
     var read = this.read;
     var write = this.write;
+		// eval cannot look this
+		window.__io = {
+			text: undefined,
+			last_text: undefined
+		}
     /* non-existent code for name of algorithm */
     the_console.innerHTML += '<div class="lines"><div class="CodeMirror-linenumber ' +
       'CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> ' +
       'algorithm run ' + title + '.js</div></div>';
     console.log(literals + code);
-    // console.log(read);
-    // console.log(write);
-    eval(literals + code);
+		// show console before of prompt
+		setTimeout(() => eval(literals + code), 100);
+    // eval(literals + code);
   }
   read (to_read) {
-    var input = prompt('valor');
-    var the_console = document.getElementById('console');
-    the_console.innerHTML += '<div class="lines"><div ' +
+    while (to_read.substr(0, 1) === ' ') {
+		  var length = to_read.length - 1;
+      to_read = to_read.substr(1, length);
+    }
+    while (to_read.substr(to_read.length - 1, 1) === ' ')
+      to_read = to_read.substr(0, to_read.length - 1);
+
+		var input;
+		if (window.__io.text && window.__io.text != window.__io.last_text) {
+			window.__io.last_text = window.__io.text;
+			input = prompt(window.__io.text);
+		}
+		else
+      input = prompt('');
+    // var the_console = document.getElementById('console');
+    var the_console = document.getElementById('var');
+		the_console.innerHTML += input;
+		/*the_console.innerHTML += '<div class="lines"><div ' +
       'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-      '<div class="margin-line"> ' + input + '</div></div>';
+      '<div class="margin-line"> ' + input + '</div></div>';*/
     console.log(`${to_read} = ${input};`);
     return `${to_read} = ${input};`;
     /* var the_console = document.getElementById('console');
@@ -59,10 +77,11 @@ class Console {
     eval(init);
     console.log(init);
     console.log(text);    */
+		window.__io.text = text;
     var the_console = document.getElementById('console');
     the_console.innerHTML += '<div class="lines"><div ' +
       'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-      '<div class="margin-line"> ' + text + '</div></div>';
+      '<div class="margin-line"> ' + text + '<div id="var"></div></div></div>';
   }
 
 }
