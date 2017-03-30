@@ -24,7 +24,7 @@ class Console {
 			  eval(literals + code);
 			}
 			catch(e) {
-				write(e.description);
+				write(e.message);
 				return -1;
 			}
 		}, 300);
