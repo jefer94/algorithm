@@ -10,7 +10,8 @@ class Console {
 		// eval cannot look this
 		window.__io = {
 			text: undefined,
-			last_text: undefined
+			last_text: undefined,
+			show: true
 		}
     /* non-existent code for name of algorithm */
     the_console.innerHTML += '<div class="lines"><div class="CodeMirror-linenumber ' +
@@ -18,7 +19,15 @@ class Console {
       'algorithm run ' + title + '.js</div></div>';
     console.log(literals + code);
 		// show console before of prompt
-		setTimeout(() => eval(literals + code), 100);
+		setTimeout(() => {
+			try {
+			  eval(literals + code);
+			}
+			catch(e) {
+				write(e.description);
+				return -1;
+			}
+		}, 300);
     // eval(literals + code);
   }
   read (to_read) {
@@ -36,52 +45,48 @@ class Console {
 		}
 		else
       input = prompt('');
-    // var the_console = document.getElementById('console');
     var the_console = document.getElementById('var');
 		the_console.innerHTML += input;
-		/*the_console.innerHTML += '<div class="lines"><div ' +
-      'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-      '<div class="margin-line"> ' + input + '</div></div>';*/
-    console.log(`${to_read} = ${input};`);
-    return `${to_read} = ${input};`;
-    /* var the_console = document.getElementById('console');
-    the_console.innerHTML += '<div class="lines"><div ' +
-      'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-      '<div class="margin-line"><input id="read" onkeypress="the_console.summit(event);" name="' + to_read + '"></div></div>';
-    var delay = setTimeout(() => {
-      if (window.__variables != {}) clearInterval(delay);
-    }, 333);*/
-  }
-  summit (event) {
-    // console.log(event);
-    if (typeof event !== 'undefined' && event.keyCode == 13) {
-      var result = document.getElementById('read');
-      result.setAttribute('readonly', true);
-      var name = result.name.replace(/ /g, '');
-      var value = result.value;
-      window.__variables[name] = value;
+		the_console.id = '';
+		switch (window.__variables[to_read]) {
+			case 'int':
+				if (isNaN(Number(input)) || input != Math.trunc(input))
+					return `write(\'${type_error.int}\'); window.__io.show = false ;`;
+			  break;
+			case 'double':
+				if (isNaN(Number(input)))
+					return `write(\'${type_error.double}\'); window.__io.show = false ;`;
+			  break;
+			case 'string':
+			  break;
+			case 'bool':
+				if (isNaN(Number(input)) || input < 0 || input > 2)
+					return `write(\'${type_error.bool}\'); window.__io.show = false ;`;
+			  break;
+		}
 
-      return false; // returning false will prevent the event from bubbling up.
-    }
-    else
-      return true;
+		console.log(window.__variables[to_read]);
+		if (window.__variables[to_read] == 'string') {
+      console.log(`${to_read} = \'${input}\';`);
+      return `${to_read} = \'${input}\';`;
+		}
+		else {
+      console.log(`${to_read} = ${input};`);
+      return `${to_read} = ${input};`;
+		}
   }
   write (text) {
-    // sandbox /*
-    /* var variables = window.__variables;
-    var init = '';
-    var i;
-    for (i in variables) {
-      init += `var ${i} = variables["${i}"];`;
-    }
-    eval(init);
-    console.log(init);
-    console.log(text);    */
-		window.__io.text = text;
-    var the_console = document.getElementById('console');
-    the_console.innerHTML += '<div class="lines"><div ' +
-      'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-      '<div class="margin-line"> ' + text + '<div id="var"></div></div></div>';
+		if (window.__io.show) {
+			if (typeof text === 'number' && isNaN(text))
+			  return `write(\'${error.string_for_number}\'); window.__io.show = false ;`;
+			if (typeof text === 'number' && !isFinite(text))
+			  return `write(\'${error.infinity}\'); window.__io.show = false ;`;
+		  window.__io.text = text;
+      var the_console = document.getElementById('console');
+      the_console.innerHTML += '<div class="lines"><div ' +
+        'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
+        '<div class="margin-line"> ' + text + '<div id="var" class="var"></div></div></div>';
+		}
   }
 
 }

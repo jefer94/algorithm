@@ -1,13 +1,16 @@
 var tokens = {
 	// algorithm : js
-  '=': '===',
-  '<>': '!==',
-  '<=': '<=',
-  '>=': '>=',
-  '<': '<',
-  '>': '>',
-  '<-': '=',
-  '<=': '='
+  '='          : '===',
+  '<>'         : '!==',
+  '<='         : '<=',
+  '>='         : '>=',
+  '<'          : '<',
+  '>'          : '>',
+  '<-'         : '=',
+  '<='         : '=',
+	'o'          : '||',
+	'y'          : '&&',
+	'no'         : '!'
 };
 var the_console = new Console();
 class Algorithm {
@@ -37,7 +40,8 @@ class Algorithm {
   title () {
     var line = this.code.split('\n');
     var word = line[0].split(' ');
-    if (word[0] == 'algoritmo' && word.length == 2) {
+		console.log(word[0] + ' ' + algorithm_word);
+    if (word[0] == algorithm_word && word.length == 2) {
       var code_to_return = '';
       for (var i = 1; i < line.length; i++)
         code_to_return += line[i] + '\n';
@@ -52,7 +56,7 @@ class Algorithm {
     var literals = this.code.replace(this.code.match(/inicio[\s\S]*?fin$/gm)[0], '');
     var line = literals.split('\n');
     var code = '';
-    if (line[0].split(' ')[0].search('variables') != -1) {
+    if (variables.indexOf(line[0].split(' ')[0]) != -1) {
       var i = 0;
       var k = 0;
       while (line[i]) {
@@ -88,17 +92,17 @@ class Algorithm {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
             switch (word[word.length - 1]) {
-            case 'entero':
-              window.__variables[word[j]] = Number;
+            case type.int:
+              window.__variables[word[j]] = 'int';
               break;
-            case 'real':
-              window.__variables[word[j]] = Number;
+            case type.double:
+              window.__variables[word[j]] = 'double';
               break;
-            case 'carapter':
-              window.__variables[word[j]] = String;
+            case type.string:
+              window.__variables[word[j]] = 'string';
               break;
-            case 'booleano':
-              window.__variables[word[j]] = Boolean;
+            case type.bool:
+              window.__variables[word[j]] = 'bool';
               break;
             default:
             }
@@ -203,9 +207,9 @@ class Algorithm {
       else if (write.indexOf(word[0]) != -1) {
         this.js = this.js.replace(
 					write[write.indexOf(word[0])],
-					'write('
+					'eval(write('
 				);
-        this.js += ');\n';
+        this.js += '));\n';
       }
       else if (read.indexOf(word[0]) != -1) {
         this.js = this.js.replace(
