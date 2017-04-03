@@ -7,6 +7,32 @@ var tokens = {
   '<': '<',
   '>': '>'
 };
+
+class Vector {
+  constructor (n) {
+    if (typeof a != 'number')
+        throw 'ERROR: array length can only be a number'''
+    if (n <= 0 || typeof n != 'number')
+      throw 'ERROR: invalid array argument';
+    this.size = n;
+    this.i = 0;
+    this.array = [];
+  }
+  add (v) {
+    if (this.i < this.size && this.size > 0)
+      this.array.push(v);
+    else
+      throw 'ERROR: array overflow';
+    this.i++;
+  }
+  show(n) {
+    n--;
+    if (n < this.size && n >= 0)
+      return this.array[n]
+    else
+      throw 'ERROR: array null point'
+  }
+}
 var the_console = new Console();
 class Algorithm {
   constructor () {
@@ -57,38 +83,27 @@ class Algorithm {
         var word = line[i].split(' ');
         i++;
         var j = 0;
-        console.log(line);
-        console.log(word);
-        console.log("a " + word[j]);
-        /*
-        for (k in word) {
-          if (word[k] === '') word.splice(k, 1);
-        }*/
         while (word[j] || word[j] === "") {
-          
-          console.log(word);
+          // cleanup variables
           while (word[j].search(' ') != -1)
             word[j] = word[j].replace(' ', '');
-
           while (word[j].search('\t') != -1)
             word[j] = word[j].replace('\t', '');
-
           while (word[j].search(',') != -1)
             word[j] = word[j].replace(',', '');
-
           while (word[j].search(':') != -1)
             word[j] = word[j].replace(':', '');
-
+  
+          // set type of variables
           if (j < word.length - 1) {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
-            
             switch (word[word.length - 1]) {
             case 'entero':
               window.__variables[word[j]] = Number;
               break;
             case 'real':
-              window.__variables[word[j]] = Number;
+                window.__variables[word[j]] = Number;
               break;
             case 'carapter':
               window.__variables[word[j]] = String;
