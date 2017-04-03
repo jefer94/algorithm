@@ -15,7 +15,7 @@ var tokens = {
 var algorithm = new class {
   constructor () {
     this.js = '';
-    window.__variables = [];
+    global.variables = [];
   }
   // transform to javascript
   to_js () {
@@ -85,16 +85,16 @@ var algorithm = new class {
               code += 'var ' + word[j] + ';\n';
             switch (word[word.length - 1]) {
             case type.int:
-              window.__variables[word[j]] = 'int';
+              global.variables[word[j]] = 'int';
               break;
             case type.double:
-              window.__variables[word[j]] = 'double';
+              global.variables[word[j]] = 'double';
               break;
             case type.string:
-              window.__variables[word[j]] = 'string';
+              global.variables[word[j]] = 'string';
               break;
             case type.bool:
-              window.__variables[word[j]] = 'bool';
+              global.variables[word[j]] = 'bool';
               break;
             default:
             }
