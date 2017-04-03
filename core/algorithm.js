@@ -1,17 +1,20 @@
 var tokens = {
-  // js           // native
-  '=': '===',
-  '<>': '!==',
-  '<=': '<=',
-  '>=': '>=',
-  '<': '<',
-  '>': '>'
+	// algorithm : js
+  '='          : '===',
+  '<>'         : '!==',
+  '<='         : '<=',
+  '>='         : '>=',
+  '<'          : '<',
+  '>'          : '>',
+  '<-'         : '=',
+  '<='         : '=',
+	'o'          : '||',
+	'y'          : '&&',
+	'no'         : '!'
 };
 
 class Vector {
   constructor (n) {
-    if (typeof a != 'number')
-        throw 'ERROR: array length can only be a number'''
     if (n <= 0 || typeof n != 'number')
       throw 'ERROR: invalid array argument';
     this.size = n;
@@ -47,8 +50,6 @@ class Algorithm {
     // get container of box executor
     this.console = document.getElementById('console');
 
-    // add this value in the log
-    // result.innerHTML += execute.value + '<div class="lines"><div class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> algorithm run unname.js</div></div>'
     // and execute a interpreter
     var title = this.title();
     var literals = this.literals();
@@ -61,7 +62,8 @@ class Algorithm {
   title () {
     var line = this.code.split('\n');
     var word = line[0].split(' ');
-    if (word[0] == 'algoritmo' && word.length == 2) {
+		console.log(word[0] + ' ' + algorithm_word);
+    if (word[0] == algorithm_word && word.length == 2) {
       var code_to_return = '';
       for (var i = 1; i < line.length; i++)
         code_to_return += line[i] + '\n';
@@ -73,43 +75,52 @@ class Algorithm {
       throw 'name is invalid';
   }
   literals () {
-    var literals = this.code.replace(this.code.match(/inicio[\s\S]*?fin/gm)[0], '');
+    var literals = this.code.replace(this.code.match(/inicio[\s\S]*?fin$/gm)[0], '');
     var line = literals.split('\n');
     var code = '';
-    if (line[0].split(' ')[0].search('variables') != -1) {
+    if (variables.indexOf(line[0].split(' ')[0]) != -1) {
       var i = 0;
       var k = 0;
       while (line[i]) {
         var word = line[i].split(' ');
         i++;
         var j = 0;
-        while (word[j] || word[j] === "") {
-          // cleanup variables
+        if (line[i].search('//') != -1) {
+          var remove = line[i].substr(line[i].search('//'), line[i].length);
+          line[i] = line[i].replace(remove, '');
+        }
+        while (word[j] || word[j] === '') {
+          // last test
+          while (word[j].search('=') != -1)
+            word[j] = word[j].replace('=', ' = ');
+
           while (word[j].search(' ') != -1)
             word[j] = word[j].replace(' ', '');
+
           while (word[j].search('\t') != -1)
             word[j] = word[j].replace('\t', '');
+
           while (word[j].search(',') != -1)
             word[j] = word[j].replace(',', '');
+
           while (word[j].search(':') != -1)
             word[j] = word[j].replace(':', '');
-  
-          // set type of variables
+
           if (j < word.length - 1) {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
             switch (word[word.length - 1]) {
-            case 'entero':
-              window.__variables[word[j]] = Number;
+            case type.int:
+              window.__variables[word[j]] = 'int';
               break;
-            case 'real':
-                window.__variables[word[j]] = Number;
+            case type.double:
+              window.__variables[word[j]] = 'double';
               break;
-            case 'carapter':
-              window.__variables[word[j]] = String;
+            case type.string:
+              window.__variables[word[j]] = 'string';
               break;
-            case 'booleano':
-              window.__variables[word[j]] = Boolean;
+            case type.bool:
+              window.__variables[word[j]] = 'bool';
               break;
             default:
             }
@@ -120,14 +131,13 @@ class Algorithm {
     }
     else
       console.error('variables not exist');
-    
     return code;
   }
   // transform between native languaje and javascipt
   scanner () {
     // good in this space we are going to make a separation between the code
     // and the variables
-    this.code = this.code.match(/inicio[\s\S]*?fin/gm)[0];
+    this.code = this.code.match(/inicio[\s\S]*?fin$/gm)[0];
     // each line is separated into a array
     var line = this.code.split('\n');
     // the word "fin" is deleted
@@ -145,20 +155,48 @@ class Algorithm {
 
     // now the transpiler work
     for (i in line) {
+      if (line[i].search('//') != -1) {
+        var remove = line[i].substr(line[i].search('//'), line[i].length);
+        line[i] = line[i].replace(remove, '');
+      }
+      while (line[i].search('  ') != -1)
+        line[i] = line[i].replace('  ', ' ');
+
+      if (line[i].substr(0, 1) === ' ') {
+        var length = line[i].length - 1;
+        line[i] = line[i].substr(1, length);
+      }
+
+      var length = line[i].length - 1;
+      while (line[i].substr(length, 1) === ' ')
+        line[i] = line[i].substr(0, length);
+
+      if (line[i] === '')
+        continue;
+
+			// if (!line[i]) break;
       // each word is separated into a array
       var word = line[i].split(' ');
       // this loop is to search in various dictionaries, and transform that code
-      for (var i in word)
+      for (var i in word) {
+        if (word[i].search('=') != -1)
+          word[i] = word[i].replace('=', ' === ');
         // dictionaries of words
-        if (transpiler[word[i]])
+				// open blackets
+        if (open_bracket.indexOf(word[i]) != -1)
+          this.js += '{ ';
+				// close brackets
+        else if (close_bracket.indexOf(word[i]) != -1)
+          this.js += '}';
+        else if (transpiler[word[i]])
           this.js += transpiler[word[i]] + ' ';
         // dictionaries of tokens
         else if (tokens[word[i]])
           this.js += tokens[word[i]] + ' ';
-        // and words not in the dictionary
+				// and words not in the dictionary
         else
           this.js += word[i] + ' ';
-
+      }
       // this fracment of code delete all space in the start of a line
       // with a style like stack, first reverse the array
       word.reverse();
@@ -182,13 +220,18 @@ class Algorithm {
       if (last_line.search('{') != -1 || last_line.search('}') != -1)
         this.js += '\n';
 
-      else if (word[0].search('mostrar') != -1 || word[0].search('imprimir') != -1) {
-        this.js = this.js.replace('mostrar', 'write(');
-        this.js = this.js.replace('imprimir', 'write(');
-        this.js += ');\n';
+      else if (write.indexOf(word[0]) != -1) {
+        this.js = this.js.replace(
+					write[write.indexOf(word[0])],
+					'eval(write('
+				);
+        this.js += '));\n';
       }
-      else if (word[0].search('leer') != -1) {
-        this.js = this.js.replace('leer', 'eval(read("');
+      else if (read.indexOf(word[0]) != -1) {
+        this.js = this.js.replace(
+				read[read.indexOf(word[0])],
+					'eval(read("'
+				);
         this.js += '"));\n';
       }
       else
