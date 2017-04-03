@@ -1,7 +1,5 @@
 'use strict';
-class Console {
-  constructor () {
-  }
+var the_console = new class {
   run (title, literals, code) {
     var the_console = document.getElementById('console');
     the_console.innerHTML = '';
@@ -31,6 +29,7 @@ class Console {
     // eval(literals + code);
   }
   read (to_read) {
+    // clean up unnecessary signs
     while (to_read.substr(0, 1) === ' ') {
 		  var length = to_read.length - 1;
       to_read = to_read.substr(1, length);
@@ -48,6 +47,16 @@ class Console {
     var the_console = document.getElementById('var');
 		the_console.innerHTML += input;
 		the_console.id = '';
+    if (typeof to_read === 'object') {
+      if (to_read instanceof Vector) {
+
+      }
+      // allow defaults objects like Math
+		  else {
+        return `${to_read} = ${input};`;
+		  }
+    }
+    // here in runtime show the mistakes in assignings
 		switch (window.__variables[to_read]) {
 			case 'int':
 				if (isNaN(Number(input)) || input != Math.trunc(input))
@@ -64,18 +73,15 @@ class Console {
 					return `write(\'${type_error.bool}\'); window.__io.show = false ;`;
 			  break;
 		}
-
-		console.log(window.__variables[to_read]);
 		if (window.__variables[to_read] == 'string') {
-      console.log(`${to_read} = \'${input}\';`);
       return `${to_read} = \'${input}\';`;
 		}
 		else {
-      console.log(`${to_read} = ${input};`);
       return `${to_read} = ${input};`;
 		}
   }
   write (text) {
+    // window.__io.show is a flag, this avoids execution after errors
 		if (window.__io.show) {
 			if (typeof text === 'number' && isNaN(text))
 			  return `write(\'${error.string_for_number}\'); window.__io.show = false ;`;

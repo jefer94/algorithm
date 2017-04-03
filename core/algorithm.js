@@ -12,32 +12,7 @@ var tokens = {
 	'y'          : '&&',
 	'no'         : '!'
 };
-
-class Vector {
-  constructor (n) {
-    if (n <= 0 || typeof n != 'number')
-      throw 'ERROR: invalid array argument';
-    this.size = n;
-    this.i = 0;
-    this.array = [];
-  }
-  add (v) {
-    if (this.i < this.size && this.size > 0)
-      this.array.push(v);
-    else
-      throw 'ERROR: array overflow';
-    this.i++;
-  }
-  show(n) {
-    n--;
-    if (n < this.size && n >= 0)
-      return this.array[n]
-    else
-      throw 'ERROR: array null point'
-  }
-}
-var the_console = new Console();
-class Algorithm {
+var algorithm = new class {
   constructor () {
     this.js = '';
     window.__variables = [];
@@ -62,7 +37,6 @@ class Algorithm {
   title () {
     var line = this.code.split('\n');
     var word = line[0].split(' ');
-		console.log(word[0] + ' ' + algorithm_word);
     if (word[0] == algorithm_word && word.length == 2) {
       var code_to_return = '';
       for (var i = 1; i < line.length; i++)
@@ -237,10 +211,5 @@ class Algorithm {
       else
         this.js += ';\n';
     }
-    // this.js = this.js.match( /inicio[\s\S]*?fin/gm )[0].replace("inicio","").replace("fin","");
-    // console.log(this.js);
   }
 }
-
-// instance of mechanic
-var algorithm = new Algorithm;
