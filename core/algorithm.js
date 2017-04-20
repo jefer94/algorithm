@@ -1,5 +1,5 @@
 var tokens = {
-	// algorithm : js
+  // algorithm : js
   '='          : '===',
   '<>'         : '!==',
   '<='         : '<=',
@@ -8,9 +8,9 @@ var tokens = {
   '>'          : '>',
   '<-'         : '=',
   '<='         : '=',
-	'o'          : '||',
-	'y'          : '&&',
-	'no'         : '!'
+  'o'          : '||',
+  'y'          : '&&',
+  'no'         : '!'
 };
 var algorithm = new class {
   constructor () {
@@ -114,6 +114,11 @@ var algorithm = new class {
     this.code = this.code.match(/inicio[\s\S]*?fin$/gm)[0];
     // each line is separated into a array
     var line = this.code.split('\n');
+
+    this.transpiler_inverse = {};
+    for (i in transpiler) {
+        eval('this.transpiler_inverse[\''+transpiler[i]+'\']= \''+i+'\';');
+    }
     // the word "fin" is deleted
     if (line[line.length - 1].search('fin') != -1)
       line.pop();
@@ -133,6 +138,8 @@ var algorithm = new class {
         var remove = line[i].substr(line[i].search('//'), line[i].length);
         line[i] = line[i].replace(remove, '');
       }
+      line[i] = line[i].replace(/\(/g, ' (');
+      line[i] = line[i].replace(/\)/g, ') ');
       while (line[i].search('  ') != -1)
         line[i] = line[i].replace('  ', ' ');
 
@@ -148,26 +155,27 @@ var algorithm = new class {
       if (line[i] === '')
         continue;
 
-			// if (!line[i]) break;
+      // if (!line[i]) break;
       // each word is separated into a array
       var word = line[i].split(' ');
       // this loop is to search in various dictionaries, and transform that code
       for (var i in word) {
         if (word[i].search('=') != -1)
           word[i] = word[i].replace('=', ' === ');
+
         // dictionaries of words
-				// open blackets
+        // open blackets
         if (open_bracket.indexOf(word[i]) != -1)
           this.js += '{ ';
-				// close brackets
+        // close brackets
         else if (close_bracket.indexOf(word[i]) != -1)
           this.js += '}';
         else if (transpiler[word[i]])
-          this.js += transpiler[word[i]] + ' ';
+            this.js += transpiler[word[i]] + ' ';
         // dictionaries of tokens
         else if (tokens[word[i]])
           this.js += tokens[word[i]] + ' ';
-				// and words not in the dictionary
+        // and words not in the dictionary
         else
           this.js += word[i] + ' ';
       }
@@ -196,16 +204,16 @@ var algorithm = new class {
 
       else if (write.indexOf(word[0]) != -1) {
         this.js = this.js.replace(
-					write[write.indexOf(word[0])],
-					'eval(write('
-				);
+          write[write.indexOf(word[0])],
+          'eval(write('
+        );
         this.js += '));\n';
       }
       else if (read.indexOf(word[0]) != -1) {
         this.js = this.js.replace(
-				read[read.indexOf(word[0])],
-					'eval(read("'
-				);
+        read[read.indexOf(word[0])],
+          'eval(read("'
+        );
         this.js += '"));\n';
       }
       else

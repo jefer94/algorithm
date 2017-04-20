@@ -11,13 +11,14 @@ var transpiler = {
   'si'         : 'if',
   'sino'       : 'else',
   'mientras'   : 'while',
+  'repetir'    : 'do {',
+  'hasta'      : '} while',
   'para'       : 'for',
   'hacer'      : 'do'
 };
 
 var open_bracket = [
 	// map
-  'reperir',
   'hacer',
   'entonces'
 ];

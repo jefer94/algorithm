@@ -15,8 +15,8 @@ var the_console = new class {
     the_console.innerHTML += '<div class="lines"><div class="CodeMirror-linenumber ' +
       'CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> ' +
       'algorithm run ' + title + '.js</div></div>';
-    console.log(literals + code);
 		// show console before of prompt
+		/*
 		setTimeout(() => {
 			try {
 			  eval(literals + code);
@@ -26,7 +26,10 @@ var the_console = new class {
 				return -1;
 			}
 		}, 300);
-    // eval(literals + code);
+		*/
+		// use this eval for debug errors
+    eval(literals + code);
+    console.log(literals + code);
   }
   read (to_read) {
     // clean up unnecessary signs
