@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./vendor/codemirror/addon/hint/show-hint.css">
     <!--1ink rel="stylesheet" href="./look/bootstrap-reboot.min.css"-->
 
+    <script src="./lang/es.js"></script>
+    <script src="./core/global.js"></script>
     <script src="./core/tabs.js"></script>
     <!-- CodeMirror -->
     <script src="./vendor/codemirror/lib/codemirror.js"></script>
@@ -17,7 +19,6 @@
     <script src="./vendor/codemirror/mode/algorithm/algorithm.es.js"></script>
     <script src="./vendor/codemirror/mode/javascript/javascript.js"></script>
     <script src="./app.js"></script>
-    <script src="./lang/es.js"></script>
     <script src="./core/console.js"></script>
     <script src="./core/vector.js"></script>
     <script src="./core/algorithm.js"></script>
@@ -159,30 +160,20 @@
       <div id="content1" class="tab show-content">
 <textarea id="code" name="code" class="caja toolbox-space">algoritmo facilito
 variables
-  sumador, i, estudiantes, nota: entero
-  resultado: real
+  tabla[10], x, i: entero
 inicio
-  sumador <- 0
   i <- 0
-  mostrar "cuantos estudiantes son: "
-  leer estudiantes
-  mientras (estudiantes < 0) hacer
-    mostrar "el numero de estudiante debe ser positivo: "
-    leer estudiantes
-  finmientras
-  mientras (i < estudiantes) hacer
-    mostrar "ingrese la nota del estudiante: "
-    leer nota
-    mientras (nota < 0 o nota > 20) hacer
-      mostrar "la nota debe ser del 0 al 20: "
-      leer nota
-    finmientras
+  mostrar "mostrar el numero a multiplicar"
+  leer X
+  mientras (i < 10) hacer 
+    mostrar  "ingrese numero a multiplicar: "
+    leer tabla[i]
+    mostrar tabla[i]
     i <- i + 1
-    sumador <- sumador + nota
   finmientras
-  resultado <- sumador / i
-  mostrar "el resultado es " + resultado
-fin</textarea>
+fin
+  algoritmo facilito
+</textarea>
       </div>
       <div id="content2" class="tab hidden-content">
         <div class="console" id="console">
