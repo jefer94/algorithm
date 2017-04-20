@@ -49,7 +49,8 @@ var algorithm = new class {
       throw 'name is invalid';
   }
   literals () {
-    var literals = this.code.replace(this.code.match(/inicio[\s\S]*?fin$/gm)[0], '');
+    var literals = this.code.replace(
+      this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0], '');
     var line = literals.split('\n');
     var code = '';
     if (variables.indexOf(line[0].split(' ')[0]) != -1) {
@@ -65,21 +66,13 @@ var algorithm = new class {
         }
         while (word[j] || word[j] === '') {
           // last test
-          while (word[j].search('=') != -1)
-            word[j] = word[j].replace('=', ' = ');
-
-          while (word[j].search(' ') != -1)
-            word[j] = word[j].replace(' ', '');
-
-          while (word[j].search('\t') != -1)
-            word[j] = word[j].replace('\t', '');
-
-          while (word[j].search(',') != -1)
-            word[j] = word[j].replace(',', '');
-
-          while (word[j].search(':') != -1)
-            word[j] = word[j].replace(':', '');
-
+          word[j] = word[j].replace(/=/g, ' = ');
+          word[j] = word[j].replace(/ /g, '');
+          word[j] = word[j].replace(/\t/g, '');
+          word[j] = word[j].replace(/,/g, '');
+          word[j] = word[j].replace(/:/g, '');
+          word[j] = word[j].replace(/\[/g, ' = new Vector(');
+          word[j] = word[j].replace(/\]/g, ')');
           if (j < word.length - 1) {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
@@ -111,22 +104,18 @@ var algorithm = new class {
   scanner () {
     // good in this space we are going to make a separation between the code
     // and the variables
-    this.code = this.code.match(/inicio[\s\S]*?fin$/gm)[0];
+    this.code = this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0];
     // each line is separated into a array
     var line = this.code.split('\n');
 
-    this.transpiler_inverse = {};
-    for (i in transpiler) {
-        eval('this.transpiler_inverse[\''+transpiler[i]+'\']= \''+i+'\';');
-    }
     // the word "fin" is deleted
-    if (line[line.length - 1].search('fin') != -1)
+    if (line[line.length - 1].search(end) != -1)
       line.pop();
 
     // reverse the line of array
     line.reverse();
     // the word "inicio" is deleted
-    if (line[line.length - 1].search('inicio') != -1)
+    if (line[line.length - 1].search(begin) != -1)
       line.pop();
 
     // reverse the line of array
@@ -140,8 +129,7 @@ var algorithm = new class {
       }
       line[i] = line[i].replace(/\(/g, ' (');
       line[i] = line[i].replace(/\)/g, ') ');
-      while (line[i].search('  ') != -1)
-        line[i] = line[i].replace('  ', ' ');
+      line[i] = line[i].replace(/  /g, ' ');
 
       if (line[i].substr(0, 1) === ' ') {
         var length = line[i].length - 1;
@@ -160,9 +148,7 @@ var algorithm = new class {
       var word = line[i].split(' ');
       // this loop is to search in various dictionaries, and transform that code
       for (var i in word) {
-        if (word[i].search('=') != -1)
-          word[i] = word[i].replace('=', ' === ');
-
+        word[i] = word[i].replace(/=/g, ' === ');
         // dictionaries of words
         // open blackets
         if (open_bracket.indexOf(word[i]) != -1)

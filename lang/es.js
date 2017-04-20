@@ -1,4 +1,6 @@
 var algorithm_word = 'algoritmo';
+var begin = 'inicio';
+var end = 'fin';
 
 var variables = [
 	// map

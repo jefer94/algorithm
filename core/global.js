@@ -1,9 +1,9 @@
 // this replace window scope
 var global = {
-	variables: [],
+  variables: [],
   io: {
     text: undefined,
-	  last_text: undefined,
+    last_text: undefined,
     show: true
-	}
+ }
 }
