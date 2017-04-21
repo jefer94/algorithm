@@ -10,6 +10,7 @@ var the_console = new class {
       'CodeMirror-gutter-elt arrow">&gt;</div> <div class="margin-line"> ' +
       'algorithm run ' + title + '.js</div></div>';
     // show console before of prompt
+    console.log(literals + code);
     /*
     setTimeout(() => {
       try {
@@ -23,7 +24,6 @@ var the_console = new class {
     */
     // use this eval for debug errors
     eval(literals + code);
-    console.log(literals + code);
   }
   read (to_read) {
     // flags
@@ -44,18 +44,15 @@ var the_console = new class {
     else
       input = prompt('');
     var the_console = document.getElementById('var');
+    // if var not exist, this not work
     the_console.innerHTML += input;
     the_console.id = '';
-    if (typeof to_read === 'object') {
-      // if to_read is a vector
-      if (to_read.search(/\[/) != -1 &&
-        eval(to_read.substr(0, to_read.search(/\[/)) + ' instanceof Vector')) {
-        vector = true;
-      }
-      // allow defaults objects like Math
-      else {
-        return `${to_read} = ${input};`;
-      }
+    if (typeof to_read === 'object')
+      return `${to_read} = ${input};`;
+    // vector
+    else if (to_read.search(/\.io\(/)) {
+      vector = true;
+      to_read += '.add()';
     }
     // here in runtime show the mistakes in assignings
     switch (global.variables[to_read]) {
@@ -78,7 +75,7 @@ var the_console = new class {
       return `${to_read} = \'${input}\';`;
     }
     else if (vector) {
-      return `${to_read.substr(0, to_read.search(/\[/))}.add(${input});`;
+      return `${to_read};`;
     }
     else {
       return `${to_read} = ${input};`;
@@ -87,12 +84,8 @@ var the_console = new class {
   write (text) {
     // global.io.show is a flag, this avoids execution after errors
     if (global.io.show) {
-      // if to_read is a vector
-      if (text.search(/\[/) != -1 &&
-        eval(text.substr(0, text.search(/\[/)) + ' instanceof Vector')) {
-        text.replace(/\[/, '.show(');
-        text.replace(/\]/, ')');
-        text = eval(text);
+      if (typeof text === 'object' && eval(text + '.is_vector()')) {
+        text = eval(text + '.show()');
       }
       if (typeof text === 'number' && isNaN(text))
         return `write(\'${error.string_for_number}\'); global.io.show = false ;`;

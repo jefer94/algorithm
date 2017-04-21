@@ -130,6 +130,8 @@ var algorithm = new class {
       line[i] = line[i].replace(/\(/g, ' (');
       line[i] = line[i].replace(/\)/g, ') ');
       line[i] = line[i].replace(/  /g, ' ');
+      line[i] = line[i].replace(/\[/g, '.io(');
+      line[i] = line[i].replace(/\]/g, ')');
 
       if (line[i].substr(0, 1) === ' ') {
         var length = line[i].length - 1;

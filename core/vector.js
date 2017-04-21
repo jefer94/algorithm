@@ -20,4 +20,11 @@ class Vector {
     else
       throw 'ERROR: array null point'
   }
+  io(n) {
+    return {
+      add: () => this.add(n),
+      show: () => this.show(n),
+      is_vector: () => true
+    }
+  }
 }
