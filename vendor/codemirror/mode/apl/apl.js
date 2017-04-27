@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../../lib/codemirror"));
@@ -102,7 +99,7 @@ CodeMirror.defineMode("apl", function() {
       };
     },
     token: function(stream, state) {
-      var ch, funcName;
+      var ch, funcName, word;
       if (stream.eatSpace()) {
         return null;
       }
@@ -163,6 +160,7 @@ CodeMirror.defineMode("apl", function() {
         return "function jot-dot";
       }
       stream.eatWhile(/[\w\$_]/);
+      word = stream.current();
       state.prev = true;
       return "keyword";
     }

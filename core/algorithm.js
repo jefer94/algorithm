@@ -1,6 +1,5 @@
 var tokens = {
   // algorithm : js
-  '='          : '===',
   '<>'         : '!==',
   '<='         : '<=',
   '>='         : '>=',
@@ -50,7 +49,7 @@ var algorithm = new class {
   }
   literals () {
     var literals = this.code.replace(
-      this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0], '');
+    this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0], '');
     var line = literals.split('\n');
     var code = '';
     if (variables.indexOf(line[0].split(' ')[0]) != -1) {
@@ -122,7 +121,7 @@ var algorithm = new class {
     line.reverse();
 
     // now the transpiler work
-    for (i in line) {
+    for (let i in line) {
       if (line[i].search('//') != -1) {
         var remove = line[i].substr(line[i].search('//'), line[i].length);
         line[i] = line[i].replace(remove, '');
@@ -132,6 +131,19 @@ var algorithm = new class {
       line[i] = line[i].replace(/  /g, ' ');
       line[i] = line[i].replace(/\[/g, '.io(');
       line[i] = line[i].replace(/\]/g, ')');
+
+
+
+      while (line[i].match(/\.io\([0-9a-zA-Z]+\)\s+<-\s+[a-zA-Z0-9 ]/)) {
+        line[i] = line[i].replace(/<-/, '');
+        let exp = line[i].match(/\S+/g);
+        line[i] = exp[0] + '.add('
+        if (isNaN(+exp[1]))
+          line[i] += '"' + exp[1] + '"';
+        else
+          line[i] += exp[1];
+        line[i] += ')';
+      }
 
       if (line[i].substr(0, 1) === ' ') {
         var length = line[i].length - 1;
@@ -145,12 +157,23 @@ var algorithm = new class {
       if (line[i] === '')
         continue;
 
+
+        console.log(line[i]);
+      for (let i in open_bracket) {
+        if (line[i].match(RegExp('=(.)+'+ open_bracket[i]))) {
+          console.log('true');
+          line[i] = line[i].replace(/=/g, ' === ');
+          console.log('true');
+        }
+      }
+        console.log(line[i]);
+
       // if (!line[i]) break;
       // each word is separated into a array
       var word = line[i].split(' ');
       // this loop is to search in various dictionaries, and transform that code
-      for (var i in word) {
-        word[i] = word[i].replace(/=/g, ' === ');
+      for (let i in word) {
+        // word[i] = word[i].replace(/=/g, ' === ');
         // dictionaries of words
         // open blackets
         if (open_bracket.indexOf(word[i]) != -1)

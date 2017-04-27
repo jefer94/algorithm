@@ -1,16 +1,28 @@
 #!/usr/bin/fish
-set folder vendor/codemirror
+set FOLDER vendor/codemirror
+set BACKUP vendor/codemirror.back
+set CODEMIRROR ../codemirror
+set REMOTE https://github.com/codemirror/CodeMirror
+set NOW $PWD
 
-rm -R $folder/**/.*
-rm -R $folder/.*
-rm -R $folder/node_modules
-rm -R $folder/components
-rm -R $folder/bin
-rm -R $folder/src
-rm -R $folder/demo
-rm -R $folder/doc
-rm -R $folder/test
-rm -R $folder/index.html
-rm -R $folder/package.json
-rm -R $folder/mode/*/*test.js
-rm -R $folder/mode/*/*.html
+git clone $REMOTE $CODEMIRROR
+cd $CODEMIRROR
+git pull
+npm install
+cd $NOW
+mv $FOLDER $BACKUP
+cp -r $CODEMIRROR $FOLDER
+
+rm -R $FOLDER/**/.*
+rm -R $FOLDER/.*
+rm -R $FOLDER/node_modules
+rm -R $FOLDER/components
+rm -R $FOLDER/bin
+rm -R $FOLDER/src
+rm -R $FOLDER/demo
+rm -R $FOLDER/doc
+rm -R $FOLDER/test
+rm -R $FOLDER/index.html
+rm -R $FOLDER/package.json
+rm -R $FOLDER/mode/*/*test.js
+rm -R $FOLDER/mode/*/*.html

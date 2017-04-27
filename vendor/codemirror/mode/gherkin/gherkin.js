@@ -1,9 +1,6 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 /*
 Gherkin mode - http://www.cukes.info/
-Report bugs/issues here: https://github.com/codemirror/CodeMirror/issues
+Report bugs/issues here: https://github.com/marijnh/CodeMirror/issues
 */
 
 // Following Objs from Brackets implementation: https://github.com/tregusti/brackets-gherkin/blob/master/main.js

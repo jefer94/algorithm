@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 /*jshint unused:true, eqnull:true, curly:true, bitwise:true */
 /*jshint undef:true, latedef:true, trailing:true */
 /*global CodeMirror:true */
@@ -220,12 +217,16 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
         }else{
           return rval(state,stream,"function");
         }
+      }else if (is_member(w,operatorAtomWords)) {
+        return rval(state,stream,"operator");
       }else if (lookahead(stream) == ":") {
         if (w == "erlang") {
           return rval(state,stream,"builtin");
         } else {
           return rval(state,stream,"function");
         }
+      }else if (is_member(w,["true","false"])) {
+        return rval(state,stream,"boolean");
       }else if (is_member(w,["true","false"])) {
         return rval(state,stream,"boolean");
       }else{
@@ -357,7 +358,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
     switch (type) {
       case "atom":        return "atom";
       case "attribute":   return "attribute";
-      case "boolean":     return "atom";
+      case "boolean":     return "special";
       case "builtin":     return "builtin";
       case "close_paren": return null;
       case "colon":       return null;
@@ -433,16 +434,15 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
   }
 
   function maybe_drop_post(s) {
-    if (!s.length) return s
     var last = s.length-1;
 
     if (s[last].type === "dot") {
       return [];
     }
-    if (last > 1 && s[last].type === "fun" && s[last-1].token === "fun") {
+    if (s[last].type === "fun" && s[last-1].token === "fun") {
       return s.slice(0,last-1);
     }
-    switch (s[last].token) {
+    switch (s[s.length-1].token) {
       case "}":    return d(s,{g:["{"]});
       case "]":    return d(s,{i:["["]});
       case ")":    return d(s,{i:["("]});

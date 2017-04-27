@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 // declare global: tern, server
 
 var server;
@@ -39,6 +36,6 @@ function startServer(defs, plugins, scripts) {
   });
 }
 
-this.console = {
+var console = {
   log: function(v) { postMessage({type: "debug", message: v}); }
 };

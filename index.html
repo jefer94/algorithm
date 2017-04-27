@@ -160,30 +160,18 @@
       <div id="content1" class="tab show-content">
 <textarea id="code" name="code" class="caja toolbox-space">algoritmo facilito
 variables
-  sumador, i, estudiantes, nota: entero
-  resultado: real
+numero, i, tabla[10]: entero
 inicio
-  sumador <- 0
   i <- 0
-  mostrar "cuantos estudiantes son: "
-  leer estudiantes
-  mientras (estudiantes < 0) hacer
-    mostrar "el numero de estudiante debe ser positivo: "
-    leer estudiantes
-  finmientras
-  mientras (i < estudiantes) hacer
-    mostrar "ingrese la nota del estudiante: "
-    leer nota
-    mientras (nota < 0 o nota > 20) hacer
-      mostrar "la nota debe ser del 0 al 20: "
-      leer nota
-    finmientras
+  mostrar "Ingrese numero a multiplicar: "
+  leer numero
+  mientras (i < 10) hacer
     i <- i + 1
-    sumador <- sumador + nota
+    tabla[i] <- numero * i
+    mostrar numero, " * ", i, " = ", numero * i
   finmientras
-  resultado <- sumador / i
-  mostrar "el resultado es " + resultado
-fin</textarea>
+fin
+</textarea>
       </div>
       <div id="content2" class="tab hidden-content">
         <div class="console" id="console">

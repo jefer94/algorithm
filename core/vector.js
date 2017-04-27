@@ -6,12 +6,15 @@ class Vector {
     this.i = 0;
     this.array = [];
   }
-  add (v) {
-    if (this.i < this.size && this.size > 0)
-      this.array.push(v);
+  add (v, i) {
+    i--;
+    if (this.i < this.size && this.size > 0) {
+      if (this.array[i] != undefined)
+        this.i++;
+      this.array[i] = v;
+    }
     else
       throw 'ERROR: array overflow';
-    this.i++;
   }
   show(n) {
     n--;
@@ -20,10 +23,11 @@ class Vector {
     else
       throw 'ERROR: array null point'
   }
-  io(n) {
+  io(i) {
     return {
-      add: () => this.add(n),
-      show: () => this.show(n),
+      add: (v) => this.add(v, i),
+      show: () => this.show(i),
+      toString: () => this.show(i),
       is_vector: () => true
     }
   }

@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 // Glue code between CodeMirror and Tern.
 //
 // Create a CodeMirror.TernServer to wrap an actual Tern server,
@@ -17,7 +14,7 @@
 //   indicate that a file is not available.
 // * fileFilter: A function(value, docName, doc) that will be applied
 //   to documents before passing them on to Tern.
-// * switchToDoc: A function(name, doc) that should, when providing a
+// * switchToDoc: A function(name) that should, when providing a
 //   multi-file view, switch the view or focus to the named file.
 // * showError: A function(editor, message) that can be used to
 //   override the way errors are displayed.
@@ -59,7 +56,6 @@
     this.options = options || {};
     var plugins = this.options.plugins || (this.options.plugins = {});
     if (!plugins.doc_comment) plugins.doc_comment = true;
-    this.docs = Object.create(null);
     if (this.options.useWorker) {
       this.server = new WorkerServer(this);
     } else {
@@ -70,14 +66,12 @@
         plugins: plugins
       });
     }
+    this.docs = Object.create(null);
     this.trackChange = function(doc, change) { trackChange(self, doc, change); };
 
     this.cachedArgHints = null;
     this.activeArgHints = null;
     this.jumpStack = [];
-
-    this.getHint = function(cm, c) { return hint(self, cm, c); };
-    this.getHint.async = true;
   };
 
   CodeMirror.TernServer.prototype = {
@@ -88,27 +82,28 @@
       return this.docs[name] = data;
     },
 
-    delDoc: function(id) {
-      var found = resolveDoc(this, id);
+    delDoc: function(name) {
+      var found = this.docs[name];
       if (!found) return;
       CodeMirror.off(found.doc, "change", this.trackChange);
-      delete this.docs[found.name];
-      this.server.delFile(found.name);
+      delete this.docs[name];
+      this.server.delFile(name);
     },
 
-    hideDoc: function(id) {
+    hideDoc: function(name) {
       closeArgHints(this);
-      var found = resolveDoc(this, id);
+      var found = this.docs[name];
       if (found && found.changed) sendDoc(this, found);
     },
 
     complete: function(cm) {
-      cm.showHint({hint: this.getHint});
+      var self = this;
+      CodeMirror.showHint(cm, function(cm, c) { return hint(self, cm, c); }, {async: true});
     },
 
-    showType: function(cm, pos, c) { showContextInfo(this, cm, pos, "type", c); },
+    getHint: function(cm, c) { return hint(this, cm, c); },
 
-    showDocs: function(cm, pos, c) { showContextInfo(this, cm, pos, "documentation", c); },
+    showType: function(cm, pos) { showType(this, cm, pos); },
 
     updateArgHints: function(cm) { updateArgHints(this, cm); },
 
@@ -124,22 +119,12 @@
       var self = this;
       var doc = findDoc(this, cm.getDoc());
       var request = buildRequest(this, doc, query, pos);
-      var extraOptions = request.query && this.options.queryOptions && this.options.queryOptions[request.query.type]
-      if (extraOptions) for (var prop in extraOptions) request.query[prop] = extraOptions[prop];
 
       this.server.request(request, function (error, data) {
         if (!error && self.options.responseFilter)
           data = self.options.responseFilter(doc, query, request, error, data);
         c(error, data);
       });
-    },
-
-    destroy: function () {
-      closeArgHints(this)
-      if (this.worker) {
-        this.worker.terminate();
-        this.worker = null;
-      }
     }
   };
 
@@ -169,17 +154,11 @@
     return ts.addDoc(name, doc);
   }
 
-  function resolveDoc(ts, id) {
-    if (typeof id == "string") return ts.docs[id];
-    if (id instanceof CodeMirror) id = id.getDoc();
-    if (id instanceof CodeMirror.Doc) return findDoc(ts, id);
-  }
-
   function trackChange(ts, doc, change) {
     var data = findDoc(ts, doc);
 
     var argHints = ts.cachedArgHints;
-    if (argHints && argHints.doc == doc && cmpPos(argHints.start, change.to) >= 0)
+    if (argHints && argHints.doc == doc && cmpPos(argHints.start, change.to) <= 0)
       ts.cachedArgHints = null;
 
     var changed = data.changed;
@@ -197,7 +176,7 @@
 
   function sendDoc(ts, doc) {
     ts.server.request({files: [{type: "full", name: doc.name, text: docValue(ts, doc)}]}, function(error) {
-      if (error) window.console.error(error);
+      if (error) console.error(error);
       else doc.changed = null;
     });
   }
@@ -217,7 +196,7 @@
         var completion = data.completions[i], className = typeToIcon(completion.type);
         if (data.guess) className += " " + cls + "guess";
         completions.push({text: completion.name + after,
-                          displayText: completion.displayName || completion.name,
+                          displayText: completion.name,
                           className: className,
                           data: completion});
       }
@@ -251,8 +230,8 @@
 
   // Type queries
 
-  function showContextInfo(ts, cm, pos, queryName, c) {
-    ts.request(cm, queryName, function(error, data) {
+  function showType(ts, cm, pos) {
+    ts.request(cm, "type", function(error, data) {
       if (error) return showError(ts, cm, error);
       if (ts.options.typeTip) {
         var tip = ts.options.typeTip(data);
@@ -262,13 +241,10 @@
           tip.appendChild(document.createTextNode(" — " + data.doc));
         if (data.url) {
           tip.appendChild(document.createTextNode(" "));
-          var child = tip.appendChild(elt("a", null, "[docs]"));
-          child.href = data.url;
-          child.target = "_blank";
+          tip.appendChild(elt("a", null, "[docs]")).href = data.url;
         }
       }
-      tempTooltip(cm, tip, ts);
-      if (c) c();
+      tempTooltip(cm, tip);
     }, pos);
   }
 
@@ -306,7 +282,7 @@
     ts.request(cm, {type: "type", preferFunction: true, end: start}, function(error, data) {
       if (error || !data.type || !(/^fn\(/).test(data.type)) return;
       ts.cachedArgHints = {
-        start: start,
+        start: pos,
         type: parseFnType(data.type),
         name: data.exprName || data.name || "fn",
         guess: data.guess,
@@ -405,10 +381,10 @@
   }
 
   function moveTo(ts, curDoc, doc, start, end) {
-    doc.doc.setSelection(start, end);
+    doc.doc.setSelection(end, start);
     if (curDoc != doc && ts.options.switchToDoc) {
       closeArgHints(ts);
-      ts.options.switchToDoc(doc.name, doc.doc);
+      ts.options.switchToDoc(doc.name);
     }
   }
 
@@ -445,15 +421,15 @@
 
   function atInterestingExpression(cm) {
     var pos = cm.getCursor("end"), tok = cm.getTokenAt(pos);
-    if (tok.start < pos.ch && tok.type == "comment") return false;
-    return /[\w)\]]/.test(cm.getLine(pos.line).slice(Math.max(pos.ch - 1, 0), pos.ch + 1));
+    if (tok.start < pos.ch && (tok.type == "comment" || tok.type == "string")) return false;
+    return /\w/.test(cm.getLine(pos.line).slice(Math.max(pos.ch - 1, 0), pos.ch + 1));
   }
 
   // Variable renaming
 
   function rename(ts, cm) {
     var token = cm.getTokenAt(cm.getCursor());
-    if (!/\w/.test(token.string)) return showError(ts, cm, "Not at a variable");
+    if (!/\w/.test(token.string)) showError(ts, cm, "Not at a variable");
     dialog(cm, "New name for " + token.string, function(newName) {
       ts.request(cm, {type: "rename", newName: newName, fullDocs: true}, function(error, data) {
         if (error) return showError(ts, cm, error);
@@ -463,16 +439,17 @@
   }
 
   function selectName(ts, cm) {
+    var cur = cm.getCursor(), token = cm.getTokenAt(cur);
+    if (!/\w/.test(token.string)) showError(ts, cm, "Not at a variable");
     var name = findDoc(ts, cm.doc).name;
     ts.request(cm, {type: "refs"}, function(error, data) {
       if (error) return showError(ts, cm, error);
       var ranges = [], cur = 0;
-      var curPos = cm.getCursor();
       for (var i = 0; i < data.refs.length; i++) {
         var ref = data.refs[i];
         if (ref.file == name) {
           ranges.push({anchor: ref.start, head: ref.end});
-          if (cmpPos(curPos, ref.start) >= 0 && cmpPos(curPos, ref.end) <= 0)
+          if (cmpPos(cur, ref.start) >= 0 && cmpPos(cur, ref.end) <= 0)
             cur = ranges.length - 1;
         }
       }
@@ -594,34 +571,16 @@
 
   // Tooltips
 
-  function tempTooltip(cm, content, ts) {
-    if (cm.state.ternTooltip) remove(cm.state.ternTooltip);
+  function tempTooltip(cm, content) {
     var where = cm.cursorCoords();
-    var tip = cm.state.ternTooltip = makeTooltip(where.right + 1, where.bottom, content);
-    function maybeClear() {
-      old = true;
-      if (!mouseOnTip) clear();
-    }
+    var tip = makeTooltip(where.right + 1, where.bottom, content);
     function clear() {
-      cm.state.ternTooltip = null;
       if (!tip.parentNode) return;
       cm.off("cursorActivity", clear);
-      cm.off('blur', clear);
-      cm.off('scroll', clear);
       fadeOut(tip);
     }
-    var mouseOnTip = false, old = false;
-    CodeMirror.on(tip, "mousemove", function() { mouseOnTip = true; });
-    CodeMirror.on(tip, "mouseout", function(e) {
-      if (!CodeMirror.contains(tip, e.relatedTarget || e.toElement)) {
-        if (old) clear();
-        else mouseOnTip = false;
-      }
-    });
-    setTimeout(maybeClear, ts.options.hintDelay ? ts.options.hintDelay : 1700);
+    setTimeout(clear, 1700);
     cm.on("cursorActivity", clear);
-    cm.on('blur', clear);
-    cm.on('scroll', clear);
   }
 
   function makeTooltip(x, y, content) {
@@ -646,7 +605,7 @@
     if (ts.options.showError)
       ts.options.showError(cm, msg);
     else
-      tempTooltip(cm, String(msg), ts);
+      tempTooltip(cm, String(msg));
   }
 
   function closeArgHints(ts) {
@@ -662,7 +621,7 @@
   // Worker wrapper
 
   function WorkerServer(ts) {
-    var worker = ts.worker = new Worker(ts.options.workerScript);
+    var worker = new Worker(ts.options.workerScript);
     worker.postMessage({type: "init",
                         defs: ts.options.defs,
                         plugins: ts.options.plugins,
@@ -683,7 +642,7 @@
           send({type: "getFile", err: String(err), text: text, id: data.id});
         });
       } else if (data.type == "debug") {
-        window.console.log(data.message);
+        console.log(data.message);
       } else if (data.id && pending[data.id]) {
         pending[data.id](data.err, data.body);
         delete pending[data.id];

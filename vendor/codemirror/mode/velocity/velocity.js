@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../../lib/codemirror"));
@@ -34,7 +31,7 @@ CodeMirror.defineMode("velocity", function() {
         state.beforeParams = false;
         var ch = stream.next();
         // start of unparsed string?
-        if ((ch == "'") && !state.inString && state.inParams) {
+        if ((ch == "'") && state.inParams) {
             state.lastTokenWasBuiltin = false;
             return chain(stream, state, tokenString(ch));
         }

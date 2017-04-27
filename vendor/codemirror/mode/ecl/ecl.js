@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../../lib/codemirror"));
@@ -34,6 +31,7 @@ CodeMirror.defineMode("ecl", function(config) {
   var blockKeywords = words("catch class do else finally for if switch try while");
   var atoms = words("true false null");
   var hooks = {"#": metaHook};
+  var multiLineStrings;
   var isOperatorChar = /[+\-*&%=<>!?|\/]/;
 
   var curPunc;
@@ -111,7 +109,7 @@ CodeMirror.defineMode("ecl", function(config) {
         if (next == quote && !escaped) {end = true; break;}
         escaped = !escaped && next == "\\";
       }
-      if (end || !escaped)
+      if (end || !(escaped || multiLineStrings))
         state.tokenize = tokenBase;
       return "string";
     };

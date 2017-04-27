@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../../lib/codemirror"));
@@ -83,12 +80,9 @@ CodeMirror.defineMode('mllike', function(_config, parserConfig) {
     if ( /[+\-*&%=<>!?|]/.test(ch)) {
       return 'operator';
     }
-    if (/[\w\xa1-\uffff]/.test(ch)) {
-      stream.eatWhile(/[\w\xa1-\uffff]/);
-      var cur = stream.current();
-      return words.hasOwnProperty(cur) ? words[cur] : 'variable';
-    }
-    return null
+    stream.eatWhile(/\w/);
+    var cur = stream.current();
+    return words[cur] || 'variable';
   }
 
   function tokenString(stream, state) {

@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 // Because sometimes you need to mark the selected *text*.
 //
 // Adds an option 'styleSelectedText' which, when enabled, gives
@@ -34,12 +31,11 @@
   });
 
   function onCursorActivity(cm) {
-    if (cm.state.markedSelection)
-      cm.operation(function() { update(cm); });
+    cm.operation(function() { update(cm); });
   }
 
   function onChange(cm) {
-    if (cm.state.markedSelection && cm.state.markedSelection.length)
+    if (cm.state.markedSelection.length)
       cm.operation(function() { clear(cm); });
   }
 

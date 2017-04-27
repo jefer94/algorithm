@@ -1,6 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("../../lib/codemirror"));
@@ -34,7 +31,7 @@ CodeMirror.defineMode("properties", function() {
       }
 
       if (sol) {
-        while(stream.eatSpace()) {}
+        while(stream.eatSpace());
       }
 
       var ch = stream.next();
@@ -51,7 +48,7 @@ CodeMirror.defineMode("properties", function() {
         state.position = "quote";
         return null;
       } else if (ch === "\\" && state.position === "quote") {
-        if (stream.eol()) {  // end of line?
+        if (stream.next() !== "u") {    // u = Unicode sequence \u1234
           // Multiline value
           state.nextMultiline = true;
         }

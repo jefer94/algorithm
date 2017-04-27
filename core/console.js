@@ -45,14 +45,23 @@ var the_console = new class {
       input = prompt('');
     var the_console = document.getElementById('var');
     // if var not exist, this not work
-    the_console.innerHTML += input;
-    the_console.id = '';
+    if (the_console) {
+      the_console.innerHTML += input;
+      the_console.id = '';
+    }
+    else {
+      the_console = document.getElementById('console');
+      the_console.innerHTML += '<div class="lines"><div ' +
+        'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
+        '<div class="margin-line"> ' + input + '</div></div>';
+    }
     if (typeof to_read === 'object')
       return `${to_read} = ${input};`;
     // vector
-    else if (to_read.search(/\.io\(/)) {
+    else if (to_read.search(/\.io\(/) != -1) {
       vector = true;
-      to_read += '.add()';
+      to_read += '.add(' + input + ')';
+      // console.log(to_read);
     }
     // here in runtime show the mistakes in assignings
     switch (global.variables[to_read]) {
@@ -81,23 +90,32 @@ var the_console = new class {
       return `${to_read} = ${input};`;
     }
   }
-  write (text) {
+  write () {
+    // var
+    result = '';
+    for (var i in arguments) {
+      var text = arguments[i];
+        if (typeof text === 'object' && text.is_vector()) {
+          text = text.show();
+        }
+        if (typeof text === 'number' && isNaN(text))
+          return `write(\'${error.string_for_number}\'); global.io.show = false ;`;
+        if (typeof text === 'number' && !isFinite(text))
+          return `write(\'${error.infinity}\'); global.io.show = false ;`;
+        result += text;
+    }
     // global.io.show is a flag, this avoids execution after errors
     if (global.io.show) {
-      if (typeof text === 'object' && eval(text + '.is_vector()')) {
-        text = eval(text + '.show()');
-      }
-      if (typeof text === 'number' && isNaN(text))
-        return `write(\'${error.string_for_number}\'); global.io.show = false ;`;
-      if (typeof text === 'number' && !isFinite(text))
-        return `write(\'${error.infinity}\'); global.io.show = false ;`;
-      if (global.io.last_text === text)
-          global.io.last_text = '';
-      global.io.text = text;
+      if (global.io.last_text === result)
+        global.io.last_text = '';
+      global.io.text = result;
       var the_console = document.getElementById('console');
+      var variable = document.getElementById('var');
+      if (variable)
+        variable.id = '';
       the_console.innerHTML += '<div class="lines"><div ' +
         'class="CodeMirror-linenumber CodeMirror-gutter-elt arrow">&gt;</div> ' +
-        '<div class="margin-line"> ' + text + '<div id="var" class="var"></div></div></div>';
+        '<div class="margin-line"> ' + result + '<div id="var" class="var"></div></div></div>';
     }
   }
 }

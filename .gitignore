@@ -3,3 +3,4 @@ ssl/
 npm-debug.log
 *.swp
 *.swo
+vendor/codemirror.back/
