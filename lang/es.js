@@ -1,6 +1,8 @@
 var algorithm_word = 'algoritmo';
 var begin = 'inicio';
 var end = 'fin';
+var for_word = 'para';
+var to_word = 'hasta';
 
 var variables = [
 	// map
@@ -11,7 +13,7 @@ var variables = [
 var transpiler = {
 	// algorithm : js
   'si'         : 'if',
-  'sino'       : 'else',
+  'sino'       : "}\nelse {",
   'mientras'   : 'while',
   'repetir'    : 'do {',
   'hasta'      : '} while',

@@ -122,6 +122,7 @@ var algorithm = new class {
 
     // now the transpiler work
     for (let i in line) {
+      // ...
       if (line[i].search('//') != -1) {
         var remove = line[i].substr(line[i].search('//'), line[i].length);
         line[i] = line[i].replace(remove, '');
@@ -133,7 +134,7 @@ var algorithm = new class {
       line[i] = line[i].replace(/\]/g, ')');
 
 
-
+      // vector.io(n).add(value)
       while (line[i].match(/\.io\([0-9a-zA-Z]+\)\s+<-\s+[a-zA-Z0-9 ]/)) {
         line[i] = line[i].replace(/<-/, '');
         let exp = line[i].match(/\S+/g);
@@ -157,8 +158,7 @@ var algorithm = new class {
       if (line[i] === '')
         continue;
 
-
-        console.log(line[i]);
+      // if (x === y)
       for (let i in open_bracket) {
         if (line[i].match(RegExp('=(.)+'+ open_bracket[i]))) {
           console.log('true');
@@ -166,11 +166,36 @@ var algorithm = new class {
           console.log('true');
         }
       }
-        console.log(line[i]);
 
-      // if (!line[i]) break;
+      // for (...)
+      if (line[i].match(RegExp(`\([\\s\\S]+${to_word}[\\s\\S]+\)`))) {
+        console.log(line[i].match(RegExp(`\([\\s\\S]+${to_word}[\\s\\S]+\)`)));
+        var conditions_for = line[i].match(RegExp(`\([\\s\\S]+${to_word}[\\s\\S]+\)`))[0];
+        conditions_for = conditions_for.split(to_word);
+        var ref = line[i].match(RegExp(`\([\\s\\S]+${to_word}[\\s\\S]+\)`))[0];
+        ref = ref.split(to_word);
+        conditions_for[0] += ';';
+        conditions_for[1] = conditions_for[1].replace('=', '<=');
+        if (conditions_for[1].search('reversed') === -1)
+          conditions_for[1] = conditions_for[1].replace(')', '; i++)');
+        else
+          conditions_for[1] = conditions_for[1].replace(')', '; i--)');
+        line[i] = line[i].replace(ref[0], conditions_for[0]);
+        line[i] = line[i].replace(ref[1], conditions_for[1]);
+        line[i] = line[i].replace(to_word, '');
+      }
+
+      // do ... while (!...)
+      if (line[i].match(RegExp(`${to_word}\\s+\([\\s\\S]+\)`))) {
+        console.log('enter');
+        line[i] = line[i].replace('(', '(!(');
+        line[i] = line[i].replace(/\)\s{0,}$/, '))');
+        line[i] = line[i].replace(/=/g, '===');
+      }
+
       // each word is separated into a array
       var word = line[i].split(' ');
+
       // this loop is to search in various dictionaries, and transform that code
       for (let i in word) {
         // word[i] = word[i].replace(/=/g, ' === ');
