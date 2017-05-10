@@ -1,16 +1,13 @@
-const tabs = (state = [], action) => {
+import {ADD_TAB, defaults_tabs, add_tab} from '../actions/index.jsx';
+
+const tabs = (state = defaults_tabs, action) => {
   switch (action.type) {
-    case 'DEFAULTS_TABS':
-      return state.concat(
-        defaults_tabs()
-      );
-    case 'ADD_TAB':
-      return state.map(t =>
-        add_tab(t, action)
-      )
+    case ADD_TAB:
+      return state.tabs.concat(add_tab(action));
+
     default:
-      return state
+      return state;
   }
 }
 
-export default todos
+export default tabs;

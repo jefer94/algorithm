@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import Tab from './tab.jsx';
 
-let Tabs = ({tabs, index}) => (
+const Tabs = ({tabs, index}) => (
   <ul>
     <li className="tab-hamburger" onclick="hamburger_onclick();" id="hamburger">
       <div className="hamburger" id="menu">
@@ -15,15 +15,15 @@ let Tabs = ({tabs, index}) => (
           _class = 'tab-active';
         else
           _class = 'tab';
-        return <Tab id={tab.id} onclick={tab.onclick} _class={_class} name={name} />
-      }
+        return <Tab id={tab.id} onclick={tab.onclick} _class={_class} name={name} key={i} />;
+      })
     }
   </ul>
 )
 
 Tabs.propTypes = {
-  tabs: propTypes.node.isRequired,
-  index: propTypes.number.isRequired
+  tabs: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired
 }
 
 export default Tabs

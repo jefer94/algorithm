@@ -2,24 +2,28 @@ var poststylus = require('poststylus')
 
 module.exports = {
   // JavaScript entry point
-  entry: './app.js',
+  entry: './app.jsx',
 
   // JavaScrip bundle file
   output: {
     path: __dirname,
     filename: 'bundle.js'
   },
+  context: __dirname,
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '*']
+  },
   // Setup server
   devServer: {
     inline: true,
-    port: 3001
+    port: 3000
   },
   module: {
     // JS, JSX and SASS loaders
     loaders: [
       {
         test: /\.jsx$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
