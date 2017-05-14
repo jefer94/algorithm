@@ -1,0 +1,15 @@
+- var index = 1
+mixin tab(text, active, extrajs)
+  - var js = `tab(${index});`
+  if extrajs
+    - js += extrajs
+  - var style = active ? 'tab-active' : 'tab'
+  li(id='tab'+index++ class=style onclick=js) #{text}
+
+nav#tabs
+  ul
+    li#hamburger.tab-hamburger(onclick='hamburger_onclick()')
+      #menu.hamburger
+        img(src='./icon/menu.svg', width='24')
+    +tab('Editor', true)
+    +tab('Consola', false, 'algorithm.to_js();')

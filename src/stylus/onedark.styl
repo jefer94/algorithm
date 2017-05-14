@@ -7,6 +7,32 @@ white-codemirror = rgba(233, 237, 237, 1)
 green-codemirror = rgb(83,127,126)
 oracle = #f50
 
+.helper
+  background-color #000
+  opacity 0.7
+  x 0
+  y 0
+  z-index 255
+  position absolute
+  width 100%
+  height 100%
+  content " "
+  transition-property opacity
+  transition-duration 0.5s
+  margin 0
+  padding 0
+  .container
+    opacity 1
+    background-color #F5FFFA
+    width 500px
+    height 350px
+    x 50%
+    y 50%
+    padding -175px 0 0 -250px
+    margin auto
+    position absolute
+    border-radius 5px
+
 .screen
   float left
 
@@ -136,7 +162,7 @@ body
   x 0
   y 0
   z-index 255
-  position: absolute
+  position absolute
   width 100%
   height 100%
   background-color white
