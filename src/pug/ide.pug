@@ -1,11 +1,12 @@
 .modal.hidden#ide
   .ide
     ul
-      li
-        img(src='./icon/menu.svg' width=26)
+      li#hamburger.tab-hamburger(onclick='hamburger_onclickout()')
+        .hamburger
+          img(src='./icon/menu.svg', width='24')
+      li.tab-console(onclick='hamburger_onclickout()')
+        .hamburger
+          img(src='./icon/console.svg', width='28')
   .settings
-    .setting
-      - var i = 0
-      while (i < 4)
-        span jjjjjjjjjjjjjjjj
-        - i++
+    h1 hi hi
+    p a
