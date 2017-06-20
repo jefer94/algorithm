@@ -1,16 +1,16 @@
-var algorithm_word = 'algoritmo';
-var begin = 'inicio';
-var end = 'fin';
-var for_word = 'para';
-var to_word = 'hasta';
+const algorithm_word = 'algoritmo';
+const begin = 'inicio';
+const end = 'fin';
+const for_word = 'para';
+const to_word = 'hasta';
 
-var variables = [
+const variables = [
 	// map
 	'variables',
 	'var'
 ]
 
-var transpiler = {
+const transpiler = {
 	// algorithm : js
   'si'         : 'if',
   'sino'       : "}\nelse {",
@@ -21,13 +21,13 @@ var transpiler = {
   'hacer'      : 'do'
 };
 
-var open_bracket = [
+const open_bracket = [
 	// map
   'hacer',
   'entonces'
 ];
 
-var close_bracket = [
+const close_bracket = [
 	// map
   'finsi',
   'fin_si',
@@ -37,19 +37,19 @@ var close_bracket = [
   'fin_para'
 ];
 
-var write = [
+const write = [
 	// map
   'mostrar',
   'escribir',
   'imprimir'
 ];
 
-var read = [
+const read = [
 	// map
   'leer'
 ];
 
-var type = {
+const type = {
 	// type : algorithm
 	int     : 'entero',
 	double  : 'real',
@@ -57,7 +57,7 @@ var type = {
 	bool    : 'booleano'
 };
 
-var type_error = {
+const type_error = {
 	// type : string in es
 	int     : 'ERROR: no es entero',
 	double  : 'ERROR: no es flotante',
@@ -65,8 +65,22 @@ var type_error = {
 	bool    : 'ERROR: no es booleano'
 };
 
-var error = {
+const error = {
 	// error name     : string in es
 	string_for_number : 'ERROR: un numero no puede multiplicar a un carapter',
 	infinity          : 'ERROR: dividir entre 0 causa un numero infinito'
 };
+
+const default_code = `algoritmo facilito
+variables
+numero, i, tabla[10]: entero
+inicio
+  i <- 0
+  mostrar "Ingrese numero a multiplicar: "
+  leer numero
+  mientras (i < 10) hacer
+    i <- i + 1
+    tabla[i] <- numero * i
+    mostrar numero, " * ", i, " = ", numero * i
+  finmientras
+fin`;

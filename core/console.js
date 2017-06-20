@@ -1,5 +1,12 @@
 'use strict';
-var the_console = new class {
+class Console {
+  constructor() {
+    global.io = {
+      text: undefined,
+      last_text: undefined,
+      show: true
+    }
+  }
   run (title, literals, code) {
     var the_console = document.getElementById('console');
     the_console.innerHTML = '';
@@ -11,7 +18,6 @@ var the_console = new class {
       'algorithm run ' + title + '.js</div></div>';
     // show console before of prompt
     console.log(literals + code);
-    /*
     setTimeout(() => {
       try {
         eval(literals + code);
@@ -21,9 +27,8 @@ var the_console = new class {
         return -1;
       }
     }, 300);
-    */
     // use this eval for debug errors
-    eval(literals + code);
+    // eval(literals + code);
   }
   read (to_read) {
     // flags

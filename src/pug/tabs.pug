@@ -4,6 +4,7 @@ mixin tab(text, active, extrajs)
   if extrajs
     - js += extrajs
   - var style = active ? 'tab-active' : 'tab'
+  - style += ' tabs'
   li(id='tab'+index++ class=style onclick=js) #{text}
 
 nav#tabs
@@ -13,3 +14,7 @@ nav#tabs
         img(src='./icon/menu.svg', width='24')
     +tab('Editor', true)
     +tab('Consola', false, 'algorithm.to_js();')
+    // here
+    // li#plus.tab-hamburger(onclick='new_tab()')
+    //   .hamburger
+    //     img(src='./icon/plus.svg', width='24')

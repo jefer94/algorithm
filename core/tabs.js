@@ -1,26 +1,40 @@
 function tab (n) {
-  /*
-  var tab1 = document.querySelector("#tab1");
-  var tab2 = document.querySelector("#tab2");
-  var tab3 = document.querySelector("#tab3");
-  */
-  var i = 0;
-  var tabs = document.querySelectorAll('#tabs ul li');
-  do {
-    i++;
-    if (i === n) {
-      // show tap
-      var tab = document.querySelector('#tab' + i);
-      var content = document.querySelector('#content' + i);
-      tab.className = 'tab-active';
-      content.className = 'show-content';
-    }
-    else {
-      // hidden taps
-      var tab = document.querySelector('#tab' + i);
-      var content = document.querySelector('#content' + i);
-      tab.className = 'tab';
-      content.className = 'hidden-content';
-    }
-  } while (i < tabs.length - 1);
+  var tab, content;
+  if (this.now === n)
+    return;
+  var prev = this.now ? this.now : 1;
+  this.now = n;
+
+  console.log(this.now);
+  console.log(prev);
+  // current tab active
+  tab = document.querySelector('#tab' + this.now);
+  content = document.querySelector('#content' + this.now);
+  tab.className = 'tab-active';
+  content.className = 'show-content';
+
+  // last tab active
+  tab = document.querySelector('#tab' + prev);
+  content = document.querySelector('#content' + prev);
+  tab.className = 'tab';
+  content.className = 'hidden-content';
+}
+
+function new_tab() {
+  var tabs = document
+    .getElementById('tabs')
+    .innerHTML;
+  var index = 1 + document
+    .getElementsByClassName('tabs')
+    .length;
+  var tab = `<li class="tab tabs" id="tab${index}" onclick="tab(${index});">nombre</li><!-- here-->`;
+  document
+    .getElementById('tabs')
+    .innerHTML = tabs
+      .replace(/\<!-- here--\>/, tab);
+  var module = `funcion nombre()` +
+    `  numero, i, tabla[10]: entero` +
+    `  inicio` +
+    `  fin`;
+  global.tabs.push(module);
 }

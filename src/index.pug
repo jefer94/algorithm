@@ -4,7 +4,10 @@ html
   head
     meta(charset='utf-8')
     title Algotithm
-    link(rel='shortcut icon', type='image/svg', href='icon/favicon.svg')
+    link(rel='shortcut icon' type='image/svg+xml' href='icon/favicon.svg')
+    link(rel='icon' sizes='any' href='icon/favicon.svg' type='image/svg+xml')
+    link(rel='mask-icon' href='icon/favicon.svg' color='black')
+    link(rel='apple-touch-icon' sizes='180x180' href='icon/favicon.svg' type='image/svg+xml')
     include ./pug/look.pug
     include ./pug/script.pug
   body
@@ -14,6 +17,5 @@ html
     include ./pug/ide.pug
     include ./pug/tabs.pug
     #screen.screen
-      //- include ./pug/ide.pug
       include ./pug/editor.pug
       include ./pug/console.pug

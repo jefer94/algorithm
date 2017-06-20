@@ -5,5 +5,6 @@ var global = {
     text: undefined,
     last_text: undefined,
     show: true
- }
+  },
+  tabs: []
 }

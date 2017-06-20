@@ -30,6 +30,7 @@ var algorithm = new class {
     this.scanner();
 
     // show the output
+    const the_console = new Console;
     the_console.run(title, literals, this.js);
   }
   // search the title of de algorithm
@@ -65,13 +66,14 @@ var algorithm = new class {
         }
         while (word[j] || word[j] === '') {
           // last test
-          word[j] = word[j].replace(/=/g, ' = ');
-          word[j] = word[j].replace(/ /g, '');
-          word[j] = word[j].replace(/\t/g, '');
-          word[j] = word[j].replace(/,/g, '');
-          word[j] = word[j].replace(/:/g, '');
-          word[j] = word[j].replace(/\[/g, ' = new Vector(');
-          word[j] = word[j].replace(/\]/g, ')');
+          word[j] = word[j]
+            .replace(/=/g, ' = ')
+            .replace(/ /g, '')
+            .replace(/\t/g, '')
+            .replace(/,/g, '')
+            .replace(/:/g, '')
+            .replace(/\[/g, ' = new Vector(')
+            .replace(/\]/g, ')');
           if (j < word.length - 1) {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
@@ -98,6 +100,9 @@ var algorithm = new class {
     else
       console.error('variables not exist');
     return code;
+  }
+  functions () {
+    
   }
   // transform between native languaje and javascipt
   scanner () {
@@ -127,11 +132,12 @@ var algorithm = new class {
         var remove = line[i].substr(line[i].search('//'), line[i].length);
         line[i] = line[i].replace(remove, '');
       }
-      line[i] = line[i].replace(/\(/g, ' (');
-      line[i] = line[i].replace(/\)/g, ') ');
-      line[i] = line[i].replace(/  /g, ' ');
-      line[i] = line[i].replace(/\[/g, '.io(');
-      line[i] = line[i].replace(/\]/g, ')');
+      line[i] = line[i]
+        .replace(/\(/g, ' (')
+        .replace(/\)/g, ') ')
+        .replace(/  /g, ' ')
+        .replace(/\[/g, '.io(')
+        .replace(/\]/g, ')');
 
 
       // vector.io(n).add(value)

@@ -12,4 +12,6 @@ window.onload = function() {
     extraKeys: {"Ctrl-Space": "autocomplete"}
   });
   editor.setOption("theme", "material");
+  global.tabs.push(default_code);
+  editor.setValue(default_code);
 }

@@ -3,7 +3,18 @@
   "version": "0.0.4",
   "description": "Chocoland.js toolkits",
   "main": "./bin/choco.js",
+  "config": {
+    "src": "$PWD/src",
+    "pug": "$PWD/src/index.pug",
+    "stylus": "$PWD/src/stylus",
+    "dist": "$PWD/look"
+  },
   "scripts": {
+    "server": "choco server",
+    "pug": "pug -w -D $npm_package_config_pug -o $PWD",
+    "stylus": "stylus -w $npm_package_config_stylus -c -o $npm_package_config_dist",
+    "build": "server && pug && stylus",
+    "start": "server",
     "test": "eslint lang/*.js core/*.js --fix"
   },
   "keywords": [
