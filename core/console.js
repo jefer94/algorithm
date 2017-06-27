@@ -7,7 +7,7 @@ class Console {
       show: true
     }
   }
-  run (title, literals, code) {
+  run (title, literals, code, diff_line_code, map) {
     var the_console = document.getElementById('console');
     the_console.innerHTML = '';
     var read = this.read;
@@ -23,10 +23,15 @@ class Console {
         eval(literals + code);
       }
       catch(e) {
-        write(e.message);
+        let line = e.lineNumber || e.lineno;
+        // console.log(`aaaa: ${diff_line_code}\nbbb: ${e}`)
+        write(`error in the line ${line + diff_line_code}: ${ e.message}`);
+        // write(`  ${line + diff_line_code - 1}  | ${map[line + diff_line_code - 2]}`);
+        // write(` <${line + diff_line_code}> | ${map[line + diff_line_code - 1]}`);
+        // write(`  ${line + diff_line_code + 1}  | ${map[line + diff_line_code]}`);
         return -1;
       }
-    }, 300);
+    }, 500);
     // use this eval for debug errors
     // eval(literals + code);
   }

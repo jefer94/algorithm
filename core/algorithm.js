@@ -20,7 +20,7 @@ var algorithm = new class {
   to_js () {
     this.js = '';
     // get container result in a var
-    this.code = editor.getValue();
+    var code = this.code = editor.getValue();
     // get container of box executor
     this.console = document.getElementById('console');
 
@@ -28,10 +28,12 @@ var algorithm = new class {
     var title = this.title();
     var literals = this.literals();
     this.scanner();
+    var diff = this.diff(code, literals + this.js);
+    var map = code.split(/\n/);
 
     // show the output
     const the_console = new Console;
-    the_console.run(title, literals, this.js);
+    the_console.run(title, literals, this.js, diff, map);
   }
   // search the title of de algorithm
   title () {
@@ -100,6 +102,25 @@ var algorithm = new class {
     else
       console.error('variables not exist');
     return code;
+  }
+  diff (code, js) {
+    let alg = code
+      .split(/\n/);
+    let begin_index = 1;
+    while (alg[begin_index].match(RegExp(begin)) === null) {
+      begin_index++;
+    }
+    begin_index++;
+
+    js = js
+      .split(/\n/);
+    let js_index = 0;
+    while (/var/.test(js[js_index])) {
+      js_index++;
+    }
+    console.log(`${begin_index}: ${alg[begin_index]}`)
+    console.log(`${js_index}: ${js[js_index]}`)
+    return begin_index - js_index;
   }
   functions () {
     
