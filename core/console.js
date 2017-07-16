@@ -20,15 +20,31 @@ class Console {
     console.log(literals + code);
     setTimeout(() => {
       try {
-        eval(literals + code);
+        eval('eval(literals + code)');
       }
       catch(e) {
-        let line = e.lineNumber || e.lineno;
-        // console.log(`aaaa: ${diff_line_code}\nbbb: ${e}`)
-        write(`error in the line ${line + diff_line_code}: ${ e.message}`);
-        // write(`  ${line + diff_line_code - 1}  | ${map[line + diff_line_code - 2]}`);
-        // write(` <${line + diff_line_code}> | ${map[line + diff_line_code - 1]}`);
-        // write(`  ${line + diff_line_code + 1}  | ${map[line + diff_line_code]}`);
+        // form stack trace
+        let line = +e.stack
+          // split for line
+          .split(`\n`)
+          // filter eval error
+          .filter(line => /eval/.test(line))
+          // become a string
+          .join()
+          // find line of eval error
+          .match(/:[0-9]+:[0-9]+/)
+          // become a string
+          .join()
+          // split for :
+          .split(`:`)
+          // extract line number
+          .pop();
+        // firefox implementation
+        // let line = e.lineNumber || window.error;
+        // write(`error in the line ${line + diff_line_code}: ${ e.message}`);
+        write(`  ${line + diff_line_code - 1}  | ${map[line + diff_line_code - 2]}`);
+        write(` <${line + diff_line_code}> | ${map[line + diff_line_code - 1]}`);
+        write(`  ${line + diff_line_code + 1}  | ${map[line + diff_line_code]}`);
         return -1;
       }
     }, 500);

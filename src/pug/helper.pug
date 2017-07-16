@@ -1,12 +1,32 @@
-.helper
-  .container
-    .title
-      h1 Bienvenido
-    .text
-      p Este es el mejor interprete de algoritmo de toda la existencia en todas las lineas de tiempo sin exagerar
-    .footer
-      .left
-      .circle
-      .circle
-      .circle
-      .rigth
+- var index = 1
+mixin tab(text, active)
+  - var js = `tutorial(${index});`
+  - var style = active ? 'tab-active' : 'tab'
+  - style += ' tabs'
+  li(id='example'+index++ class=style onclick=js) #{text}
+
+.test(onclick='alert("aaa")')
+.help
+  nav#tabs
+    ul
+      li#hamburger.tab-hamburger(onclick='hamburger_onclick()')
+        #menu.hamburger
+          img(src='./icon/menu.svg', width='24')
+      +tab('Editor',false)
+      +tab('Consola', false)
+  .box#tutorial0
+    div
+      h1 Toca algun elemento
+  .box#tutorial1.box-hidden
+    div
+      h1 Menu
+      p desde el podras acceder a documentacion de algorithm
+  .box#tutorial2.box-hidden
+    div
+      h1 Editor
+      p Desde el podras escribir algoritmos en un editor
+  .box#tutorial3.box-hidden
+    div
+      h1 Consola
+      p Desde ella podras ver en ejecucion su algoritmo
+  buttom.okay(onclick='') Entendido, llevame a la aplicacion

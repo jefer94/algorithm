@@ -239,7 +239,7 @@ img:hover
   position absolute
   width 100%
   height 100%
-  opacity 0.3
+  opacity 0.7
   z-index 255
 
 middle(x, y)
@@ -247,7 +247,7 @@ middle(x, y)
   width x
   height y
   box-sizing border-box
-  padding 10px
+  //padding 10px
   box-shadow 0 1px 3px 1px #000;
   left 50%
   top 50%
@@ -256,13 +256,42 @@ middle(x, y)
   margin y 0 0 x
 
 .help
-  middle 400px 200px
+  middle 600px 300px
   content " "
   border-radius 5px
   background-color white
   color grey
   z-index 256
 
+.okay
+  width 600px
+  height 48px
+  box-sizing border-box
+  text-align center
+  font-size 20px
+  line-height 48px
+  display block
+  background-color #00bfa5
+  color white
+  text-shadow 0 0 1px #000
+  border 1px solid #4db6ac
+  box-shadow 0 0 2px #26a69a
+  outline 0
+
+.box
+  display flex
+  justify-content center
+  align-items center
+  width 600px
+  text-align center
+  y = (300 - 48 - 48)px
+  height y
+  div
+    display inline-block
+    line-height 20px
+    
+.box-hidden
+  display none
 
 
 .hidden

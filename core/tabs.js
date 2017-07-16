@@ -5,8 +5,26 @@ function tab (n) {
   var prev = this.now ? this.now : 1;
   this.now = n;
 
-  console.log(this.now);
-  console.log(prev);
+  // current tab active
+  tab = document.querySelector('#tab' + this.now);
+  content = document.querySelector('#content' + this.now);
+  tab.className = 'tab-active';
+  content.className = 'show-content';
+
+  // last tab active
+  tab = document.querySelector('#tab' + prev);
+  content = document.querySelector('#content' + prev);
+  tab.className = 'tab';
+  content.className = 'hidden-content';
+}
+
+function tutorial (n) {
+  var tab, content;
+  if (this.now === n)
+    return;
+  var prev = this.now ? this.now : 0;
+  this.now = n;
+
   // current tab active
   tab = document.querySelector('#tab' + this.now);
   content = document.querySelector('#content' + this.now);
