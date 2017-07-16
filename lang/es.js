@@ -4,6 +4,13 @@ const end = 'fin';
 const for_word = 'para';
 const to_word = 'hasta';
 
+var tokens =  Object.assign(tokens, {
+  // algorithm : js
+  'o'          : '||',
+  'y'          : '&&',
+  'no'         : '!'
+});
+
 const variables = [
 	// map
 	'variables',

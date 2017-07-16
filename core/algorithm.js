@@ -6,10 +6,7 @@ var tokens = {
   '<'          : '<',
   '>'          : '>',
   '<-'         : '=',
-  '<='         : '=',
-  'o'          : '||',
-  'y'          : '&&',
-  'no'         : '!'
+  '<='         : '='
 };
 var algorithm = new class {
   constructor () {

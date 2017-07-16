@@ -233,5 +233,37 @@ img:hover
 .show
   opacity 1
 
+.test
+  content " "
+  background-color #000
+  position absolute
+  width 100%
+  height 100%
+  opacity 0.3
+  z-index 255
+
+middle(x, y)
+  position absolute
+  width x
+  height y
+  box-sizing border-box
+  padding 10px
+  box-shadow 0 1px 3px 1px #000;
+  left 50%
+  top 50%
+  y = - y / 2
+  x = - x / 2
+  margin y 0 0 x
+
+.help
+  middle 400px 200px
+  content " "
+  border-radius 5px
+  background-color white
+  color grey
+  z-index 256
+
+
+
 .hidden
   display none
