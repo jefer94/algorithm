@@ -1,5 +1,5 @@
 import React from 'react';
-import Tabs from './components/tabs.jsx';
+import Tabs from './tabs.jsx';
 
 let App = () => (
   <Tabs/>

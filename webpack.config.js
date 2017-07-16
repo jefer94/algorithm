@@ -12,13 +12,13 @@ module.exports = {
   // Setup server
   devServer: {
     inline: true,
-    port: 3001
+    port: 3000
   },
   module: {
     // JS, JSX and SASS loaders
     loaders: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
