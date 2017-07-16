@@ -6,10 +6,7 @@ var tokens = {
   '<'          : '<',
   '>'          : '>',
   '<-'         : '=',
-  '<='         : '=',
-  'o'          : '||',
-  'y'          : '&&',
-  'no'         : '!'
+  '<='         : '='
 };
 var algorithm = new class {
   constructor () {
@@ -20,7 +17,7 @@ var algorithm = new class {
   to_js () {
     this.js = '';
     // get container result in a var
-    this.code = editor.getValue();
+    var code = this.code = editor.getValue();
     // get container of box executor
     this.console = document.getElementById('console');
 
@@ -28,9 +25,12 @@ var algorithm = new class {
     var title = this.title();
     var literals = this.literals();
     this.scanner();
+    var diff = this.diff(code, literals + this.js);
+    var map = code.split(/\n/);
 
     // show the output
-    the_console.run(title, literals, this.js);
+    const the_console = new Console;
+    the_console.run(title, literals, this.js, diff, map);
   }
   // search the title of de algorithm
   title () {
@@ -65,13 +65,14 @@ var algorithm = new class {
         }
         while (word[j] || word[j] === '') {
           // last test
-          word[j] = word[j].replace(/=/g, ' = ');
-          word[j] = word[j].replace(/ /g, '');
-          word[j] = word[j].replace(/\t/g, '');
-          word[j] = word[j].replace(/,/g, '');
-          word[j] = word[j].replace(/:/g, '');
-          word[j] = word[j].replace(/\[/g, ' = new Vector(');
-          word[j] = word[j].replace(/\]/g, ')');
+          word[j] = word[j]
+            .replace(/=/g, ' = ')
+            .replace(/ /g, '')
+            .replace(/\t/g, '')
+            .replace(/,/g, '')
+            .replace(/:/g, '')
+            .replace(/\[/g, ' = new Vector(')
+            .replace(/\]/g, ')');
           if (j < word.length - 1) {
             if (word[j] !== '')
               code += 'var ' + word[j] + ';\n';
@@ -98,6 +99,28 @@ var algorithm = new class {
     else
       console.error('variables not exist');
     return code;
+  }
+  diff (code, js) {
+    let alg = code
+      .split(/\n/);
+    let begin_index = 1;
+    while (alg[begin_index].match(RegExp(begin)) === null) {
+      begin_index++;
+    }
+    begin_index++;
+
+    js = js
+      .split(/\n/);
+    let js_index = 0;
+    while (/var/.test(js[js_index])) {
+      js_index++;
+    }
+    console.log(`${begin_index}: ${alg[begin_index]}`)
+    console.log(`${js_index}: ${js[js_index]}`)
+    return begin_index - js_index;
+  }
+  functions () {
+    
   }
   // transform between native languaje and javascipt
   scanner () {
@@ -127,11 +150,12 @@ var algorithm = new class {
         var remove = line[i].substr(line[i].search('//'), line[i].length);
         line[i] = line[i].replace(remove, '');
       }
-      line[i] = line[i].replace(/\(/g, ' (');
-      line[i] = line[i].replace(/\)/g, ') ');
-      line[i] = line[i].replace(/  /g, ' ');
-      line[i] = line[i].replace(/\[/g, '.io(');
-      line[i] = line[i].replace(/\]/g, ')');
+      line[i] = line[i]
+        .replace(/\(/g, ' (')
+        .replace(/\)/g, ') ')
+        .replace(/  /g, ' ')
+        .replace(/\[/g, '.io(')
+        .replace(/\]/g, ')');
 
 
       // vector.io(n).add(value)

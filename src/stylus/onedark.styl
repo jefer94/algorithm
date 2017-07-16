@@ -7,6 +7,45 @@ white-codemirror = rgba(233, 237, 237, 1)
 green-codemirror = rgb(83,127,126)
 oracle = #f50
 
+.helper
+  background-color rgba(0,0,0,.66)
+  z-index 255
+  position absolute
+  width 100%
+  height 100%
+  content " "
+  transition-property opacity
+  transition-duration 0.5s
+  margin 0
+  padding 0
+  top 0
+  left 0
+  .container
+    background-color rgba(200,200,200,.9)
+    color #000
+    top 50%
+    left 50%
+    width 600px
+    height 300px
+    padding 30px
+    box-sizing border-box
+    margin -150px 0 0 -300px
+    position absolute
+    border-radius 5px
+    .title
+      text-align center
+    .text
+      text-align justify
+    .footer
+      .circle
+        display inline
+        width 30px
+        height 30px
+        border-radius 30px
+        margin 0 30px
+        background-color #000
+        content " "
+
 .screen
   float left
 
@@ -23,6 +62,8 @@ oracle = #f50
     line-height 1.5
 
 body
+  overflow-x hidden
+  width 100%
   background-color grey
   color white
   margin 0
@@ -133,56 +174,96 @@ body
     transition-duration 0.2s
 
 .modal
-  x 0
-  y 0
+  left 0
+  top 0
   z-index 255
-  position: absolute
+  overflow-x hidden
+  position absolute
   width 100%
-  height 100%
+  height 100vh
   background-color white
   content " "
-  transition-property opacity
-  transition-duration 0.5s
-  .settings
-    x 64px
-    display flex
-    flex-direction column
-    flex-wrap wrap
-    align-content center
-    overflow-y hidden
+  .docs
+    left 0
+    color grey
+    box-sizing border-box
+    margin 10px 10px 10px 10px
+    padding-left 64px
+    padding-right 20px 
     width 100%
     height 100vh
     position absolute
+    h1
+      font-size 1.2em
+      text-align center
+    p
+      text-align justify
     .setting
-      background lightblue
       padding .5em
       margin .2em
       color grey
-      width 600px
   .ide
-    x 0
-    y 0
+    top 0
+    left 0
     z-index 256
     width 64px
     height 100%
-    position absolute
+    position fixed
     background-color grey
     content " "
     ul
+      list-style-type none
       margin 0
       padding 0
       .tab-hamburger
-        filter: brightness(150%)
+        filter brightness(150%)
         margin 2px 0px
         width 24px
-        padding 10px 20px 10px 20px
+        padding 10px 20px
+      .tab-console
+        filter brightness(150%)
+        margin 2px 0px
+        width 28px
+        padding 10px 18px
 
 img:hover
-  filter: brightness(150%)
+  filter brightness(150%)
   transition-duration 0.2s
 
 .show
   opacity 1
+
+.test
+  content " "
+  background-color #000
+  position absolute
+  width 100%
+  height 100%
+  opacity 0.3
+  z-index 255
+
+middle(x, y)
+  position absolute
+  width x
+  height y
+  box-sizing border-box
+  padding 10px
+  box-shadow 0 1px 3px 1px #000;
+  left 50%
+  top 50%
+  y = - y / 2
+  x = - x / 2
+  margin y 0 0 x
+
+.help
+  middle 400px 200px
+  content " "
+  border-radius 5px
+  background-color white
+  color grey
+  z-index 256
+
+
 
 .hidden
   display none
