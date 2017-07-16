@@ -32,6 +32,7 @@
     "postcss-short": "^3.0.3",
     "postcss-sorting": "^2.0.1",
     "poststylus": "^0.2.3",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",

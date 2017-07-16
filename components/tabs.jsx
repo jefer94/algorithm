@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import Tab from './tab.jsx';
 
 const TabBar = ({tabs}) => (
@@ -26,8 +26,8 @@ const Tabs = ({tabs, index}) => (
 )
 
 Tabs.propTypes = {
-  tabs: propTypes.node.isRequired,
-  index: propTypes.number.isRequired
+  tabs: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired
 }
 
 export default Tabs

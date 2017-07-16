@@ -2,12 +2,16 @@ var poststylus = require('poststylus')
 
 module.exports = {
   // JavaScript entry point
-  entry: './app.js',
+  entry: './app.jsx',
 
   // JavaScrip bundle file
   output: {
     path: __dirname,
     filename: 'bundle.js'
+  },
+  context: __dirname,
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '*']
   },
   // Setup server
   devServer: {

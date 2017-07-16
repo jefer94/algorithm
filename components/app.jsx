@@ -1,8 +1,10 @@
 import React from 'react';
 import Tabs from './tabs.jsx';
 
-let App = () => (
-  <Tabs/>
+const App = () => (
+  <div>
+    <Tabs/>
+  </div>
 )
 
 export default App
