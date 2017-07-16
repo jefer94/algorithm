@@ -18,6 +18,11 @@ function tab (n) {
   content.className = 'hidden-content';
 }
 
+function faded () {
+  document.querySelector('.test').className = 'hidden-content';
+  document.querySelector('.help').className = 'hidden-content';
+}
+
 function tutorial (n) {
   var tab, content;
   if (this.now === n)
