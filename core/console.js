@@ -20,25 +20,31 @@ class Console {
     console.log(literals + code);
     setTimeout(() => {
       try {
-        eval('eval(literals + code)');
+        if (/Firefox/.test(navigator.userAgent))
+          eval(literals + code);
+        else
+          eval('eval(literals + code)');
       }
       catch(e) {
+        console.log(e.stack);
         // form stack trace
-        let line = +e.stack
-          // split for line
-          .split(`\n`)
-          // filter eval error
-          .filter(line => /eval/.test(line))
-          // become a string
-          .join()
-          // find line of eval error
-          .match(/:[0-9]+:[0-9]+/)
-          // become a string
-          .join()
-          // split for :
-          .split(`:`)
-          // extract line number
-          .pop();
+        let line = /Firefox/.test(navigator.userAgent) ?
+          e.lineNumber :
+          +e.stack
+            // split for line
+            .split(`\n`)
+            // filter eval error
+            .filter(line => /eval/.test(line))
+            // become a string
+            .join()
+            // find line of eval error
+            .match(/:[0-9]+:[0-9]+/)
+            // become a string
+            .join()
+            // split for :
+            .split(`:`)
+            // extract line number
+            .pop();
         // firefox implementation
         // let line = e.lineNumber || window.error;
         // write(`error in the line ${line + diff_line_code}: ${ e.message}`);
