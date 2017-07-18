@@ -1,4 +1,3 @@
-#!/usr/bin/fish
 set SRC=src
 set DIST=%cd%/look
 set STYLUS=%SRC%/stylus

@@ -14,4 +14,6 @@ window.onload = function() {
   editor.setOption("theme", "material");
   global.tabs.push(default_code);
   editor.setValue(default_code);
+  if (!localStorage.getItem('helper'))
+    helper();
 }

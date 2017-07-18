@@ -8,6 +8,7 @@ var tokens = {
   '<-'         : '=',
   '<='         : '='
 };
+
 var algorithm = new class {
   constructor () {
     this.js = '';
@@ -118,9 +119,6 @@ var algorithm = new class {
     console.log(`${begin_index}: ${alg[begin_index]}`)
     console.log(`${js_index}: ${js[js_index]}`)
     return begin_index - js_index;
-  }
-  functions () {
-    
   }
   // transform between native languaje and javascipt
   scanner () {

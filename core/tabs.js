@@ -19,8 +19,13 @@ function tab (n) {
 }
 
 function faded () {
-  document.querySelector('.test').className = 'hidden-content';
-  document.querySelector('.help').className = 'hidden-content';
+  document.querySelector('.test').className = 'test hidden-content';
+  document.querySelector('.help').className = 'help hidden-content';
+}
+
+function helper () {
+  document.querySelector('.test').className = 'test';
+  document.querySelector('.help').className = 'help';
 }
 
 function tutorial (n) {
@@ -31,16 +36,20 @@ function tutorial (n) {
   this.now = n;
 
   // current tab active
-  tab = document.querySelector('#tab' + this.now);
-  content = document.querySelector('#content' + this.now);
-  tab.className = 'tab-active';
-  content.className = 'show-content';
+  if (this.now !== 1) {
+    tab = document.querySelector('#example' + this.now);
+    tab.className = 'tab-active';
+  }
+  content = document.querySelector('#tutorial' + this.now);
+  content.className = 'box';
 
   // last tab active
-  tab = document.querySelector('#tab' + prev);
-  content = document.querySelector('#content' + prev);
-  tab.className = 'tab';
-  content.className = 'hidden-content';
+  if (prev !== 0 && prev !== 1) {
+    tab = document.querySelector('#example' + prev);
+    tab.className = 'tab';
+  }
+  content = document.querySelector('#tutorial' + prev);
+  content.className = 'box-hidden';
 }
 
 function new_tab() {

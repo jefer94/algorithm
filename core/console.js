@@ -26,7 +26,7 @@ class Console {
           eval('eval(literals + code)');
       }
       catch(e) {
-        console.log(e.stack);
+        let empty = ' ';
         // form stack trace
         let line = /Firefox/.test(navigator.userAgent) ?
           e.lineNumber :
@@ -47,10 +47,16 @@ class Console {
             .pop();
         // firefox implementation
         // let line = e.lineNumber || window.error;
-        // write(`error in the line ${line + diff_line_code}: ${ e.message}`);
-        write(`  ${line + diff_line_code - 1}  | ${map[line + diff_line_code - 2]}`);
-        write(` <${line + diff_line_code}> | ${map[line + diff_line_code - 1]}`);
-        write(`  ${line + diff_line_code + 1}  | ${map[line + diff_line_code]}`);
+        let line_error = map[line + diff_line_code - 1] ?
+          `error in the line ${line + diff_line_code}: ` :
+          '';
+
+        write(`${line_error}${e.message}`);
+        if (line_error !== '') {
+          write(`  ${line + diff_line_code - 1}  | ${map[line + diff_line_code - 2] || empty}`);
+          write(` <${line + diff_line_code}> | ${map[line + diff_line_code - 1] || empty}`);
+          write(`  ${line + diff_line_code + 1}  | ${map[line + diff_line_code] || empty}`);
+        }
         return -1;
       }
     }, 500);

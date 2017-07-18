@@ -1,15 +1,15 @@
-- var index = 1
+- var index = 2
 mixin tab(text, active)
   - var js = `tutorial(${index});`
   - var style = active ? 'tab-active' : 'tab'
   - style += ' tabs'
   li(id='example'+index++ class=style onclick=js) #{text}
 
-.test(onclick='faded()')
-.help
+.test.hidden-content(onclick='faded()')
+.help.hidden-content
   nav#tabs
     ul
-      li#hamburger.tab-hamburger(onclick='hamburger_onclick()')
+      li#example1.tab-hamburger(onclick='tutorial(1)')
         #menu.hamburger
           img(src='./icon/menu.svg', width='24')
       +tab('Editor',false)
@@ -29,4 +29,4 @@ mixin tab(text, active)
     div
       h1 Consola
       p Desde ella podras ver en ejecucion su algoritmo
-  button.okay(onclick='faded()') Entendido, llevame a la aplicacion
+  button.okay(onclick='faded();localStorage.setItem("helper", "ok")') Entendido, llevame a la aplicacion
