@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "precommit": "npm test && npm run prod",
-    "prepush": "npm test && npm run prod",
+    "precommit": "npm test && npm run prod && git add . ",
+    "prepush": "npm test && npm run prod && git add . ",
     "test": "eslint src/**/*.js main.js --fix",
     "prod": "webpack -p --progress",
     "dev": "webpack-dev-server --progress"
