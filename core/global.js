@@ -7,4 +7,4 @@ var global = {
     show: true
   },
   tabs: []
-}
+};

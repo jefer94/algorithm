@@ -1,44 +1,42 @@
-var poststylus = require('poststylus')
+const webpack = require('webpack')
+const path    = require('path')
+require('dotenv').config()
 
 module.exports = {
-  // JavaScript entry point
-  entry: './app.js',
-
-  // JavaScrip bundle file
+  entry: './main.js',
   output: {
-    path: __dirname,
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: './dist/'
   },
-  // Setup server
-  devServer: {
-    inline: true,
-    port: 3001
-  },
+  devtool: 'eval',
+  // mode: process.env.NODE_ENV,
   module: {
-    // JS, JSX and SASS loaders
-    loaders: [
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.html$/,
-        loader: 'html',
-        exclude: /node_modules/
-      },
-     {
-       test: /\.css$/,
-       loader: 'style!css!postcss',
-       exclude: /node_modules/ },
-     {
-       test: /\.styl$/,
-       loader: 'style!css!stylus',
-       exclude: /node_modules/
-     }
-    ]
-  }
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    },
+    {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    },
+    {
+      test: /\.(gif|png|jpe?g|svg)$/i,
+      loader: 'image-webpack-loader!file-loader'
+    },
+    {
+      test: /\.s(a|c)ss$/,
+      loader: 'style-loader!css-loader!sass-loader',
+      exclude: /node_modules/
+    }]
+  },
+  devServer: {
+    contentBase: './',
+    port: 3000,
+    historyApiFallback: true,
+    // noInfo: false,
+    // hot: true,
+    inline: true
+  },
 };

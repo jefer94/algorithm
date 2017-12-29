@@ -1,12 +1,12 @@
 var tokens = {
   // algorithm : js
-  '<>'         : '!==',
-  '<='         : '<=',
-  '>='         : '>=',
-  '<'          : '<',
-  '>'          : '>',
-  '<-'         : '=',
-  '<='         : '='
+  '<>': '!==',
+  '<=': '<=',
+  '>=': '>=',
+  '<': '<',
+  '>': '>',
+  '<-': '=',
+  '<=': '='
 };
 
 var algorithm = new class {
@@ -50,7 +50,7 @@ var algorithm = new class {
   }
   literals () {
     var literals = this.code.replace(
-    this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0], '');
+      this.code.match(RegExp(begin + '[\\s\\S]*?' + end + '$', 'gm'))[0], '');
     var line = literals.split('\n');
     var code = '';
     if (variables.indexOf(line[0].split(' ')[0]) != -1) {
@@ -105,19 +105,19 @@ var algorithm = new class {
     let alg = code
       .split(/\n/);
     let begin_index = 1;
-    while (alg[begin_index].match(RegExp(begin)) === null) {
+    while (alg[begin_index].match(RegExp(begin)) === null)
       begin_index++;
-    }
+
     begin_index++;
 
     js = js
       .split(/\n/);
     let js_index = 0;
-    while (/var/.test(js[js_index])) {
+    while (/var/.test(js[js_index]))
       js_index++;
-    }
-    console.log(`${begin_index}: ${alg[begin_index]}`)
-    console.log(`${js_index}: ${js[js_index]}`)
+
+    console.log(`${begin_index}: ${alg[begin_index]}`);
+    console.log(`${js_index}: ${js[js_index]}`);
     return begin_index - js_index;
   }
   // transform between native languaje and javascipt
@@ -151,16 +151,15 @@ var algorithm = new class {
       line[i] = line[i]
         .replace(/\(/g, ' (')
         .replace(/\)/g, ') ')
-        .replace(/  /g, ' ')
+        .replace(/ {2}/g, ' ')
         .replace(/\[/g, '.io(')
         .replace(/\]/g, ')');
-
 
       // vector.io(n).add(value)
       while (line[i].match(/\.io\([0-9a-zA-Z]+\)\s+<-\s+[a-zA-Z0-9 ]/)) {
         line[i] = line[i].replace(/<-/, '');
         let exp = line[i].match(/\S+/g);
-        line[i] = exp[0] + '.add('
+        line[i] = exp[0] + '.add(';
         if (isNaN(+exp[1]))
           line[i] += '"' + exp[1] + '"';
         else
@@ -181,13 +180,12 @@ var algorithm = new class {
         continue;
 
       // if (x === y)
-      for (let i in open_bracket) {
-        if (line[i].match(RegExp('=(.)+'+ open_bracket[i]))) {
+      for (let i in open_bracket)
+        if (line[i].match(RegExp('=(.)+' + open_bracket[i]))) {
           console.log('true');
           line[i] = line[i].replace(/=/g, ' === ');
           console.log('true');
         }
-      }
 
       // for (...)
       if (line[i].match(RegExp(`\([\\s\\S]+${to_word}[\\s\\S]+\)`))) {
@@ -219,7 +217,7 @@ var algorithm = new class {
       var word = line[i].split(' ');
 
       // this loop is to search in various dictionaries, and transform that code
-      for (let i in word) {
+      for (let i in word)
         // word[i] = word[i].replace(/=/g, ' === ');
         // dictionaries of words
         // open blackets
@@ -229,14 +227,14 @@ var algorithm = new class {
         else if (close_bracket.indexOf(word[i]) != -1)
           this.js += '}';
         else if (transpiler[word[i]])
-            this.js += transpiler[word[i]] + ' ';
+          this.js += transpiler[word[i]] + ' ';
         // dictionaries of tokens
         else if (tokens[word[i]])
           this.js += tokens[word[i]] + ' ';
         // and words not in the dictionary
         else
           this.js += word[i] + ' ';
-      }
+
       // this fracment of code delete all space in the start of a line
       // with a style like stack, first reverse the array
       word.reverse();
@@ -269,7 +267,7 @@ var algorithm = new class {
       }
       else if (read.indexOf(word[0]) != -1) {
         this.js = this.js.replace(
-        read[read.indexOf(word[0])],
+          read[read.indexOf(word[0])],
           'eval(read("'
         );
         this.js += '"));\n';
@@ -278,4 +276,4 @@ var algorithm = new class {
         this.js += ';\n';
     }
   }
-}
+};

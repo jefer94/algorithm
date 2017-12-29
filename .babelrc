@@ -1,0 +1,14 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "sourceType": "script",
+      "modules": false,
+      "loose": true,
+      "targets": {
+        "chrome": "60",
+        "node": "current"
+      }
+    }],
+    "@babel/preset-react"
+  ]
+}

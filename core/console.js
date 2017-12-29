@@ -1,11 +1,11 @@
 'use strict';
 class Console {
-  constructor() {
+  constructor () {
     global.io = {
       text: undefined,
       last_text: undefined,
       show: true
-    }
+    };
   }
   run (title, literals, code, diff_line_code, map) {
     var the_console = document.getElementById('console');
@@ -25,7 +25,7 @@ class Console {
         else
           eval('eval(literals + code)');
       }
-      catch(e) {
+      catch (e) {
         let empty = ' ';
         // form stack trace
         let line = /Firefox/.test(navigator.userAgent) ?
@@ -103,44 +103,43 @@ class Console {
     }
     // here in runtime show the mistakes in assignings
     switch (global.variables[to_read]) {
-      case 'int':
-        if (isNaN(Number(input)) || input != Math.trunc(input))
-          return `write(\'${type_error.int}\'); global.io.show = false ;`;
-        break;
-      case 'double':
-        if (isNaN(Number(input)))
-          return `write(\'${type_error.double}\'); global.io.show = false ;`;
-        break;
-      case 'string':
-        break;
-      case 'bool':
-        if (isNaN(Number(input)) || input < 0 || input > 2)
-          return `write(\'${type_error.bool}\'); global.io.show = false ;`;
-        break;
+    case 'int':
+      if (isNaN(Number(input)) || input != Math.trunc(input))
+        return `write(\'${type_error.int}\'); global.io.show = false ;`;
+      break;
+    case 'double':
+      if (isNaN(Number(input)))
+        return `write(\'${type_error.double}\'); global.io.show = false ;`;
+      break;
+    case 'string':
+      break;
+    case 'bool':
+      if (isNaN(Number(input)) || input < 0 || input > 2)
+        return `write(\'${type_error.bool}\'); global.io.show = false ;`;
+      break;
     }
-    if (global.variables[to_read] == 'string') {
+    if (global.variables[to_read] == 'string')
       return `${to_read} = \'${input}\';`;
-    }
-    else if (vector) {
+
+    else if (vector)
       return `${to_read};`;
-    }
-    else {
+
+    else
       return `${to_read} = ${input};`;
-    }
   }
   write () {
     // var
     result = '';
     for (var i in arguments) {
       var text = arguments[i];
-        if (typeof text === 'object' && text.is_vector()) {
-          text = text.show();
-        }
-        if (typeof text === 'number' && isNaN(text))
-          return `write(\'${error.string_for_number}\'); global.io.show = false ;`;
-        if (typeof text === 'number' && !isFinite(text))
-          return `write(\'${error.infinity}\'); global.io.show = false ;`;
-        result += text;
+      if (typeof text === 'object' && text.is_vector())
+        text = text.show();
+
+      if (typeof text === 'number' && isNaN(text))
+        return `write(\'${error.string_for_number}\'); global.io.show = false ;`;
+      if (typeof text === 'number' && !isFinite(text))
+        return `write(\'${error.infinity}\'); global.io.show = false ;`;
+      result += text;
     }
     // global.io.show is a flag, this avoids execution after errors
     if (global.io.show) {

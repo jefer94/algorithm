@@ -1,17 +1,43 @@
 parserOptions:
-  ecmaVersion: 7
-
+  ecmaVersion: 8
+  sourceType: "module"
+  ecmaFeatures:
+    impliedStrict: true
+    jsx: true
 
 globals: 
   Promise: true
   document: true
 
 env:
+  browser: true
   node: true
+  es6: true
 
-plugins: ["promise"]
+plugins: 
+  - "promise"
+  - "flowtype"
+  - "babel"
+  - "react"
+
+extends: 
+  - "plugin:flowtype/recommended"
+  - "eslint:recommended"
+  - "plugin:react/recommended"
+
+parser: "babel-eslint"
 
 rules:
+  react/jsx-uses-react: "error"
+  react/jsx-uses-vars: "error"
+  babel/new-cap: 1
+  babel/object-curly-spacing: 0
+  babel/no-invalid-this: 1
+  babel/semi: 0
+  no-cond-assign: 0
+  strict: 0
+  object-curly-spacing: ["error", "always"]
+  array-bracket-spacing: ["error", "always"]
   indent: ["error", 2]
   quotes: ["error", "single", { "allowTemplateLiterals": true,  "avoidEscape": true }]
   no-unused-vars: ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }]
@@ -26,7 +52,6 @@ rules:
   no-undef: "error"
   no-multiple-empty-lines: ["error", { "max": 1, "maxEOF": 1 }]
   operator-linebreak: ["error", "after"]
-  one-var: ["error", "never"]
   block-spacing: "error"
   comma-dangle: ["error", "never"]
   comma-style: ["error", "last"]
@@ -38,7 +63,6 @@ rules:
   constructor-super: "error"
   no-caller: "error"
   no-class-assign: "error"
-  no-const-assign: "error"
   no-constant-condition: "error"
   no-control-regex: "error"
   no-debugger: "error"
@@ -84,7 +108,6 @@ rules:
   no-proto: "error"
   no-redeclare: "error"
   no-regex-spaces: "error"
-  no-return-assign: "error"
   no-self-assign: "error"
   no-self-compare: "error"
   no-sequences: "error"
@@ -122,7 +145,7 @@ rules:
   wrap-iife: ["error", "outside"]
   yield-star-spacing: ["error", "both"]
   yoda: "error"
-  semi: "error"
+  semi: ["error", "never"]
   no-unexpected-multiline: "error"
   promise/no-return-wrap: "error"
   promise/param-names: "error"

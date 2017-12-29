@@ -1,8 +1,8 @@
-const algorithm_word = 'algoritmo';
-const begin = 'inicio';
-const end = 'fin';
-const for_word = 'para';
-const to_word = 'hasta';
+const algorithm_word = 'algoritmo'
+const begin = 'inicio'
+const end = 'fin'
+const for_word = 'para'
+const to_word = 'hasta'
 
 var tokens = {
   // algorithm : js
@@ -14,18 +14,17 @@ var tokens = {
   '>=': '>=',
   '<': '<',
   '>': '>',
-  '<-': '=',
-  '<=': '='
-};
+  '<-': '='
+}
 
 const variables = [
-	// map
+  // map
   'variables',
   'var'
-];
+]
 
 const transpiler = {
-	// algorithm : js
+  // algorithm : js
   'si': 'if',
   'sino': '}\nelse {',
   'mientras': 'while',
@@ -33,59 +32,59 @@ const transpiler = {
   'hasta': '} while',
   'para': 'for',
   'hacer': 'do'
-};
+}
 
 const open_bracket = [
-	// map
+  // map
   'hacer',
   'entonces'
-];
+]
 
 const close_bracket = [
-	// map
+  // map
   'finsi',
   'fin_si',
   'finmientras',
   'fin_mientras',
   'finpara',
   'fin_para'
-];
+]
 
 const write = [
-	// map
+  // map
   'mostrar',
   'escribir',
   'imprimir'
-];
+]
 
 const read = [
-	// map
+  // map
   'leer'
-];
+]
 
 const type = {
-	// type : algorithm
+  // type : algorithm
   int: 'entero',
   double: 'real',
   string: 'carapter',
   bool: 'booleano'
-};
+}
 
 const type_error = {
-	// type : string in es
+  // type : string in es
   int: 'ERROR: no es entero',
   double: 'ERROR: no es flotante',
   string: 'ERROR: no es una cadena',
   bool: 'ERROR: no es booleano'
-};
+}
 
 const error = {
-	// error name     : string in es
+  // error name     : string in es
   string_for_number: 'ERROR: un numero no puede multiplicar a un carapter',
   infinity: 'ERROR: dividir entre 0 causa un numero infinito'
-};
+}
 
-const default_code = `algoritmo facilito
+const code = `algoritmo facilito
 variables
 numero, i, tabla[10]: entero
 inicio
@@ -97,9 +96,25 @@ inicio
     tabla[i] <- numero * i
     mostrar numero, " * ", i, " = ", numero * i
   finmientras
-fin`;
-export default { algorithm_word, begin, end, for_word, to_word, tokens, variables, transpiler, open_bracket, close_backe, wrie, read, type, type_error, error, default_code }
+fin`
 
-export { algorithm_word, begin, end, for_word, to_word, tokens, variables, 
-  transpiler, open_bracket, close_backe, wrie, read, type, type_error,
-  error, default_code }
+export default { algorithm_word,
+  begin,
+  end,
+  for_word,
+  to_word,
+  tokens,
+  variables,
+  transpiler,
+  open_bracket,
+  close_bracket,
+  write,
+  read,
+  type,
+  type_error,
+  error,
+  code }
+
+export { algorithm_word, begin, end, for_word, to_word, tokens, variables,
+  transpiler, open_bracket, close_bracket, write, read, type, type_error,
+  error, code }

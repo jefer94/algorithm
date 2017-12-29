@@ -1,6 +1,6 @@
 class Vector {
   constructor (n) {
-    if (n <= 0 || typeof n != 'number')
+    if (n <= 0 || typeof n !== 'number')
       throw 'ERROR: invalid array argument';
     this.size = n;
     this.i = 0;
@@ -16,19 +16,19 @@ class Vector {
     else
       throw 'ERROR: array overflow';
   }
-  show(n) {
+  show (n) {
     n--;
     if (n < this.size && n >= 0)
-      return this.array[n]
+      return this.array[n];
     else
-      throw 'ERROR: array null point'
+      throw 'ERROR: array null point';
   }
-  io(i) {
+  io (i) {
     return {
       add: (v) => this.add(v, i),
       show: () => this.show(i),
       toString: () => this.show(i),
       is_vector: () => true
-    }
+    };
   }
 }

@@ -1,21 +1,10 @@
 {
-  "name": "choco-cli",
-  "version": "0.0.4",
-  "description": "Chocoland.js toolkits",
-  "main": "./bin/choco.js",
-  "config": {
-    "src": "$PWD/src",
-    "pug": "$PWD/src/index.pug",
-    "stylus": "$PWD/src/stylus",
-    "dist": "$PWD/look"
-  },
   "scripts": {
-    "server": "choco server",
-    "pug": "pug -w -D $npm_package_config_pug -o $PWD",
-    "stylus": "stylus -w $npm_package_config_stylus -c -o $npm_package_config_dist",
-    "build": "server && pug && stylus",
-    "start": "server",
-    "test": "eslint lang/*.js core/*.js --fix"
+    "precommit": "npm test && npm run webpack -p --progress",
+    "prepush": "npm test && webpack -p --progress",
+    "test": "eslint src/**/*.js main.js --fix",
+    "prod": "webpack -p --progress",
+    "dev": "webpack-dev-server --progress"
   },
   "keywords": [
     "chocoland.js",
@@ -29,10 +18,40 @@
   "author": "Jeferson De Freitas",
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-plugin-promise": "^3.5.0"
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/preset-react": "^7.0.0-beta.36",
+    "babel-eslint": "^8.1.1",
+    "babel-loader": "^8.0.0-beta.0",
+    "eslint": "^4.14.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "file-loader": "^1.1.6",
+    "husky": "^0.14.3",
+    "node-sass": "^4.7.2",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "6.0.6",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "pug": "^2.0.0-rc.1"
+    "@babel/cli": "^7.0.0-beta.36",
+    "codemirror": "^5.33.0",
+    "css-loader": "^0.28.7",
+    "dotenv": "^4.0.0",
+    "image-webpack-loader": "^3.4.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-codemirror2": "^3.0.7",
+    "react-dom": "^16.2.0",
+    "react-redux": "5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "5.0.0-alpha.9",
+    "redux": "^4.0.0-beta.1",
+    "redux-localstorage": "^1.0.0-rc4",
+    "style-loader": "^0.19.1"
   }
 }

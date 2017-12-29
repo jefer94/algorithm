@@ -52,7 +52,7 @@ function tutorial (n) {
   content.className = 'box-hidden';
 }
 
-function new_tab() {
+function new_tab () {
   var tabs = document
     .getElementById('tabs')
     .innerHTML;

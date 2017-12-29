@@ -1,11 +1,11 @@
-function $(name) {
+function $ (name) {
   return new Promise((load, err) => {
     try {
       var node = document.querySelector(name);
     }
-    catch(e) {
+    catch (e) {
       console.error(name);
-      err(e)
+      err(e);
     }
     var interval = setInterval(() => {
       console.log('a');
@@ -14,5 +14,5 @@ function $(name) {
         load(node);
       }
     }, 100);
-  })
+  });
 }
