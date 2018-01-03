@@ -1,6 +1,6 @@
 {
   "name": "choco-algorithm",
-  "version": "1.0.0-alpha3",
+  "version": "1.0.0-alpha4",
   "description": "Algorithm runtime emulator, like a IDE",
   "scripts": {
     "precommit": "npm test && npm run prod && git add . ",
