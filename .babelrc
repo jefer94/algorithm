@@ -5,7 +5,8 @@
       "modules": "commonjs",
       "targets": {
         "chrome": "60",
-        "node": "current"
+        "node": "current",
+        "uglify": true
       }
     }],
     "@babel/preset-react"

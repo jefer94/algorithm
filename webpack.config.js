@@ -42,10 +42,14 @@ module.exports = {
   },
   plugins: [
     new LodashPlugin,
-    new webpack.optimize.UglifyJsPlugin,
     new webpack.HotModuleReplacementPlugin,
     new webpack.optimize.AggressiveMergingPlugin,
     new webpack.optimize.OccurrenceOrderPlugin,
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    })
     /* new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
