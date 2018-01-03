@@ -1,8 +1,8 @@
-const webpack        = require('webpack')
-const path           = require('path')
-const LodashPlugin   = require('lodash-webpack-plugin')
-// const UglifyJsPlugin    = require('uglifyjs-webpack-plugin')
-// const CompressionPlugin = require("compression-webpack-plugin")
+const webpack           = require('webpack')
+const path              = require('path')
+const LodashPlugin      = require('lodash-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CompressionPlugin = require("compression-webpack-plugin")
 require('dotenv').config()
 
 module.exports = {
@@ -51,13 +51,13 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    })
-    /* new CompressionPlugin({
+    }),
+    new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8
-    })*/
+    })
   ]
 };
