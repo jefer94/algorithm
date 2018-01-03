@@ -1,6 +1,7 @@
-const webpack           = require('webpack')
-const path              = require('path')
-const LodashPlugin      = require('lodash-webpack-plugin')
+const webpack        = require('webpack')
+const path           = require('path')
+const LodashPlugin   = require('lodash-webpack-plugin')
+// const UglifyJsPlugin    = require('uglifyjs-webpack-plugin')
 // const CompressionPlugin = require("compression-webpack-plugin")
 require('dotenv').config()
 
@@ -42,6 +43,7 @@ module.exports = {
   },
   plugins: [
     new LodashPlugin,
+    // new UglifyJsPlugin,
     new webpack.HotModuleReplacementPlugin,
     new webpack.optimize.AggressiveMergingPlugin,
     new webpack.optimize.OccurrenceOrderPlugin,

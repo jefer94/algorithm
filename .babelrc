@@ -6,7 +6,7 @@
       "targets": {
         "chrome": "60",
         "node": "current",
-        "uglify": true
+        "forceAllTransforms": true
       }
     }],
     "@babel/preset-react"
