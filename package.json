@@ -1,4 +1,5 @@
 {
+  "name": "choco-algorithm",
   "scripts": {
     "precommit": "npm test && npm run prod && git add . ",
     "prepush": "npm test && npm run prod && git add . ",
@@ -18,6 +19,11 @@
   },
   "author": "Jeferson De Freitas",
   "license": "GPL-3.0",
+  "engines": {
+    "node": ">= 4.x <= 9.x",
+    "npm": ">= 2.x <= 5.x",
+    "yarn": ">=1.0.0-20170811"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.36",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
