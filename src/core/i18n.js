@@ -7,13 +7,26 @@ const lang = locale === 'es' ?
   es :
   es
 
+const static_tokens = {
+  // algorithm : js
+  'o'  : '||',
+  'y'  : '&&',
+  'no' : '!',
+  '<>' : '!==',
+  '<=' : '<=',
+  '>=' : '>=',
+  '<'  : '<',
+  '>'  : '>',
+  '<-' : '='
+}
+
 // proxy
 const algorithm_word = lang.algorithm_word
 const begin = lang.begin
 const end = lang.end
 const for_word = lang.for_word
 const to_word = lang.to_word
-const tokens = lang.tokens
+const tokens = Object.assign(static_tokens, lang.tokens)
 const variables = lang.variables
 const transpiler = lang.transpiler
 const open_bracket = lang.open_bracket

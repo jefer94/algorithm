@@ -5,12 +5,17 @@ const tabs = function() {
     type: 'ADD_TAB',
     name: name || 'untitle'
   })
-  const _delete = name => ({
+  const remove = name => ({
     type: 'DELETE_TAB',
     name: name
   })
-  const change = name => ({
+  const move = name => ({
     type: 'CHANGE_TAB',
+    name: name,
+    content: editor.getValue()
+  })
+  const save = name => ({
+    type: 'SAVE_TAB',
     name: name,
     content: editor.getValue()
   })
@@ -26,14 +31,19 @@ const tabs = function() {
   const defaults = () => ({
     type: 'DEFAULTS_TABS'
   })
-  return {
-    add: add,
-    remove: _delete,
-    move: change,
-    rename: rename,
-    content: content,
-    defaults: defaults
-  }
+  return { add, remove, move, save, rename, content, defaults }
 }()
 
-export { tabs }
+const variables = function() {
+  const add = (value, key) => ({
+    type: 'VAR_ADD',
+    text: value,
+    key: key
+  })
+  const reset = () => ({
+    type: 'VAR_RESET'
+  })
+  return { add, reset }
+}()
+
+export { tabs, variables }

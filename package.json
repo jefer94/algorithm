@@ -2,9 +2,10 @@
   "scripts": {
     "precommit": "npm test && npm run prod && git add . ",
     "prepush": "npm test && npm run prod && git add . ",
-    "test": "eslint src/**/*.js main.js --fix",
-    "prod": "webpack -p --progress",
-    "dev": "webpack-dev-server --progress"
+    "test": "eslint src/**/*.js --fix",
+    "clean": "rm assets/* || DEL assets/* || true",
+    "prod": "npm run clean && webpack -p --progress",
+    "dev": "npm run clean && webpack-dev-server --progress"
   },
   "keywords": [
     "chocoland.js",
@@ -19,10 +20,12 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
     "@babel/preset-env": "^7.0.0-beta.36",
     "@babel/preset-react": "^7.0.0-beta.36",
     "babel-eslint": "^8.1.1",
     "babel-loader": "^8.0.0-beta.0",
+    "babel-plugin-lodash": "^3.3.2",
     "eslint": "^4.14.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-flowtype": "^2.40.1",
@@ -30,6 +33,7 @@
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.6",
     "husky": "^0.14.3",
+    "lodash-webpack-plugin": "^0.11.4",
     "node-sass": "^4.7.2",
     "redux-logger": "^3.0.6",
     "sass-loader": "6.0.6",
@@ -42,6 +46,7 @@
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "image-webpack-loader": "^3.4.2",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-codemirror2": "^3.0.7",

@@ -1,14 +1,16 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "sourceType": "script",
-      "modules": false,
-      "loose": true,
+      "sourceType": "module",
+      "modules": "commonjs",
       "targets": {
         "chrome": "60",
         "node": "current"
       }
     }],
     "@babel/preset-react"
+  ],
+  "plugins": [
+    "lodash"
   ]
 }

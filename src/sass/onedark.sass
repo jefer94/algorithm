@@ -8,6 +8,9 @@ $white-codemirror: rgba(233, 237, 237, 1)
 $green-codemirror: rgb(83,127,126)
 $oracle:           #f50
 
+a
+  outline: 0 !important
+
 .helper
   background-color: rgba(0, 0, 0, .66)
   z-index: 255
@@ -57,7 +60,15 @@ $oracle:           #f50
   font-size: 14px
   line-height: 21px
 
+.CodeMirror-scroll
+  overflow-y: auto
+  overflow-x: hidden !important
+  height: auto !important
+
 .CodeMirror
+  overflow-y: auto
+  height: auto !important
+  min-height: 80% !important
   line-height: 1.5
   pre
     line-height: 1.5
@@ -141,10 +152,12 @@ body
     color: $white
 
 .arrow
+  float: left
+  text-align: left
   color: $green-codemirror
 
 .margin-line
-  margin-left: 24px
+  margin-left: 0
   float: left
 
 .CodeMirror

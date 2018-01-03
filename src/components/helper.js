@@ -6,19 +6,19 @@ const Helper = () => {
   let current
   const contents = [
     {
-      title: 'Toca algun elemento'
+      title : 'Toca algun elemento'
     }, {
-      title:
+      title :
         <div id='menu' className='hamburger'>
           <img src={menu} width='24px'/>
         </div>,
-      description: 'Desde el podras acceder a documentación de algorithm'
+      description : 'Desde el podras acceder a documentación de algorithm'
     }, {
-      title: 'Editor',
-      description: 'Desde el podras escribir algoritmos en un editor'
+      title       : 'Editor',
+      description : 'Desde el podras escribir algoritmos en un editor'
     }, {
-      title: 'Consola',
-      description: 'Desde ella podras ver en ejecución su algoritmo'
+      title       : 'Consola',
+      description : 'Desde ella podras ver en ejecución su algoritmo'
     }
   ]
   const tabs = () => {

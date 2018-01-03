@@ -1,13 +1,14 @@
-const webpack = require('webpack')
-const path    = require('path')
+const webpack      = require('webpack')
+const path         = require('path')
+const LodashPlugin = require('lodash-webpack-plugin')
 require('dotenv').config()
 
 module.exports = {
-  entry: './main.js',
+  entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'assets'),
     filename: 'bundle.js',
-    publicPath: './dist/'
+    publicPath: 'assets/'
   },
   devtool: 'eval',
   // mode: process.env.NODE_ENV,
@@ -35,8 +36,12 @@ module.exports = {
     contentBase: './',
     port: 3000,
     historyApiFallback: true,
-    // noInfo: false,
-    // hot: true,
+    hot: true,
     inline: true
   },
+  plugins: [
+    new LodashPlugin,
+    new webpack.optimize.UglifyJsPlugin,
+    new webpack.HotModuleReplacementPlugin
+  ]
 };

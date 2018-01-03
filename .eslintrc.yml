@@ -8,6 +8,8 @@ parserOptions:
 globals: 
   Promise: true
   document: true
+  Vector: true
+  read: true
 
 env:
   browser: true
@@ -28,8 +30,11 @@ extends:
 parser: "babel-eslint"
 
 rules:
+  key-spacing: ["error", { "beforeColon": true, "afterColon": true, "align": { "beforeColon": true, "on": "colon" } }]
+  no-multi-spaces: ["error", { exceptions: { "VariableDeclarator": true } }]
   react/jsx-uses-react: "error"
   react/jsx-uses-vars: "error"
+  react/no-unescaped-entities: 0
   babel/new-cap: 1
   babel/object-curly-spacing: 0
   babel/no-invalid-this: 1
@@ -58,7 +63,6 @@ rules:
   dot-location: ["error", "property"]
   eol-last: ["error", "always"]
   func-call-spacing: ["error", "never"]
-  key-spacing: ["error", { "beforeColon": false, "afterColon": true }]
   new-cap: ["error", { "newIsCap": true }]
   constructor-super: "error"
   no-caller: "error"
@@ -74,7 +78,6 @@ rules:
   no-duplicate-imports: "error"
   no-empty-character-class: "error"
   no-empty-pattern: "error"
-  no-eval: 2
   no-ex-assign: "error"
   no-extend-native: "error"
   no-extra-bind: "error"
@@ -93,7 +96,6 @@ rules:
   no-labels: "error"
   no-lone-blocks: "error"
   no-mixed-spaces-and-tabs: "error"
-  no-multi-spaces: "error"
   no-multi-str: "error"
   no-new: "error"
   no-new-func: "error"
@@ -116,7 +118,6 @@ rules:
   no-tabs: "error"
   no-template-curly-in-string: "error"
   no-this-before-super: "error"
-  no-throw-literal: "error"
   no-trailing-spaces: "error"
   no-undef-init: "error"
   no-unmodified-loop-condition: "error"

@@ -22,22 +22,29 @@ const editor = new class {
 class Editor extends Component {
   constructor (props) {
     super(props)
-    this.content = props.tabs.filter(value => value.active)[0].content
+    const length = props.tabs.length
+    this.content = length === 1 ?
+      props.tabs[0].content :
+      props.tabs.filter(value => value.active)[0].content
     this.options = {
-      mode: 'algorithm.es',
-      theme: 'material',
-      lineNumbers: true,
-      lineWrapping: true,
-      showCursorWhenSelecting: true,
-      extraKeys: { 'Ctrl-Space': 'autocomplete' }
+      mode                    : 'algorithm.es',
+      theme                   : 'material',
+      lineNumbers             : true,
+      lineWrapping            : true,
+      showCursorWhenSelecting : true,
+      extraKeys               : { 'Ctrl-Space' : 'autocomplete' }
     }
   }
   componentWillReceiveProps (props) {
-    this.content = props.tabs.filter(value => value.active)[0].content
+    const length = props.tabs.length
+    this.content = length === 1 ?
+      props.tabs[0].content :
+      props.tabs.filter(value => value.active)[0].content
   }
   editorDidMount (_editor) {
     editor.setValue(_editor)
   }
+  componentWillUnmount () {}
   render () {
     return (
       <div id='content1' className='tab show-content'>
@@ -48,20 +55,20 @@ class Editor extends Component {
 }
 
 Editor.propTypes = {
-  tabs: PropTypes.array,
-  add: PropTypes.func,
-  remove: PropTypes.func,
-  move: PropTypes.func
+  tabs   : PropTypes.array,
+  add    : PropTypes.func,
+  remove : PropTypes.func,
+  move   : PropTypes.func
 }
 
 export { editor }
 export default connect(
   state => ({
-    tabs: state.tabs
+    tabs : state.tabs
   }),
   dispatch => ({
-    add: (name) => dispatch(tabs.add(name)),
-    remove: (name) => dispatch(tabs.remove(name)),
-    move: (name) => dispatch(tabs.move(name))
+    add    : (name) => dispatch(tabs.add(name)),
+    remove : (name) => dispatch(tabs.remove(name)),
+    move   : (name) => dispatch(tabs.move(name))
   })
 )(Editor)

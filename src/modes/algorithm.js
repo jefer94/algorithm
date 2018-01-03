@@ -13,7 +13,7 @@ CodeMirror.defineMode('algorithm.es', function () {
                        'booleano carapter funcion si mod null no o procedimiento ' +
                        'finpara finsi finmientras hasta algoritmo ' +
                        'variables repetir entonces mientras imprimir mostrar leer')
-  var atoms = { 'null': true }
+  var atoms = { 'null' : true }
 
   var isOperatorChar = /[+\-*&%=<>!?|/]/
 
@@ -84,18 +84,18 @@ CodeMirror.defineMode('algorithm.es', function () {
   // Interface
 
   return {
-    startState: function () {
-      return { tokenize: null }
+    startState : function () {
+      return { tokenize : null }
     },
 
-    token: function (stream, state) {
+    token : function (stream, state) {
       if (stream.eatSpace()) return null
       var style = (state.tokenize || tokenBase)(stream, state)
       if (style === 'comment' || style === 'meta') return style
       return style
     },
 
-    electricChars: '{}'
+    electricChars : '{}'
   }
 })
 

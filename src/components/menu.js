@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import '../../core/icons'
-import menu from '../../icons/menu.svg'
-import console from '../../icons/console.svg'
+import menu from '../icons/menu.svg'
+import docs from '../icons/docs.svg'
+import console from '../icons/console.svg'
 
-const IDE = ({ children }) =>
+const Menu = ({ children }) =>
   <div id='ide' className='modal'>
     <div className='ide'>
       <ul>
@@ -13,6 +13,13 @@ const IDE = ({ children }) =>
           <li id='hamburger' className='tab-hamburger'>
             <div className='hamburger'>
               <img src={menu} width='24px'/>
+            </div>
+          </li>
+        </Link>
+        <Link to='/docs'>
+          <li className='tab-console'>
+            <div className='hamburger'>
+              <img src={docs} width='27px'/>
             </div>
           </li>
         </Link>
@@ -28,8 +35,8 @@ const IDE = ({ children }) =>
     {children}
   </div>
 
-IDE.propTypes = {
-  children: PropTypes.node
+Menu.propTypes = {
+  children : PropTypes.node
 }
 
-export default IDE
+export default Menu
