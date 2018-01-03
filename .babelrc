@@ -11,6 +11,10 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "lodash"
+    "lodash",
+    "transform-object-assign",
+    "transform-react-constant-elements",
+    "transform-react-inline-elements",
+    "transform-react-jsx-compat"
   ]
 }

@@ -208,7 +208,7 @@ class Console extends Component {
               <div key={key}>
                 <div className='lines'>
                   <div className='CodeMirror-linenumber CodeMirror-gutter-elf arrow'>
-                    >
+                    { '\u003E' }
                   </div>
                   <div className="margin-line">
                     { value.content }
