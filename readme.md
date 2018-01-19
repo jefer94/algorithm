@@ -81,8 +81,8 @@ tabla.io(i).add("numero") ;
 [node]: https://img.shields.io/node/v/choco-algorithm.svg
 [node-url]: https://nodejs.org
 
-[deps]: https://david-dm.org/jefer94/choco-algorithm.svg
-[deps-url]: https://david-dm.org/jefer94/choco-algorithm
+[deps]: https://david-dm.org/jefer94/algorithm.svg
+[deps-url]: https://david-dm.org/jefer94/algorithm
 
 [chat]: https://badges.gitter.im/jefer94/algorithm.svg
 [chat-url]: https://gitter.im/jefer94/algorithm
