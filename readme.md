@@ -2,6 +2,7 @@
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
+[![dev-deps][dev-deps]][dev-deps-url]
 [![chat][chat]][chat-url]
 [![downloads][downloads]][downloads-url]
 
@@ -83,6 +84,9 @@ tabla.io(i).add("numero") ;
 
 [deps]: https://david-dm.org/jefer94/algorithm.svg
 [deps-url]: https://david-dm.org/jefer94/algorithm
+
+[dev-deps]: https://david-dm.org/jefer94/algorithm/dev-status.svg
+[dev-deps-url]: https://david-dm.org/jefer94/algorithm
 
 [chat]: https://badges.gitter.im/jefer94/algorithm.svg
 [chat-url]: https://gitter.im/jefer94/algorithm
