@@ -36,13 +36,13 @@ cd algorithm
 
 Algorithm provide you, a transpiler, in it can write algorithms.
 
-![Write algorithm](https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/26231400_10213779021964980_4231126584910166416_n.jpg?oh=4503512f54f23ed98c366a8166fc7a9b&oe=5ABC4E0F)
+<!--![Write algorithm](https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/26231400_10213779021964980_4231126584910166416_n.jpg?oh=4503512f54f23ed98c366a8166fc7a9b&oe=5ABC4E0F) -->
 
 <h2 align="center">How work it</h2>
 
 When you press the hamburger button, the console run, then the transpiler provide you, a interfaz like a terminal emulator, like a real IDE.
 
-![Emulate runtime in a console](https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/26219974_10213779022004981_4628167993762407129_n.jpg?oh=84049c73348a0e0f25269405b0cdb3a9&oe=5AEC0574)
+<!-- ![Emulate runtime in a console](https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/26219974_10213779022004981_4628167993762407129_n.jpg?oh=84049c73348a0e0f25269405b0cdb3a9&oe=5AEC0574) -->
 
 Internally Algorithm transform that code in a equivalent in Javascript
 
