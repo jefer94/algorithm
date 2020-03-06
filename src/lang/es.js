@@ -1,45 +1,45 @@
-const algorithm_word = 'algoritmo'
-const begin = 'inicio'
-const end = 'fin'
-const for_word = 'para'
-const to_word = 'hasta'
+export const algorithmWord = 'algoritmo'
+export const begin = 'inicio'
+export const end = 'fin'
+export const forWord = 'para'
+export const toWord = 'hasta'
 
-const tokens = {
-  'o'  : '||',
-  'y'  : '&&',
-  'no' : '!',
-  '<>' : '!==',
-  '<=' : '<=',
-  '>=' : '>=',
-  '<'  : '<',
-  '>'  : '>',
-  '<-' : '='
+export const tokens = {
+  o: '||',
+  y: '&&',
+  no: '!',
+  '<>': '!==',
+  '<=': '<=',
+  '>=': '>=',
+  '<': '<',
+  '>': '>',
+  '<-': '='
 }
 
-const variables = [
+export const variables = [
   // map
   'variables',
   'var'
 ]
 
-const transpiler = {
+export const transpiler = {
   // algorithm : js
-  'si'       : 'if',
-  'sino'     : '}\nelse {',
-  'mientras' : 'while',
-  'repetir'  : 'do {',
-  'hasta'    : '} while',
-  'para'     : 'for',
-  'hacer'    : 'do'
+  si: 'if',
+  sino: '}\nelse {',
+  mientras: 'while',
+  repetir: 'do {',
+  hasta: '} while',
+  para: 'for',
+  hacer: 'do'
 }
 
-const open_bracket = [
+export const openBracket = [
   // map
   'hacer',
   'entonces'
 ]
 
-const close_bracket = [
+export const closeBracket = [
   // map
   'finsi',
   'fin_si',
@@ -49,41 +49,41 @@ const close_bracket = [
   'fin_para'
 ]
 
-const write = [
+export const write = [
   // map
   'mostrar',
   'escribir',
   'imprimir'
 ]
 
-const read = [
+export const read = [
   // map
   'leer'
 ]
 
-const type = {
+export const type = {
   // type : algorithm
-  int    : 'entero',
-  double : 'real',
-  string : 'carapter',
-  bool   : 'booleano'
+  int: 'entero',
+  double: 'real',
+  string: 'carapter',
+  bool: 'booleano'
 }
 
-const type_error = {
+export const typeError = {
   // type : string in es
-  int    : 'ERROR: no es entero',
-  double : 'ERROR: no es flotante',
-  string : 'ERROR: no es una cadena',
-  bool   : 'ERROR: no es booleano'
+  int: 'ERROR: no es entero',
+  double: 'ERROR: no es flotante',
+  string: 'ERROR: no es una cadena',
+  bool: 'ERROR: no es booleano'
 }
 
-const error = {
+export const error = {
   // error name     : string in es
-  string_for_number : 'ERROR: un numero no puede multiplicar a un carapter',
-  infinity          : 'ERROR: dividir entre 0 causa un numero infinito'
+  stringForNumber: 'ERROR: un numero no puede multiplicar a un carapter',
+  infinity: 'ERROR: dividir entre 0 causa un numero infinito'
 }
 
-const code = `algoritmo facilito
+export const code = `algoritmo facilito
 variables
 numero, i, tabla[10]: entero
 inicio
@@ -98,26 +98,20 @@ inicio
 fin`
 
 export default {
-  algorithm_word,
+  algorithmWord,
   begin,
   end,
-  for_word,
-  to_word,
+  forWord,
+  toWord,
   tokens,
   variables,
   transpiler,
-  open_bracket,
-  close_bracket,
+  openBracket,
+  closeBracket,
   write,
   read,
   type,
-  type_error,
+  typeError,
   error,
   code
-}
-
-export {
-  algorithm_word, begin, end, for_word, to_word, tokens, variables,
-  transpiler, open_bracket, close_bracket, write, read, type, type_error,
-  error, code
 }

@@ -1,34 +1,32 @@
 class Vector {
-  constructor (n) {
-    if (n <= 0 || typeof n !== 'number')
-      throw 'ERROR: invalid array argument'
+  constructor(n) {
+    if (n <= 0 || typeof n !== 'number') throw new Error('ERROR: invalid array argument')
     this.size = n
     this.i = 0
     this.array = []
   }
-  add (v, i) {
-    i--
+
+  add(v, i) {
+    const index = i - 1
     if (this.i < this.size && this.size > 0) {
-      if (this.array[i] !== undefined)
-        this.i++
-      this.array[i] = v
+      if (this.array[index] !== undefined) this.i++
+      this.array[index] = v
     }
-    else
-      throw 'ERROR: array overflow'
+    else throw new Error('ERROR: array overflow')
   }
-  show (n) {
-    n--
-    if (n < this.size && n >= 0)
-      return this.array[n]
-    else
-      throw 'ERROR: array null point'
+
+  show(n) {
+    const start = n - 1
+    if (start < this.size && start >= 0) return this.array[start]
+    throw new Error('ERROR: array null point')
   }
-  io (i) {
+
+  io(i) {
     return {
-      add       : (v) => this.add(v, i),
-      show      : () => this.show(i),
-      toString  : () => this.show(i),
-      is_vector : () => true
+      add: (v) => this.add(v, i),
+      show: () => this.show(i),
+      toString: () => this.show(i),
+      isVector: () => true
     }
   }
 }

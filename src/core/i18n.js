@@ -7,54 +7,52 @@ const lang = locale === 'es' ?
   es :
   es
 
-const static_tokens = {
+export const staticTokens = {
   // algorithm : js
-  'o'  : '||',
-  'y'  : '&&',
-  'no' : '!',
-  '<>' : '!==',
-  '<=' : '<=',
-  '>=' : '>=',
-  '<'  : '<',
-  '>'  : '>',
-  '<-' : '='
+  o: '||',
+  y: '&&',
+  no: '!',
+  '<>': '!==',
+  '<=': '<=',
+  '>=': '>=',
+  '<': '<',
+  '>': '>',
+  '<-': '='
 }
 
 // proxy
-const algorithm_word = lang.algorithm_word
-const begin = lang.begin
-const end = lang.end
-const for_word = lang.for_word
-const to_word = lang.to_word
-const tokens = Object.assign(static_tokens, lang.tokens)
-const variables = lang.variables
-const transpiler = lang.transpiler
-const open_bracket = lang.open_bracket
-const close_bracket = lang.close_bracket
-const write = lang.write
-const read = lang.read
-const type = lang.type
-const type_error = lang.type_error
-const error = lang.error
-const code = lang.code
+export const { algorithmWord } = lang
+export const { begin } = lang
+export const { end } = lang
+export const { forWord } = lang
+export const { toWord } = lang
+export const tokens = Object.assign(staticTokens, lang.tokens)
+export const { variables } = lang
+export const { transpiler } = lang
+export const { openBracket } = lang
+export const { closeBracket } = lang
+export const { write } = lang
+export const { read } = lang
+export const { type } = lang
+export const { typeError } = lang
+export const { error } = lang
+export const { code } = lang
 
-export default { algorithm_word,
+export default {
+  algorithmWord,
   begin,
   end,
-  for_word,
-  to_word,
+  forWord,
+  toWord,
   tokens,
   variables,
   transpiler,
-  open_bracket,
-  close_bracket,
+  openBracket,
+  closeBracket,
   write,
   read,
   type,
-  type_error,
+  typeError,
   error,
-  code }
-
-export { algorithm_word, begin, end, for_word, to_word, tokens, variables,
-  transpiler, open_bracket, close_bracket, write, read, type, type_error,
-  error, code }
+  code
+}

@@ -2,14 +2,6 @@
   "name": "choco-algorithm",
   "version": "1.0.0-alpha4",
   "description": "Algorithm runtime emulator, like a IDE",
-  "scripts": {
-    "precommit": "npm test && npm run prod && git add . ",
-    "test": "eslint src/**/*.js --fix",
-    "clean": "rm assets/* || DEL assets/* || true",
-    "prod": "npm run clean && webpack -p --progress",
-    "dev": "npm run clean && webpack-dev-server --progress",
-    "desktop": "electron ."
-  },
   "keywords": [
     "chocoland.js",
     "choco",
@@ -19,59 +11,61 @@
     "type": "git",
     "url": "https://github.com/jefer94/algorithm.git"
   },
-  "author": "Jeferson De Freitas <jdefreitaspinto@gmail.com>",
-  "homepage": "https://jefer94.github.io/algorithm",
+  "author": "Jeferson De Freitas <jdefreitaspinto@gmail.com> (https://github.com/jefer94)",
+  "homepage": ".",
   "license": "GPL-3.0",
   "main": "main.js",
   "engines": {
     "node": ">= 4.7",
     "npm": ">= 2.x"
   },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-beta.38",
-    "@babel/preset-env": "^7.0.0-beta.38",
-    "@babel/preset-react": "^7.0.0-beta.38",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^8.0.0-beta.0",
-    "babel-plugin-lodash": "^3.3.2",
-    "babel-plugin-transform-object-assign": "^7.0.0-beta.3",
-    "babel-plugin-transform-react-constant-elements": "^7.0.0-beta.3",
-    "babel-plugin-transform-react-inline-elements": "^7.0.0-beta.3",
-    "babel-plugin-transform-react-jsx-compat": "^7.0.0-beta.3",
-    "compression-webpack-plugin": "^1.1.3",
-    "eslint": "^4.15.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.41.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.5.1",
-    "file-loader": "^1.1.6",
-    "husky": "^0.14.3",
-    "lodash-webpack-plugin": "^0.11.4",
-    "node-sass": "^4.7.2",
-    "redux-logger": "^3.0.6",
-    "sass-loader": "6.0.6",
-    "uglify-js": "^3.3.7",
-    "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.0"
-  },
   "dependencies": {
-    "@babel/cli": "^7.0.0-beta.38",
-    "codemirror": "^5.33.0",
-    "css-loader": "^0.28.9",
-    "dotenv": "^4.0.0",
-    "image-webpack-loader": "^3.4.2",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-codemirror2": "^3.0.7",
-    "react-dom": "^16.2.0",
-    "react-redux": "5.0.6",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-router-redux": "5.0.0-alpha.9",
-    "redux": "^4.0.0-beta.1",
-    "redux-localstorage": "^1.0.0-rc4",
-    "style-loader": "^0.19.1"
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@monaco-editor/react": "^3.1.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "codemirror": "^5.52.0",
+    "monaco-editor": "^0.20.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.0",
+    "react-codemirror2": "^6.0.0",
+    "react-dom": "^16.13.0",
+    "react-monaco-editor": "^0.34.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "scripts": {
+    "start": "EXTEND_ESLINT=true react-app-rewired start",
+    "build": "EXTEND_ESLINT=true react-app-rewired build",
+    "test": "EXTEND_ESLINT=true react-app-rewired test",
+    "eject": "EXTEND_ESLINT=true react-app-rewired eject",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" --fix"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "customize-cra": "^0.9.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "node-sass": "^4.13.1",
+    "react-app-rewire-eslint": "^0.2.3",
+    "react-app-rewired": "^2.1.5"
   }
 }
