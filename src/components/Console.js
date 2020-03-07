@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function Console({ lines }) {
   return (
-    <div id="content2" className="tab">
+    <main id="content2" className="tab">
       <div className="console">
         { lines.map((value) => (
           <div key={value.id}>
@@ -21,7 +21,7 @@ function Console({ lines }) {
           </div>
         )) }
       </div>
-    </div>
+    </main>
   )
 }
 Console.propTypes = {

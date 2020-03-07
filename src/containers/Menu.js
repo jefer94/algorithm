@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { faBars, faTerminal, faBook } from '@fortawesome/free-solid-svg-icons'
 import MenuComponent from '../components/Menu'
-import { homeRoute, docsRoute, consoleRoute } from '../variables/routes'
+import { homeRoute, docsRoute, consoleRoute } from '../globals/routes'
 
 const cache = {
   id: -1

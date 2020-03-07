@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import 'codemirror/addon/hint/show-hint'
-import 'codemirror/addon/hint/anyword-hint'
-import '../modes/algorithm'
+// import 'codemirror/addon/hint/show-hint'
+// import 'codemirror/addon/hint/anyword-hint'
+// import '../modes/algorithm'
 import TabsComponent from '../components/Tabs'
 import EditorComponent from '../components/Editor'
 import useTabs from '../hooks/useTabs'
@@ -36,7 +36,7 @@ function getActiveContent(tabs) {
 }
 
 export default function () {
-  const { tabs, addTab, changeTab, saveTab } = useTabs()
+  const { tabs, addTab, changeTab, saveTab, removeTab } = useTabs()
   // const [id, setId] = useState(0)
   const [ignoreContentUpdate, setIgnoreContentUpdate] = useState(false)
   const [content, setContent] = useState(getActiveContent(tabs))
@@ -76,7 +76,7 @@ export default function () {
 
   return (
     <>
-      <TabsComponent tabs={tabs} add={() => addTab()} change={(id) => changeTab(id)} />
+      <TabsComponent tabs={tabs} add={() => addTab()} change={(id) => changeTab(id)} remove={(id) => removeTab(id)} />
       <EditorComponent content={content} options={options} onChange={setContent} />
     </>
   )

@@ -83,6 +83,10 @@ export const error = {
   infinity: 'ERROR: dividir entre 0 causa un numero infinito'
 }
 
+export const menu = 'Menu'
+export const addTab = 'Add tab'
+export const removeTab = 'Remove tab'
+
 export const code = `algoritmo facilito
 variables
 numero, i, tabla[10]: entero

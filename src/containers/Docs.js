@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import React from 'react'
 import Docs from '../components/Docs'
 import Menu from './Menu'
 

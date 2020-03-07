@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 // import { UnControlled as CodeMirror } from 'react-codemirror2'
 // import MonacoEditor from 'react-monaco-editor'
-import { ControlledEditor } from '@monaco-editor/react'
 
 // import {setModelLanguage} from 'monaco-editor'
 
 // console.log('mo', setModelLanguage)
+
+// import { ControlledEditor } from '@monaco-editor/react'
+
 
 function windowHeight() {
   return +window.innerHeight - 48
@@ -16,7 +18,8 @@ function windowWidth() {
   return +window.innerWidth
 }
 
-function Editor({ content, onChange }) {
+function Editor() {
+  // { content, onChange }) {
   const [height, setHeight] = useState(windowHeight())
   const [width, setWidth] = useState(windowWidth())
 
@@ -36,24 +39,24 @@ function Editor({ content, onChange }) {
   })
 
   return (
-    <div id="content1" className="tab show-content">
-      <ControlledEditor
+    <main id="content1" className="tab show-content">
+      {/* <ControlledEditor
         value={content}
         width={width}
         height={height}
         language="javascript"
         theme="dark"
         onChange={(x, v) => onChange(v)}
-      />
-    </div>
+      /> */}
+    </main>
   )
 }
 Editor.propTypes = {
-  content: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  // content: PropTypes.string,
+  // onChange: PropTypes.func.isRequired
 }
 Editor.defaultProps = {
-  content: ''
+  // content: ''
 }
 
 export default Editor
