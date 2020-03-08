@@ -2,8 +2,5 @@
  
 /* config-overrides.js */
 module.exports = function override(config, env) {
-  // config = rewireEslint(config, env)
-  // console.log(config)
-  // console.log(env)
   return config
 }

@@ -1,4 +1,4 @@
-import { algorithmWord as tabName, code } from '../core/i18n'
+import { algorithmWord as tabName, code } from '../libs/i18n'
 
 const defaults = [{
   id: 0,
@@ -21,13 +21,19 @@ function add(state) {
   }])
 }
 
+function remove(state, action) {
+  const [first, ...filter] = state.filter((tab) => tab.id !== action.id)
+  const active = { ...first, active: true }
+  return [active, ...filter]
+}
+
 export default function (state = defaults, action) {
   switch (action.type) {
     case 'ADD_TAB':
       return add(state)
 
     case 'DELETE_TAB':
-      return state.filter((tab) => tab.id !== action.id)
+      return remove(state, action)
 
     case 'RENAME_TAB':
       return state.map((tab) => (tab.id === action.id ?

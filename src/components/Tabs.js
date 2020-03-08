@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { faBars, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -7,9 +7,6 @@ import './Tabs.sass'
 
 
 function Tabs({ tabs, add, change, remove }) {
-  const plusIndex = tabs.length && tabs[tabs.length] ?
-    tabs[tabs.length].id + 1 :
-    0
   return (
     <nav id="tabs">
       <ul>
@@ -23,8 +20,10 @@ function Tabs({ tabs, add, change, remove }) {
         </li>
         {tabs.map((tab) => (
           <li className={tab.active ? 'tab-active' : 'tab'} key={tab.id}>
-            <div onClick={() => change(tab.id)} onKeyUp={() => change(tab.id)} role="button" tabIndex={tab.id}>
-              {tab.name}
+            <div>
+              <button type="button" className="algorithm-button-role" aria-label={`Change to: ${tab.name}`} onClick={() => change(tab.id)}>
+                {tab.name}
+              </button>
               <button type="button" className="algorithm-button-role" aria-label={`Remove tab: ${tab.name}`} onClick={() => remove(tab.id)}>
                 <Icon name={faTimes} />
               </button>
@@ -32,7 +31,7 @@ function Tabs({ tabs, add, change, remove }) {
           </li>
         ))}
         <li className="tab-hamburger">
-          <button type="button" className="hamburger algorithm-button-role" onClick={add} onKeyUp={add} tabIndex={plusIndex} aria-label="Add tab">
+          <button type="button" className="hamburger algorithm-button-role" onClick={add} onKeyUp={add} aria-label="Add tab">
             <Icon name={faPlus} />
           </button>
         </li>
@@ -47,4 +46,4 @@ Tabs.propTypes = {
   remove: PropTypes.func.isRequired
 }
 
-export default Tabs
+export default memo(Tabs)

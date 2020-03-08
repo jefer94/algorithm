@@ -1,5 +1,5 @@
-import { useReducer, useEffect } from 'react'
-import { code } from '../core/i18n'
+import { useReducer, useEffect, useCallback } from 'react'
+import { code } from '../libs/i18n'
 import tabsReducer from '../reducers/tabs'
 
 const key = '__ALGORITHM_TABS__'
@@ -12,8 +12,14 @@ const defaults = [{
 
 export default function () {
   const init = JSON.parse(localStorage.getItem(key) || 'null') || defaults
-  // console.log(init, localStorage.getItem(key) || 'null', 'aaaa', defaults)
   const [tabs, dispatch] = useReducer(tabsReducer, init)
+
+  const addTab = useCallback(() => dispatch(addTabAction()), [dispatch])
+  const removeTab = useCallback((id) => dispatch(removeTabAction(id)), [dispatch])
+  const changeTab = useCallback((id) => dispatch(changeTabAction(id)), [dispatch])
+  const saveTab = useCallback((id, content) => dispatch(saveTabAction(id, content)), [dispatch])
+  const renameTab = useCallback((id) => dispatch(renameTabAction(id)), [dispatch])
+  const defaultsTabs = useCallback((id) => dispatch(defaultsTabsAction(id)), [dispatch])
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(tabs))
@@ -22,41 +28,41 @@ export default function () {
   return {
     tabs,
     dispatch,
-    addTab: () => dispatch(addTab()),
-    removeTab: (id) => dispatch(removeTab(id)),
-    changeTab: (id) => dispatch(changeTab(id)),
-    saveTab: (id, content) => dispatch(saveTab(id, content)),
-    renameTab: (id) => dispatch(renameTab(id)),
-    defaultsTabs: (id) => dispatch(defaultsTabs(id))
+    addTab,
+    removeTab,
+    changeTab,
+    saveTab,
+    renameTab,
+    defaultsTabs
   }
 }
 
-const addTab = () => ({
+export const addTabAction = () => ({
   type: 'ADD_TAB'
 })
 
-const removeTab = (id) => ({
+export const removeTabAction = (id) => ({
   type: 'DELETE_TAB',
   id
 })
 
-const changeTab = (id) => ({
+export const changeTabAction = (id) => ({
   type: 'CHANGE_TAB',
   id
 })
 
-const saveTab = (id, content) => ({
+export const saveTabAction = (id, content) => ({
   type: 'SAVE_TAB',
   id,
   content
 })
 
-const renameTab = (id, index) => ({
+export const renameTabAction = (id, index) => ({
   type: 'RENAME_TAB',
   id,
   index
 })
 
-const defaultsTabs = () => ({
+export const defaultsTabsAction = () => ({
   type: 'DEFAULTS_TABS'
 })

@@ -1,14 +1,15 @@
-import React, { useReducer, useState, useEffect } from 'react'
+import React, { useReducer, useState, useEffect, lazy } from 'react'
 // import _ from 'lodash'
 // import { addVar, resetVar } from '../actions'
 // import store from '../reducers'
-import algorithm from '../core/algorithm'
-import vector from '../core/vector'
-import { typeError } from '../core/i18n'
-import ConsoleComponent from '../components/Console'
+import algorithm from '../libs/algorithm'
+import vector from '../libs/vector'
+import { typeError } from '../libs/i18n'
 import varsReducer from '../reducers/variables'
 import useTabs from '../hooks/useTabs'
 import Menu from './Menu'
+
+const ConsoleComponent = lazy(() => import('../components/Console'))
 
 const io = {
   show: true,

@@ -1,14 +1,7 @@
-import React, { useState } from 'react'
-// import PropTypes from 'prop-types'
-// import { UnControlled as CodeMirror } from 'react-codemirror2'
-// import MonacoEditor from 'react-monaco-editor'
+import React, { useState, memo, lazy } from 'react'
+import PropTypes from 'prop-types'
 
-// import {setModelLanguage} from 'monaco-editor'
-
-// console.log('mo', setModelLanguage)
-
-// import { ControlledEditor } from '@monaco-editor/react'
-
+const ControlledEditor = lazy(() => import('./MonacoWrapper'))
 
 function windowHeight() {
   return +window.innerHeight - 48
@@ -18,8 +11,7 @@ function windowWidth() {
   return +window.innerWidth
 }
 
-function Editor() {
-  // { content, onChange }) {
+function Editor({ content, onChange }) {
   const [height, setHeight] = useState(windowHeight())
   const [width, setWidth] = useState(windowWidth())
 
@@ -40,23 +32,20 @@ function Editor() {
 
   return (
     <main id="content1" className="tab show-content">
-      {/* <ControlledEditor
+      <ControlledEditor
         value={content}
         width={width}
         height={height}
         language="javascript"
         theme="dark"
         onChange={(x, v) => onChange(v)}
-      /> */}
+      />
     </main>
   )
 }
 Editor.propTypes = {
-  // content: PropTypes.string,
-  // onChange: PropTypes.func.isRequired
-}
-Editor.defaultProps = {
-  // content: ''
+  content: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
-export default Editor
+export default memo(Editor)

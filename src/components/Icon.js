@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { memo, lazy } from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Icon.sass'
+
+const FontAwesomeIcon = lazy(() => import('./FontAwesomeWrapper'))
 
 function Icon({ name }) {
   return <FontAwesomeIcon className="algorithm-icon" icon={name} />
@@ -12,4 +13,4 @@ Icon.propTypes = {
   }).isRequired
 }
 
-export default Icon
+export default memo(Icon)

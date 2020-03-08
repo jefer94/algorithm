@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 function Console({ lines }) {
@@ -28,4 +28,4 @@ Console.propTypes = {
   lines: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export default Console
+export default memo(Console)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Icon from './Icon'
@@ -9,12 +9,12 @@ function Menu({ children, items }) {
     <div id="ide" className="modal">
       <div className="ide">
         <ul>
-          {items.map(({ id, url, name, active }) => (
-            <Link to={url} key={id}>
-              <li className={active ? 'menu-button brightness' : 'menu-button'}>
-                <Icon name={name} />
-              </li>
-            </Link>
+          {items.map(({ id, url, icon, name, active }) => (
+            <li className={active ? 'menu-button brightness' : 'menu-button'} key={id}>
+              <Link className={active ? 'menu-button brightness' : 'menu-button'} to={url} aria-label={name}>
+                <Icon name={icon} />
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
@@ -27,4 +27,4 @@ Menu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export default Menu
+export default memo(Menu)
