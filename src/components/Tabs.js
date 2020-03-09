@@ -7,6 +7,38 @@ import './Tabs.sass'
 
 
 function Tabs({ tabs, add, change, remove }) {
+  const multiTabsFeature = false
+
+  function addTabComponent() {
+    return multiTabsFeature ? (
+      <li className="tab-hamburger">
+        <button type="button" className="hamburger algorithm-button-role" onClick={add} onKeyUp={add} aria-label="Add tab">
+          <Icon name={faPlus} />
+        </button>
+      </li>
+    ) : ''
+  }
+
+  function closeTabComponent(tab) {
+    return multiTabsFeature ? (
+      <button type="button" className="algorithm-button-role" aria-label={`Remove tab: ${tab.name}`} onClick={() => remove(tab.id)}>
+        <Icon name={faTimes} />
+      </button>
+    ) : ''
+  }
+
+  function titleAndSelectTabComponent(tab) {
+    return multiTabsFeature ? (
+      <button type="button" className="algorithm-button-role" aria-label={`Change to: ${tab.name}`} onClick={() => change(tab.id)}>
+        {tab.name}
+      </button>
+    ) : (
+      <button type="button" className="algorithm-button-role" aria-label={`Tab: ${tab.name}`}>
+        {tab.name}
+      </button>
+    )
+  }
+
   return (
     <nav id="tabs">
       <ul>
@@ -21,20 +53,12 @@ function Tabs({ tabs, add, change, remove }) {
         {tabs.map((tab) => (
           <li className={tab.active ? 'tab-active' : 'tab'} key={tab.id}>
             <div>
-              <button type="button" className="algorithm-button-role" aria-label={`Change to: ${tab.name}`} onClick={() => change(tab.id)}>
-                {tab.name}
-              </button>
-              <button type="button" className="algorithm-button-role" aria-label={`Remove tab: ${tab.name}`} onClick={() => remove(tab.id)}>
-                <Icon name={faTimes} />
-              </button>
+              {titleAndSelectTabComponent(tab)}
+              {closeTabComponent(tab)}
             </div>
           </li>
         ))}
-        <li className="tab-hamburger">
-          <button type="button" className="hamburger algorithm-button-role" onClick={add} onKeyUp={add} aria-label="Add tab">
-            <Icon name={faPlus} />
-          </button>
-        </li>
+        {addTabComponent()}
       </ul>
     </nav>
   )

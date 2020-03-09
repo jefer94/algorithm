@@ -1,3 +1,6 @@
+import { typeError } from '../i18n'
+import keychain from '../keychain'
+
 export const io = {
   show: true,
 
@@ -17,57 +20,46 @@ export const io = {
   }
 }
 
-let id = -1
-
-export function read(toRead, lastLine) {
+export function read(toRead, variables, lastLine) {
   let toReadCopy = toRead
 
   // flags
   let isVector = false
   let newLastLine
 
-  id += 1
   // clean up unnecessary signs
   while (toReadCopy.substr(0, 1) === ' ') {
     const length = toReadCopy.length - 1
     toReadCopy = toReadCopy.substr(1, length)
   }
   while (toReadCopy.substr(toReadCopy.length - 1, 1) === ' ') toReadCopy = toReadCopy.substr(0, toReadCopy.length - 1)
-
   let input
-  if (io.text && io.text !== io.lastRext) input = prompt(io.text)
 
+  if (io.text && io.text !== io.lastRext) input = prompt(io.text)
   else input = prompt('')
   // if var not exist, not work
-  if (lastLine.var) {
-    id += 1
-    newLastLine = Object.freeze({...lastLine, content: input})
-  }
-  else {
-    id += 1
-    newLastLine = Object.freeze({...lastLine, var: input})
-  }
+  if (lastLine && lastLine.var) newLastLine = Object.freeze({ ...lastLine, content: input })
+  else newLastLine = Object.freeze({ ...lastLine, var: input })
+
   if (typeof toReadCopy === 'object') return readResponse(`${toReadCopy} = ${input};`, newLastLine)
   // vector
   if (toReadCopy.search(/\.io\(/) !== -1) {
     isVector = true
     toReadCopy += `.add(${input})`
   }
+  console.log('status')
   // here in runtime show the mistakes in assignings
   switch (variables[toReadCopy]) {
     case 'int':
-      if (Number.isNaN(Number(input)) || +input !== Math.trunc(input))
-        return readResponse(`write('${typeError.int}'); io.error();`, newLastLine)
+      if (Number.isNaN(Number(input)) || +input !== Math.trunc(input)) return readResponse(`write('${typeError.int}'); io.error();`, newLastLine)
       break
     case 'double':
-      if (Number.isNaN(Number(input)))
-        return readResponse(`write('${typeError.double}'); io.error();`, newLastLine)
+      if (Number.isNaN(Number(input))) return readResponse(`write('${typeError.double}'); io.error();`, newLastLine)
       break
     case 'string':
       break
     case 'bool':
-      if (Number.isNaN(Number(input)) || +input < 0 || +input > 2)
-        return readResponse(`write('${typeError.bool}'); io.error();`, newLastLine)
+      if (Number.isNaN(Number(input)) || +input < 0 || +input > 2) return readResponse(`write('${typeError.bool}'); io.error();`, newLastLine)
       break
     default:
       throw new Error('Unknow var type')
@@ -80,14 +72,14 @@ export function read(toRead, lastLine) {
 }
 
 function readResponse(assign, lastLine) {
-  Object.freeze({assign, lastLine})
+  // const id = keychain('line')
+  Object.freeze({ assign, lastLine })
 }
 
 export function write(...args) {
   // var
   let result = ''
   let error
-  id += 1
   Object.values(args).forEach((text) => {
     let textCopy = text
     if (typeof textCopy === 'object' && textCopy.isVector && textCopy.isVector()) textCopy = textCopy.show()
@@ -97,7 +89,7 @@ export function write(...args) {
     result += textCopy
   })
   if (error) return Object.freeze({
-    id,
+    id: keychain('line'),
     error: true,
     content: error
   })
@@ -107,13 +99,13 @@ export function write(...args) {
     //   io.resetLast()
     io.addText(result)
     return Object.freeze({
-      id,
+      id: keychain('line'),
       error: false,
       content: result
     })
   }
   return Object.freeze({
-    id,
+    id: keychain('line'),
     error: false,
     content: ''
   })
