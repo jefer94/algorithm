@@ -13,42 +13,38 @@ import transform from './transform'
 //     .join()
 // }
 
-const algorithm = new class {
-  setDispatch(dispatch) {
-    this.store = {
-      varAdd: (value, key) => dispatch(addVar(value, key)),
-      varReset: () => dispatch(resetVar())
-    }
+let tabs
+let store
+
+export function setDispatch(dispatch) {
+  store = {
+    varAdd: (value, key) => dispatch(addVar(value, key)),
+    varReset: () => dispatch(resetVar())
   }
+}
 
-  setTabs(tabs) {
-    this.tabs = tabs
+export function setTabs(externalTabs) {
+  tabs = externalTabs
+}
+
+export function toJS() {
+  store.varReset()
+
+  // and execute a interpreter
+  // const codesInString = joinCodes(tabs)
+  const codesInString = tabs[0].content
+  const [title, codeFromTitle] = files(codesInString)
+  const literals = vars(codeFromTitle, store)
+  const diff = diffAlg(codesInString, literals)
+  const map = tabs.map((v) => v.content)
+
+  // show the output
+  const code = transform(codeFromTitle)
+  return {
+    title,
+    literals,
+    code,
+    diff,
+    map
   }
-
-  // transform to javascript
-  toJS() {
-    this.store.varReset()
-    this.js = ''
-
-    // and execute a interpreter
-    // const codesInString = joinCodes(this.tabs)
-    const codesInString = this.tabs[0].content
-    const [title, codeFromTitle] = files(codesInString)
-    const literals = vars(codeFromTitle, this.store)
-    const diff = diffAlg(codesInString, literals + this.js)
-    const map = this.tabs.map((v) => v.content)
-
-    // show the output
-    const code = transform(codeFromTitle)
-    return {
-      title,
-      literals,
-      code,
-      diff,
-      map
-    }
-    // theConsole.run(title, literals, this.js, diff, map)
-  }
-}()
-
-export default algorithm
+}

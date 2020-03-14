@@ -2,7 +2,7 @@ import React, { useReducer, useState, useEffect, lazy } from 'react'
 // import _ from 'lodash'
 // import { addVar, resetVar } from '../actions'
 // import store from '../reducers'
-import algorithm from '../libs/algorithm'
+import { setDispatch, setTabs, toJS } from '../libs/algorithm'
 import vector from '../libs/vector'
 import varsReducer from '../reducers/variables'
 import useTabs from '../hooks/useTabs'
@@ -40,14 +40,14 @@ export default function () {
 
 
   /* non-existent code for name of algorithm */
-  algorithm.setDispatch(dispatch)
-  algorithm.setTabs(tabs)
+  setDispatch(dispatch)
+  setTabs(tabs)
 
   useEffect(() => {
     if (!runtimeObj) {
       cache = []
       io.reset()
-      setRuntimeObj(algorithm.toJS())
+      setRuntimeObj(toJS())
     }
     else {
       const { title, literals, code, diffLineCode, map } = runtimeObj
