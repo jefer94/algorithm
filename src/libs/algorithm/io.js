@@ -47,7 +47,6 @@ export function read(toRead, variables, lastLine) {
     isVector = true
     toReadCopy += `.add(${input})`
   }
-  console.log('status')
   // here in runtime show the mistakes in assignings
   switch (variables[toReadCopy]) {
     case 'int':
@@ -64,6 +63,7 @@ export function read(toRead, variables, lastLine) {
     default:
       throw new Error('Unknow var type')
   }
+
   if (variables[toReadCopy] === 'string') return readResponse(`${toReadCopy} = '${input}';`, newLastLine)
 
   if (isVector) return readResponse(`${toReadCopy};`, newLastLine)
@@ -73,14 +73,14 @@ export function read(toRead, variables, lastLine) {
 
 function readResponse(assign, lastLine) {
   // const id = keychain('line')
-  Object.freeze({ assign, lastLine })
+  return Object.freeze({ assign, lastLine })
 }
 
 export function write(...args) {
   // var
   let result = ''
   let error
-  Object.values(args).forEach((text) => {
+  Object.values(args[0]).forEach((text) => {
     let textCopy = text
     if (typeof textCopy === 'object' && textCopy.isVector && textCopy.isVector()) textCopy = textCopy.show()
 
@@ -88,6 +88,7 @@ export function write(...args) {
     if (typeof textCopy === 'number' && !Number.isFinite(textCopy)) error = `write('${error.infinity}'); io.error();`
     result += textCopy
   })
+
   if (error) return Object.freeze({
     id: keychain('line'),
     error: true,

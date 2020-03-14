@@ -24,10 +24,10 @@ export default function () {
 
   // eslint-disable-next-line no-unused-vars
   function read(toRead) {
-    console.log(readInConsole(toRead, variables, cache[cache.length - 1]), 'preassign')
-    // const { assign } = readInConsole(toRead, variables, lines[lines.length - 1])
-    // console.log(assign, 'assign')
-    // return assign
+    const { assign, lastLine } = readInConsole(toRead, variables, lines[lines.length - 1])
+    cache[cache.length - 1] = { ...cache[cache.length - 1], var: lastLine.var }
+    setLines([...cache])
+    return assign
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -65,7 +65,6 @@ export default function () {
           const Vector = vector
           // eslint-disable-next-line no-unused-vars
           // const { variables } = store.getState()
-          console.log('log', literals, code)
           if (/Firefox/.test(navigator.userAgent)) eval(literals + code)
           else eval('eval(literals + code)')
         }
