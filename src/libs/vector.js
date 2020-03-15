@@ -8,7 +8,8 @@ class Vector {
 
   add(v, i) {
     const index = i - 1
-    if (this.i < this.size && this.size > 0) {
+    if (index === -1) throw new Error('ERROR: array null point')
+    if (index < this.size && this.size > 0) {
       if (this.array[index] !== undefined) this.i++
       this.array[index] = v
     }
