@@ -32,3 +32,4 @@ rules:
   react-hooks/exhaustive-deps: "warn"
   no-eval: "off"
   import/first: "off"
+  import/no-mutable-exports: "off"

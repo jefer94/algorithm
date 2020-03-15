@@ -37,7 +37,7 @@ export let removeTab
 export function setLang(langArg) {
   const langcode = langArg || locale
 
-  let lang = langcode === 'es' ?
+  const lang = langcode === 'es' ?
     es :
     es
 
