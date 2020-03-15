@@ -5,15 +5,10 @@ export const forWord = 'para'
 export const toWord = 'hasta'
 
 export const tokens = {
+  // algorithm : js
   o: '||',
   y: '&&',
-  no: '!',
-  '<>': '!==',
-  '<=': '<=',
-  '>=': '>=',
-  '<': '<',
-  '>': '>',
-  '<-': '='
+  no: '!'
 }
 
 export const variables = [
@@ -117,5 +112,8 @@ export default {
   type,
   typeError,
   error,
-  code
+  code,
+  menu,
+  addTab,
+  removeTab
 }

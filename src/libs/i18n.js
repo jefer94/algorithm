@@ -3,15 +3,8 @@ import es from '../lang/es'
 // import language
 const locale = window.navigator.language.substr(0, 2)
 
-const lang = locale === 'es' ?
-  es :
-  es
-
 export const staticTokens = {
   // algorithm : js
-  o: '||',
-  y: '&&',
-  no: '!',
   '<>': '!==',
   '<=': '<=',
   '>=': '>=',
@@ -20,23 +13,54 @@ export const staticTokens = {
   '<-': '='
 }
 
-// proxy
-export const { algorithmWord } = lang
-export const { begin } = lang
-export const { end } = lang
-export const { forWord } = lang
-export const { toWord } = lang
-export const tokens = Object.assign(staticTokens, lang.tokens)
-export const { variables } = lang
-export const { transpiler } = lang
-export const { openBracket } = lang
-export const { closeBracket } = lang
-export const { write } = lang
-export const { read } = lang
-export const { type } = lang
-export const { typeError } = lang
-export const { error } = lang
-export const { code } = lang
+// interface
+export let algorithmWord
+export let begin
+export let end
+export let forWord
+export let toWord
+export let tokens
+export let variables
+export let transpiler
+export let openBracket
+export let closeBracket
+export let write
+export let read
+export let type
+export let typeError
+export let error
+export let code
+export let menu
+export let addTab
+export let removeTab
+
+export function setLang(langArg) {
+  const langcode = langArg || locale
+
+  let lang = langcode === 'es' ?
+    es :
+    es
+
+  algorithmWord = lang.algorithmWord
+  begin = lang.begin
+  end = lang.end
+  forWord = lang.forWord
+  toWord = lang.toWord
+  tokens = { ...staticTokens, ...lang.tokens }
+  variables = lang.variables
+  transpiler = lang.transpiler
+  openBracket = lang.openBracket
+  closeBracket = lang.closeBracket
+  write = lang.write
+  read = lang.read
+  type = lang.type
+  typeError = lang.typeError
+  error = lang.error
+  code = lang.code
+  menu = lang.menu
+  addTab = lang.addTab
+  removeTab = lang.removeTab
+}
 
 export default {
   algorithmWord,
@@ -54,5 +78,10 @@ export default {
   type,
   typeError,
   error,
-  code
+  code,
+  menu,
+  addTab,
+  removeTab
 }
+
+setLang()
