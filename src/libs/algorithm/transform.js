@@ -91,13 +91,13 @@ export default function (code) {
 }
 
 export function forLoopCondition(lineArg) {
-  let line = lineArg
   // for (...)
+  let line = lineArg
   const matchCondition = line.match(RegExp(`([\\s\\S]+${toWord}[\\s\\S]+)`))
   if (matchCondition) {
     let [conditionsFor] = matchCondition
     conditionsFor = conditionsFor.split(toWord)
-    const [ref] = matchCondition[0].split(toWord)
+    const ref = matchCondition[0].split(toWord)
     conditionsFor[0] += ';'
     conditionsFor[1] = conditionsFor[1].replace('=', '<=')
     if (conditionsFor[1].search('reversed') === -1) conditionsFor[1] = conditionsFor[1].replace(')', '; i++)')
