@@ -37,9 +37,9 @@ test('ES toWord', () => {
 test('ES tokens', () => {
   setLang('es')
   genericTokens()
-  expect(tokens['o']).toBe('||')
-  expect(tokens['y']).toBe('&&')
-  expect(tokens['no']).toBe('!')
+  expect(tokens.o).toBe('||')
+  expect(tokens.y).toBe('&&')
+  expect(tokens.no).toBe('!')
 })
 
 test('ES variables', () => {
@@ -53,13 +53,13 @@ test('ES variables', () => {
 test('ES transpiler', () => {
   setLang('es')
   expect(Object.keys(transpiler).length).toBe(7)
-  expect(transpiler['si']).toBe('if')
-  expect(transpiler['sino']).toBe('}\nelse {')
-  expect(transpiler['mientras']).toBe('while')
-  expect(transpiler['repetir']).toBe('do {')
-  expect(transpiler['hasta']).toBe('} while')
-  expect(transpiler['para']).toBe('for')
-  expect(transpiler['hacer']).toBe('do')
+  expect(transpiler.si).toBe('if')
+  expect(transpiler.sino).toBe('}\nelse {')
+  expect(transpiler.mientras).toBe('while')
+  expect(transpiler.repetir).toBe('do {')
+  expect(transpiler.hasta).toBe('} while')
+  expect(transpiler.para).toBe('for')
+  expect(transpiler.hacer).toBe('do')
 })
 
 test('ES openBracket', () => {
@@ -101,26 +101,26 @@ test('ES read', () => {
 test('ES type', () => {
   setLang('es')
   expect(Object.keys(type).length).toBe(4)
-  expect(type['int']).toBe('entero')
-  expect(type['double']).toBe('real')
-  expect(type['string']).toBe('carapter')
-  expect(type['bool']).toBe('booleano')
+  expect(type.int).toBe('entero')
+  expect(type.double).toBe('real')
+  expect(type.string).toBe('carapter')
+  expect(type.bool).toBe('booleano')
 })
 
 test('ES typeError', () => {
   setLang('es')
   expect(Object.keys(typeError).length).toBe(4)
-  expect(typeError['int']).toBe('ERROR: no es entero')
-  expect(typeError['double']).toBe('ERROR: no es flotante')
-  expect(typeError['string']).toBe('ERROR: no es una cadena')
-  expect(typeError['bool']).toBe('ERROR: no es booleano')
+  expect(typeError.int).toBe('ERROR: no es entero')
+  expect(typeError.double).toBe('ERROR: no es flotante')
+  expect(typeError.string).toBe('ERROR: no es una cadena')
+  expect(typeError.bool).toBe('ERROR: no es booleano')
 })
 
 test('ES error', () => {
   setLang('es')
   expect(Object.keys(error).length).toBe(2)
-  expect(error['stringForNumber']).toBe('ERROR: un numero no puede multiplicar a un carapter')
-  expect(error['infinity']).toBe('ERROR: dividir entre 0 causa un numero infinito')
+  expect(error.stringForNumber).toBe('ERROR: un numero no puede multiplicar a un carapter')
+  expect(error.infinity).toBe('ERROR: dividir entre 0 causa un numero infinito')
 })
 
 test('ES menu', () => {

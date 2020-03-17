@@ -14,7 +14,7 @@ test('empty arg', () => {
   try {
     new Vector(0)
   }
-  catch(e) {
+  catch (e) {
     response = e.message
   }
   expect(response).toBe('ERROR: invalid array argument')
@@ -34,7 +34,7 @@ test('add index 0', () => {
     const vector = new Vector(1)
     vector.add(0, 0)
   }
-  catch(e) {
+  catch (e) {
     response = e.message
   }
   expect(response).toBe('ERROR: array null point')
@@ -43,13 +43,12 @@ test('add index 0', () => {
 test('vector overflow', () => {
   const vector = new Vector(10)
   let response = ''
-  for (let i = 1; i <= 10; i++) {
-    vector.add(i, i)
-  }
+  for (let i = 1; i <= 10; i++) vector.add(i, i)
+
   try {
     vector.add(11, 11)
   }
-  catch(e) {
+  catch (e) {
     response = e.message
   }
   expect(response).toBe('ERROR: array overflow')
@@ -88,7 +87,7 @@ test('io add index 0', () => {
     const vector = new Vector(1)
     vector.io(0).add(0)
   }
-  catch(e) {
+  catch (e) {
     response = e.message
   }
   expect(response).toBe('ERROR: array null point')
@@ -97,13 +96,12 @@ test('io add index 0', () => {
 test('io vector overflow', () => {
   const vector = new Vector(10)
   let response = ''
-  for (let i = 1; i <= 10; i++) {
-    vector.io(i).add(i)
-  }
+  for (let i = 1; i <= 10; i++) vector.io(i).add(i)
+
   try {
     vector.io(11).add(11)
   }
-  catch(e) {
+  catch (e) {
     response = e.message
   }
   expect(response).toBe('ERROR: array overflow')

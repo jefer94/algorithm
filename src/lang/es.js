@@ -82,19 +82,21 @@ export const menu = 'Menu'
 export const addTab = 'Add tab'
 export const removeTab = 'Remove tab'
 
-export const code = `algoritmo facilito
-variables
-numero, i, tabla[10]: entero
-inicio
-  i <- 0
-  mostrar "Ingrese numero a multiplicar: "
-  leer numero
-  mientras (i < 10) hacer
-    i <- i + 1
-    tabla[i] <- numero * i
-    mostrar numero, " * ", i, " = ", numero * i
-  finmientras
-fin`
+export const code = [
+  'algoritmo facilito',
+  'variables',
+  'numero, i, tabla[10]: entero',
+  'inicio',
+  '  i <- 0',
+  '  mostrar "Ingrese numero a multiplicar: "',
+  '  leer numero',
+  '  mientras (i < 10) hacer',
+  '    i <- i + 1',
+  '    tabla[i] <- numero * i',
+  '    mostrar numero, " * ", i, " = ", numero * i',
+  '  finmientras',
+  'fin'
+].join('\n')
 
 export default {
   algorithmWord,

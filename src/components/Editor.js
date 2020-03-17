@@ -1,10 +1,12 @@
-import React, { useState, memo, lazy } from 'react'
+import React, { useState, memo, lazy, useEffect } from 'react'
 import PropTypes from 'prop-types'
+// import { editor as monaco } from 'monaco-editor/esm/vs/editor/editor.main'
+import register from '../libs/algorithm/monaco'
 
 const ControlledEditor = lazy(() => import('./MonacoWrapper'))
 
 function windowHeight() {
-  return +window.innerHeight - 48
+  return +window.innerHeight - 71
 }
 
 function windowWidth() {
@@ -14,6 +16,8 @@ function windowWidth() {
 function Editor({ content, onChange }) {
   const [height, setHeight] = useState(windowHeight())
   const [width, setWidth] = useState(windowWidth())
+
+  useEffect(register, [])
 
   const loop = setInterval(() => {
     const currentHeight = windowHeight()
@@ -36,9 +40,13 @@ function Editor({ content, onChange }) {
         value={content}
         width={width}
         height={height}
-        language="javascript"
+        language="algorithm"
         theme="dark"
         onChange={(x, v) => onChange(v)}
+        options={{
+          fontSize: '14px',
+          autoIndent: 'full'
+        }}
       />
     </main>
   )
