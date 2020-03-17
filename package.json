@@ -39,10 +39,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-spinners": "^0.8.0",
-    "regenerator-runtime": "^0.13.3"
+    "regenerator-runtime": "^0.13.3",
+    "serve": "^11.3.0"
   },
   "scripts": {
-    "start": "EXTEND_ESLINT=true react-app-rewired start",
+    "start": "serve build -l 80",
+    "dev": "EXTEND_ESLINT=true react-app-rewired start",
     "notLint": "react-app-rewired start",
     "build": "EXTEND_ESLINT=true react-app-rewired build",
     "test": "EXTEND_ESLINT=true react-app-rewired test",
