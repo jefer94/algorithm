@@ -20,6 +20,8 @@
     "npm": ">= 2.x"
   },
   "dependencies": {
+    "@capacitor/android": "^1.5.1",
+    "@capacitor/ios": "^1.5.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
@@ -45,7 +47,11 @@
     "test": "EXTEND_ESLINT=true react-app-rewired test",
     "eject": "EXTEND_ESLINT=true react-app-rewired eject",
     "lint": "eslint \"src/**/*.js\"",
-    "lint:fix": "eslint \"src/**/*.js\" --fix"
+    "lint:fix": "eslint \"src/**/*.js\" --fix",
+    "cap": "cap",
+    "build:electron": "ENV=electron yarn build && cap sync electron",
+    "cap:android": "cap open android",
+    "cap:electron": "cap open electron"
   },
   "browserslist": {
     "production": [
@@ -60,6 +66,8 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^1.5.1",
+    "@capacitor/core": "^1.5.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-react": "^7.19.0",
