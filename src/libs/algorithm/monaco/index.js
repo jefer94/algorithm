@@ -54,9 +54,9 @@ export default function () {
   })
   languages.registerCompletionItemProvider(id, {
     provideCompletionItems: () => [{
-      label: 'simpleText',
+      label: 'para',
       kind: languages.CompletionItemKind.Text,
-      insertText: 'simpleText'
+      insertText: 'para'
     }, {
       label: 'testing',
       kind: languages.CompletionItemKind.Keyword,

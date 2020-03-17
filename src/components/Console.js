@@ -1,20 +1,26 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
+import './Console.sass'
 
 function Console({ lines }) {
   return (
     <main id="content2" className="tab">
       <div className="console">
-        { lines.map((value) => (
+        { lines.map((value, key) => (
           <div key={value.id}>
             <div className="lines">
-              <div className="CodeMirror-linenumber CodeMirror-gutter-elf arrow">
+              { key === 0 ? (
+                <p className="console-prefix CodeMirror-linenumber CodeMirror-gutter-elf arrow">
+                  ~ λ
+                </p>
+              ) : ''}
+              {/* <div className="CodeMirror-linenumber CodeMirror-gutter-elf arrow">
                 { '\u003E' }
-              </div>
+              </div> */}
               <div className="margin-line">
-                { value.content }
+                { value.content ? <p>{ value.content }</p> : '' }
                 { value.var ?
-                  <div className="var">{ value.var }</div> : ''}
+                  <p className="var">{ value.var }</p> : ''}
               </div>
             </div>
             <br />
