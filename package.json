@@ -25,6 +25,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@ionic/react": "^5.0.5",
+    "@ionic/react-router": "^5.0.5",
     "@monaco-editor/react": "^3.1.2",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^10.0.1",
