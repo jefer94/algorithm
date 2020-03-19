@@ -20,6 +20,18 @@ test('empty arg', () => {
   expect(response).toBe('ERROR: invalid array argument')
 })
 
+test('vector show index 0', () => {
+  let response = ''
+  const vector = new Vector(1)
+  try {
+    vector.show(0)
+  }
+  catch (e) {
+    response = e.message
+  }
+  expect(response).toBe('ERROR: array null point')
+})
+
 test('add and show value', () => {
   const vector = new Vector(10)
   for (let i = 1; i <= 10; i++) {
