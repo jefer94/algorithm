@@ -1,5 +1,5 @@
 [![npm](https://img.shields.io/npm/v/npm.svg)](https://github.com/jefer94/algorithm)
-[![npm][npm]][npm-url]
+[![jefer94](https://circleci.com/gh/jefer94/algorithm.svg?style=shield)](https://circleci.com/gh/jefer94/algorithm)
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![dev-deps][dev-deps]][dev-deps-url]
