@@ -1,11 +1,11 @@
 import React, { lazy, Suspense } from 'react'
 import { render } from 'react-dom'
-import { IonApp } from '@ionic/react'
-// import { IonApp, IonRouterOutlet } from '@ionic/react'
-// import { IonReactRouter } from '@ionic/react-router'
+// import { IonApp } from '@ionic/react'
+import { IonApp, IonRouterOutlet } from '@ionic/react'
+import { IonReactRouter } from '@ionic/react-router'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-// import { Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker'
 import Loading from './components/Loading'
 
@@ -37,28 +37,28 @@ const Console = lazy(() => import('./containers/Console'))
 const TabsAndEditor = lazy(() => import('./containers/TabsAndEditor'))
 
 render(
-  // <IonApp>
-  //   <IonReactRouter>
-  //     <Suspense fallback={<Loading />}>
-  //       <IonRouterOutlet>
-  //         <Route component={TabsAndEditor} path="/" exact />
-  //         <Route component={Docs} path="/docs" exact />
-  //         <Route component={Console} path="/console" exact />
-  //       </IonRouterOutlet>
-  //     </Suspense>
-  //   </IonReactRouter>
-  // </IonApp>,
   <IonApp>
-    <Router>
+    <IonReactRouter>
       <Suspense fallback={<Loading />}>
-        <Switch>
+        <IonRouterOutlet id="content-menu" class="content" contentId="content-menu" main>
           <Route component={TabsAndEditor} path="/" exact />
           <Route component={Docs} path="/docs" exact />
           <Route component={Console} path="/console" exact />
-        </Switch>
+        </IonRouterOutlet>
       </Suspense>
-    </Router>
+    </IonReactRouter>
   </IonApp>,
+  // <IonApp>
+  //   <Router>
+  //     <Suspense fallback={<Loading />}>
+  //       <Switch>
+  //         <Route component={TabsAndEditor} path="/" exact />
+  //         <Route component={Docs} path="/docs" exact />
+  //         <Route component={Console} path="/console" exact />
+  //       </Switch>
+  //     </Suspense>
+  //   </Router>
+  // </IonApp>,
   document.getElementById('root')
 )
 
