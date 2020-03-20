@@ -2,7 +2,6 @@ class Vector {
   constructor(n) {
     if (n <= 0 || typeof n !== 'number') throw new Error('ERROR: invalid array argument')
     this.size = n
-    this.i = 0
     this.array = []
   }
 
@@ -10,7 +9,6 @@ class Vector {
     const index = i - 1
     if (index === -1) throw new Error('ERROR: array null point')
     if (index < this.size && this.size > 0) {
-      if (this.array[index] !== undefined) this.i++
       this.array[index] = v
     }
     else throw new Error('ERROR: array overflow')

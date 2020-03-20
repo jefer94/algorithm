@@ -4,32 +4,19 @@ test('empty vector', () => {
   for (let i = 1; i < 10; i++) {
     const vector = new Vector(i)
     expect(vector.size).toBe(i)
-    expect(vector.i).toBe(0)
-    expect(vector.array.length).toBe(0)
+    expect(vector.array).toHaveLength(0)
   }
 })
 
 test('empty arg', () => {
-  let response = ''
-  try {
-    new Vector(0)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: invalid array argument')
+  expect(() => new Vector(0)).toThrow(new Error('ERROR: invalid array argument'))
 })
 
 test('vector show index 0', () => {
-  let response = ''
-  const vector = new Vector(1)
-  try {
+  expect(() => {
+    const vector = new Vector(1)
     vector.show(0)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: array null point')
+  }).toThrow(new Error('ERROR: array null point'))
 })
 
 test('add and show value', () => {
@@ -41,29 +28,18 @@ test('add and show value', () => {
 })
 
 test('add index 0', () => {
-  let response
-  try {
+  expect(() => {
     const vector = new Vector(1)
     vector.add(0, 0)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: array null point')
+  }).toThrow(new Error('ERROR: array null point'))
 })
 
 test('vector overflow', () => {
-  const vector = new Vector(10)
-  let response = ''
-  for (let i = 1; i <= 10; i++) vector.add(i, i)
-
-  try {
+  expect(() => {
+    const vector = new Vector(10)
+    for (let i = 1; i <= 10; i++) vector.add(i, i)
     vector.add(11, 11)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: array overflow')
+  }).toThrow(new Error('ERROR: array overflow'))
 })
 
 test('vector io toString', () => {
@@ -94,27 +70,16 @@ test('io and show value', () => {
 })
 
 test('io add index 0', () => {
-  let response
-  try {
+  expect(() => {
     const vector = new Vector(1)
     vector.io(0).add(0)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: array null point')
+  }).toThrow(new Error('ERROR: array null point'))
 })
 
 test('io vector overflow', () => {
-  const vector = new Vector(10)
-  let response = ''
-  for (let i = 1; i <= 10; i++) vector.io(i).add(i)
-
-  try {
+  expect(() => {
+    const vector = new Vector(10)
+    for (let i = 1; i <= 10; i++) vector.io(i).add(i)
     vector.io(11).add(11)
-  }
-  catch (e) {
-    response = e.message
-  }
-  expect(response).toBe('ERROR: array overflow')
+  }).toThrow(new Error('ERROR: array overflow'))
 })
