@@ -3,10 +3,10 @@ import PulseLoader from 'react-spinners/PulseLoader'
 import './Loading.sass'
 
 function Loading() {
-  const loading = true
+  // const loading = true
   return (
     <div className="algorithm-loading">
-      <PulseLoader color="var(--oracle)" loading={loading} />
+      <PulseLoader color="var(--oracle)" loading={true} />
     </div>
   )
 }
