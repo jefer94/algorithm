@@ -81,6 +81,7 @@ export const error = {
 export const menu = 'Menu'
 export const addTab = 'Add tab'
 export const removeTab = 'Remove tab'
+export const editor = 'Editor'
 
 export const code = [
   'algoritmo facilito',
@@ -117,5 +118,6 @@ export default {
   code,
   menu,
   addTab,
-  removeTab
+  removeTab,
+  editor
 }

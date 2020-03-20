@@ -5,12 +5,6 @@ import { algorithmWord, begin, end, forWord, toWord, variables, transpiler, open
 const id = 'algorithm'
 
 export default function () {
-  // languages.register({
-  //   id,
-  //   extensions: ['.alg'],
-  //   aliases: ['Algorithm', 'algorithm'],
-  //   loader: () => import('./loader')
-  // })
   languages.register({ id })
   // console.log({ tokenizer: lang.language.tokenizer })
   // languages.setMonarchTokensProvider(id, { tokenizer: lang.language.tokenizer })

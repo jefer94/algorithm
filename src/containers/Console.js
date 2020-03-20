@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useEffect, lazy } from 'react'
 // import _ from 'lodash'
-// import { addVar, resetVar } from '../actions'
+// import { addVarAction, resetVarAction } from '../actions'
 // import store from '../reducers'
 import { setDispatch, setTabs, toJS } from '../libs/algorithm'
 import vector from '../libs/vector'

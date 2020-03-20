@@ -1,9 +1,9 @@
-export const addVar = (value, key) => ({
+export const addVarAction = (text, key) => ({
   type: 'VAR_ADD',
-  text: value,
+  text,
   key
 })
 
-export const resetVar = () => ({
+export const resetVarAction = () => ({
   type: 'VAR_RESET'
 })

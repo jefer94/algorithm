@@ -33,6 +33,7 @@ export let code
 export let menu
 export let addTab
 export let removeTab
+export let editor
 
 export function setLang(langArg) {
   const langcode = langArg || locale
@@ -60,6 +61,7 @@ export function setLang(langArg) {
   menu = lang.menu
   addTab = lang.addTab
   removeTab = lang.removeTab
+  editor = lang.editor
 }
 
 export default {
@@ -81,7 +83,8 @@ export default {
   code,
   menu,
   addTab,
-  removeTab
+  removeTab,
+  editor
 }
 
 setLang()

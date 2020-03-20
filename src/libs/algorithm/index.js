@@ -1,6 +1,6 @@
 // import _ from 'lodash'
 // import store from '../reducers'
-import { addVar, resetVar } from '../../actions'
+import { addVarAction, resetVarAction } from '../../actions'
 import files from './files'
 import vars from './variables'
 import diffAlg from './diff'
@@ -18,8 +18,8 @@ let store
 
 export function setDispatch(dispatch) {
   store = {
-    varAdd: (value, key) => dispatch(addVar(value, key)),
-    varReset: () => dispatch(resetVar())
+    varAdd: (value, key) => dispatch(addVarAction(value, key)),
+    varReset: () => dispatch(resetVarAction())
   }
 }
 

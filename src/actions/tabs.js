@@ -1,36 +1,29 @@
-export const addTab = (name) => ({
-  type: 'ADD_TAB',
-  name: name || 'untitle'
+export const addTabAction = () => ({
+  type: 'ADD_TAB'
 })
 
-export const removeTab = (name) => ({
+export const removeTabAction = (id) => ({
   type: 'DELETE_TAB',
-  name
+  id
 })
 
-export const moveTab = (name, content) => ({
+export const changeTabAction = (id) => ({
   type: 'CHANGE_TAB',
-  name,
-  content
+  id
 })
 
-export const saveTab = (name, content) => ({
+export const saveTabAction = (id, content) => ({
   type: 'SAVE_TAB',
-  name,
+  id,
   content
 })
 
-export const renameTab = (name, index) => ({
-  type: 'RENAME_TAB',
-  name,
-  index
-})
+// export const renameTabAction = (id, index) => ({
+//   type: 'RENAME_TAB',
+//   id,
+//   index
+// })
 
-export const contentTab = (content, index) => ({
-  type: 'CONTENT_TAB',
-  index
-})
-
-export const defaultsTabs = () => ({
+export const defaultsTabsAction = () => ({
   type: 'DEFAULTS_TABS'
 })

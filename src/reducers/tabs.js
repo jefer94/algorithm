@@ -1,8 +1,8 @@
-import { algorithmWord as tabName, code } from '../libs/i18n'
+import { algorithmWord as tabName, code, editor } from '../libs/i18n'
 
 const defaults = [{
   id: 0,
-  name: 'Editor',
+  name: editor,
   content: code,
   active: true
 }]
@@ -35,23 +35,24 @@ export default function (state = defaults, action) {
     case 'DELETE_TAB':
       return remove(state, action)
 
-    case 'RENAME_TAB':
-      return state.map((tab) => (tab.id === action.id ?
-        {
-          id: tab.id,
-          name: action.name,
-          content: tab.content,
-          active: tab.active
-        } :
-        tab))
+    // case 'RENAME_TAB':
+    //   return state.map((tab) => (tab.id === action.id ?
+    //     {
+    //       id: tab.id,
+    //       name: action.name,
+    //       content: tab.content,
+    //       active: tab.active
+    //     } :
+    //     tab))
 
     case 'CHANGE_TAB':
       return state.map((tab) => ({
         id: tab.id,
         name: tab.name,
-        content: tab.active ?
-          action.content :
-          tab.content,
+        // content: tab.active ?
+        //   action.content :
+        //   tab.content,
+        content: tab.content,
         active: tab.id === action.id
       }))
 
