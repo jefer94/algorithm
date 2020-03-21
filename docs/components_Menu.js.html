@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: libs/keychain.js</title>
+    <title>JSDoc: components/Menu.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>libs/keychain.js</h1>
+                        <h1>components/Menu.js</h1>
                     </header>
                     
                     
@@ -64,26 +64,109 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module libs/keychain */
+            <pre class="prettyprint source linenums"><code>import React, { memo, lazy } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { IonMenu, IonHeader, IonToolbar, IonContent, IonList, IonItem, IonMenuButton } from '@ionic/react'
+import Icon from './Icon'
+import './Menu.sass'
+
+/** @module components/Menu */
+
+const Tabs = lazy(() => import('./Tabs'))
+
+// function Menu({ children, items }) {
+//   return (
+//     &lt;div id="ide" className="modal">
+//       &lt;div className="ide">
+//         &lt;ul>
+//           {items.map(({ id, url, icon, name, active }) => (
+//             &lt;li className={active ? 'menu-button brightness' : 'menu-button'} key={id}>
+//   &lt;Link className={active ? 'menu-button brightness' : 'menu-button'} to={url} aria-label={name}>
+//                 &lt;Icon name={icon} />
+//               &lt;/Link>
+//             &lt;/li>
+//           ))}
+//         &lt;/ul>
+//       &lt;/div>
+//       {children}
+//     &lt;/div>
+//   )
+// }
 
 /**
- * Acumulators by key.
+ * App Menu.
  *
- * @constant {string}
- * @default
+ * @param {object} children - Children of menu.
+ * @todo Color of tabs menu
+ * @todo Hide menu when click an icon
  */
-const cache = {}
+function Menu({ children, items, menu, tabs, addTab, changeTab, removeTab }) {
+  return (
+    &lt;>
+      &lt;IonMenu side="start" id="first" contentId="content-menu" className="menu_main">
+        &lt;IonHeader>
+          &lt;IonToolbar color="primary">
+            &lt;Link to={menu.url} aria-label={menu.name} key={menu.id} className="algorithm-link">
+              &lt;IonItem className="menu-button">
+                &lt;div className="menu-button">
+                  &lt;Icon name={menu.icon} slot="start" />
+                &lt;/div>
+                {/* &lt;IonLabel>aaaaaaaaaaaaaa&lt;/IonLabel> */}
+                {/* &lt;p>aaaaaaaaaaaaaaaa&lt;/p> */}
+              &lt;/IonItem>
+            &lt;/Link>
+          &lt;/IonToolbar>
+        &lt;/IonHeader>
+        &lt;IonContent color="tertiary">
+          &lt;IonList>
+            {items.map(({ id, url, icon, name }) => (
+              &lt;Link to={url} aria-label={name} key={id} className="algorithm-link">
+                &lt;IonItem className="menu-button">
+                  &lt;div className="menu-button">
+                    &lt;Icon name={icon} slot="start" />
+                  &lt;/div>
+                  {/* &lt;IonLabel>aaaaaaaaaaaaaa&lt;/IonLabel> */}
+                  {/* &lt;p>aaaaaaaaaaaaaaaa&lt;/p> */}
+                &lt;/IonItem>
+              &lt;/Link>
+            ))}
+          &lt;/IonList>
+        &lt;/IonContent>
+      &lt;/IonMenu>
 
-/**
- * Get a unique React key
- * @param {string} key - Namespace of counter
- * @return {string} Unique React key
- */
-export default function (key) {
-  if (Number.isInteger(cache[key])) cache[key] += 1
-  else cache[key] = 0
-  return `${key}_${cache[key]}`
+      &lt;IonHeader>
+        &lt;IonToolbar color="tertiary">
+          &lt;IonMenuButton slot="start" />
+          &lt;Tabs
+            tabs={tabs}
+            add={addTab}
+            change={changeTab}
+            remove={removeTab}
+          />
+        &lt;/IonToolbar>
+      &lt;/IonHeader>
+      {children}
+    &lt;/>
+  )
 }
+const menuShape = {
+  id: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.object.isRequired
+}
+Menu.propTypes = {
+  children: PropTypes.element.isRequired,
+  items: PropTypes.arrayOf(menuShape).isRequired,
+  menu: PropTypes.shape(menuShape).isRequired,
+  tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addTab: PropTypes.func.isRequired,
+  changeTab: PropTypes.func.isRequired,
+  removeTab: PropTypes.func.isRequired
+}
+
+export default memo(Menu)
 </code></pre>
         </article>
     </section>

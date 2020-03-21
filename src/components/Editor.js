@@ -39,7 +39,7 @@ function windowWidth() {
  * // returns <Editor ... />
  * import React from 'react'
  * import Editor from '/components/Editor'
- * 
+ *
  * export default function () {
  *   return <Editor content="Content" onChange={value => console.log(value) } />
  * }

@@ -11,7 +11,7 @@ import { algorithmWord as tabName, code, editor } from '../libs/i18n'
  */
 
 /**
- * @constant {Tab[]} - Default tabs for reducer
+ * @constant {Tab[]}
  * @default
  */
 const defaults = [{

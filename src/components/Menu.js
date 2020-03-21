@@ -5,8 +5,9 @@ import { IonMenu, IonHeader, IonToolbar, IonContent, IonList, IonItem, IonMenuBu
 import Icon from './Icon'
 import './Menu.sass'
 
-const Tabs = lazy(() => import('./Tabs'))
+/** @module components/Menu */
 
+const Tabs = lazy(() => import('./Tabs'))
 
 // function Menu({ children, items }) {
 //   return (
@@ -27,7 +28,13 @@ const Tabs = lazy(() => import('./Tabs'))
 //   )
 // }
 
-
+/**
+ * App Menu.
+ *
+ * @param {object} children - Children of menu.
+ * @todo Color of tabs menu
+ * @todo Hide menu when click an icon
+ */
 function Menu({ children, items, menu, tabs, addTab, changeTab, removeTab }) {
   return (
     <>

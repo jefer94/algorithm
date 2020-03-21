@@ -1,11 +1,13 @@
-/**
- * Represent a Array of algorithms.
- * @module libs/vector
- */
+/** @module libs/vector */
 
+/** @classdesc Represent a Array of algorithms. */
 class Vector {
   /**
-   * @param {number} size - Vector size
+   * Constructor.
+   *
+   * @param {number} size - Vector size.
+   * @example
+   * new Vector(10)
    */
   constructor(size) {
     if (size <= 0 || typeof size !== 'number') throw new Error('ERROR: invalid array argument')
@@ -18,9 +20,10 @@ class Vector {
   }
 
   /**
-   * Assign value in vector
-   * @param {any} value - Value to be added
-   * @param {number} index - Index in vector
+   * Assign value in vector.
+   *
+   * @param {any} value - Value to be added.
+   * @param {number} index - Index in vector.
    */
   add(value, index) {
     const fixIndex = index - 1
@@ -30,9 +33,10 @@ class Vector {
   }
 
   /**
-   * Get a value of vector
-   * @param {number} index - Index of vector
-   * @returns {any} Value store in index argument
+   * Get a value of vector.
+   *
+   * @param {number} index - Index of vector.
+   * @returns {any} Value store in index argument.
    */
   show(index) {
     const start = index - 1
@@ -41,8 +45,9 @@ class Vector {
   }
 
   /**
-   * Provide an alternative interface, used in libs/algorithm/transform
-   * @param {number} index
+   * Provide an alternative interface, used in libs/algorithm/transform.
+   *
+   * @param {number} index - Index of Vector.
    * @see {@link transform}
    * @returns {}
    */

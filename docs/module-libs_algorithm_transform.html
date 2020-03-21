@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: components/Docs</title>
+    <title>JSDoc: libs/algorithm/transform</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>components/Docs</h1>
+                        <h1>libs/algorithm/transform</h1>
                     </header>
                     
                     
@@ -65,8 +65,6 @@
 <header>
     
         
-            
-        
     
 </header>
 
@@ -74,149 +72,6 @@
     <div class="container-overview">
     
         
-
-        
-            
-
-
-    
-    <h4 class="name" id="module:components/Docs">
-        <a class="href-link" href="#module:components/Docs">#</a>
-        
-        <span class="code-name">
-            
-                (require("components/Docs"))<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Generate Docs component, with examples</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-    <dt class="tag-todo">To Do:</dt>
-    <dd class="tag-todo">
-        <ul>
-            <li>store and load examples</li>
-        
-            <li>sync in the cloud algorithms</li>
-        </ul>
-    </dd>
-    
-
-    
-        <p class="tag-source">
-            <a href="components_Docs.js.html" class="button">View Source</a>
-            <span>
-                <a href="components_Docs.js.html">components/Docs.js</a>, <a href="components_Docs.js.html#line56">line 56</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Docs</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">object</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>import React from 'react'
-import Docs from '/components/Docs'
-
-export default function () {
-  return &lt;Docs />
-}</code></pre>
-    
-
-
 
         
     
@@ -245,16 +100,16 @@ export default function () {
 
 
     
-    <h4 class="name" id="~addDoc">
-        <a class="href-link" href="#~addDoc">#</a>
+    <h4 class="name" id=".purgeComment">
+        <a class="href-link" href="#.purgeComment">#</a>
         
             
-                <span class='tag'>inner</span>
+                <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                addDoc<span class="signature">(name, description, content)</span><span class="type-signature"> &rarr; {Doc}</span>
+                purgeComment<span class="signature">(lineArg)</span><span class="type-signature"> &rarr; {string}</span>
             
         </span>
     </h4>
@@ -263,7 +118,7 @@ export default function () {
     
     
     <div class="description">
-        <p>Generate doc object.</p>
+        <p>Purge comments of code.</p>
     </div>
     
 
@@ -301,7 +156,7 @@ export default function () {
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>name</code></td>
+      <td class="name"><code>lineArg</code></td>
   
 
   <td class="type">
@@ -317,57 +172,7 @@ export default function () {
 
   
 
-  <td class="description last"><p>Doc name.</p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>description</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Doc description.</p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>content</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">content</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Doc content.</p></td>
+  <td class="description last"></td>
 </tr>
 
 
@@ -412,9 +217,9 @@ export default function () {
 
     
         <p class="tag-source">
-            <a href="components_Docs.js.html" class="button">View Source</a>
+            <a href="libs_algorithm_transform.js.html" class="button">View Source</a>
             <span>
-                <a href="components_Docs.js.html">components/Docs.js</a>, <a href="components_Docs.js.html#line32">line 32</a>
+                <a href="libs_algorithm_transform.js.html">libs/algorithm/transform.js</a>, <a href="libs_algorithm_transform.js.html#line171">line 171</a>
             </span>
         </p>
     
@@ -445,13 +250,13 @@ export default function () {
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Doc</p></div>
+    <div class='param-desc column is-7'><p>Line of code,</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Doc</span>
+<span class="param-type">string</span>
 
 
     </div>
@@ -468,58 +273,51 @@ export default function () {
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>addDoc('Awesome doc', 'Awesome description', 'Awesome content')
-// return {
-//   id: 'doc_0',
-//   name: 'Awesome doc',
-//   description: 'Awesome description',
-//   content: 'Awesome content'
-// }</code></pre>
+        <pre class="prettyprint"><code>purgeComment('for (bestADC === \'Tristana\') do // some stuff')
+// return 'for (bestADC === \'Tristana\') do '</code></pre>
     
 
 
 </div>
             
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Type Definitions</span></h3>
-            <div class="members">
-            
                 <div class="member">
 
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
+
+    
+    <h4 class="name" id=".purgeLine">
+        <a class="href-link" href="#.purgeLine">#</a>
         
-<span class="param-type">object</span>
-
-
-    </span>
-
-<h4 class="name" id="~Doc">
-    <a class="href-link" href="#~Doc">#</a>
-    
-    <span class="code-name">
-        Doc
-    </span>
-    
-</h4>
-
-
-
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                purgeLine<span class="signature">(line)</span><span class="type-signature"> &rarr; {string}</span>
+            
+        </span>
+    </h4>
     
 
-<table class="props">
+    
+    
+    <div class="description">
+        <p>Add space to prevent bad transpile, and transform array to class Vector.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -538,100 +336,34 @@ export default function () {
 
     <tbody>
     
+
         
 <tr class="deep-level-0">
-    
-        <td class="name"><code>id</code></td>
-    
+  
+      <td class="name"><code>line</code></td>
+  
 
-    <td class="type">
-    
-        
-<span class="param-type">number</span>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Doc key.</p></td>
-</tr>
-
-    
-        
-<tr class="deep-level-0">
-    
-        <td class="name"><code>name</code></td>
-    
-
-    <td class="type">
-    
-        
+  <td class="type">
+  
+      
 <span class="param-type">string</span>
 
 
-    
-    </td>
+  
+  </td>
 
-    
+  
 
-    
+  
 
-    <td class="description last"><p>Doc name.</p></td>
+  <td class="description last"><p>Line of code.</p></td>
 </tr>
 
-    
-        
-<tr class="deep-level-0">
-    
-        <td class="name"><code>description</code></td>
-    
-
-    <td class="type">
-    
-        
-<span class="param-type">string</span>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Doc description.</p></td>
-</tr>
-
-    
-        
-<tr class="deep-level-0">
-    
-        <td class="name"><code>content</code></td>
-    
-
-    <td class="type">
-    
-        
-<span class="param-type">string</span>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Doc content.</p></td>
-</tr>
 
     
     </tbody>
 </table>
+
 
 
 
@@ -669,9 +401,9 @@ export default function () {
 
     
         <p class="tag-source">
-            <a href="components_Docs.js.html" class="button">View Source</a>
+            <a href="libs_algorithm_transform.js.html" class="button">View Source</a>
             <span>
-                <a href="components_Docs.js.html">components/Docs.js</a>, <a href="components_Docs.js.html#line8">line 8</a>
+                <a href="libs_algorithm_transform.js.html">libs/algorithm/transform.js</a>, <a href="libs_algorithm_transform.js.html#line153">line 153</a>
             </span>
         </p>
     
@@ -681,10 +413,428 @@ export default function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Line of code</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">string</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>purgeLine('function stuff()do') // return 'function stuff () do'
+purgeLine('array[13]') // return 'array.io(13)'</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".vectorAdd">
+        <a class="href-link" href="#.vectorAdd">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                vectorAdd<span class="signature">(lineArg)</span><span class="type-signature"> &rarr; {string}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Add assignment in Vector.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>lineArg</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="libs_algorithm_transform.js.html" class="button">View Source</a>
+            <span>
+                <a href="libs_algorithm_transform.js.html">libs/algorithm/transform.js</a>, <a href="libs_algorithm_transform.js.html#line130">line 130</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Line of code</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">string</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>vectorAdd('stuff.io(7) &lt;- 9') // return 'stuff.io(7).add(9)'</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~ifIsEqual">
+        <a class="href-link" href="#~ifIsEqual">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                ifIsEqual<span class="signature">(linesArg)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>parse equal token from Algorithm to Javascript.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>linesArg</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;string></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="libs_algorithm_transform.js.html" class="button">View Source</a>
+            <span>
+                <a href="libs_algorithm_transform.js.html">libs/algorithm/transform.js</a>, <a href="libs_algorithm_transform.js.html#line211">line 211</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>lines of code</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>ifIsEqual(['for (text = \'Not text\') do'])
+// return ['for (text === \'Not text\') do']</code></pre>
+    
+
+
 </div>
             
             </div>
         </div>
+    
+
     
 
     

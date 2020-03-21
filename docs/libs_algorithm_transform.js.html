@@ -1,4 +1,70 @@
-import { begin, end, toWord, tokens, transpiler, openBracket, closeBracket, write,
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: libs/algorithm/transform.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">Choco Algorithm</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-components_Docs.html">components/Docs</a></li><li><a href="module-components_Editor.html">components/Editor</a></li><li><a href="module-components_Icon.html">components/Icon</a></li><li><a href="module-components_Loading.html">components/Loading</a></li><li><a href="module-components_Menu.html">components/Menu</a></li><li><a href="module-components_Tabs.html">components/Tabs</a></li><li><a href="module-libs_algorithm_files.html">libs/algorithm/files</a></li><li><a href="module-libs_algorithm_i18n.html">libs/algorithm/i18n</a></li><li><a href="module-libs_algorithm_Monaco.html">libs/algorithm/Monaco</a></li><li><a href="module-libs_algorithm_transform.html">libs/algorithm/transform</a></li><li><a href="module-libs_algorithm_variables.html">libs/algorithm/variables</a></li><li><a href="module-libs_keychain.html">libs/keychain</a></li><li><a href="module-libs_vector.html">libs/vector</a></li><li><a href="module-reducers_tabs.html">reducers/tabs</a></li></ul><h3>Classes</h3><ul><li><a href="module-libs_vector-Vector.html">Vector</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>libs/algorithm/transform.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { begin, end, toWord, tokens, transpiler, openBracket, closeBracket, write,
   read } from '../i18n'
 
 /** @module libs/algorithm/transform */
@@ -102,7 +168,7 @@ export function forLoopCondition(lineArg) {
     conditionsFor = conditionsFor.split(toWord)
     const ref = matchCondition[0].split(toWord)
     conditionsFor[0] += ';'
-    conditionsFor[1] = conditionsFor[1].replace('=', '<=')
+    conditionsFor[1] = conditionsFor[1].replace('=', '&lt;=')
     if (conditionsFor[1].search('reversed') === -1) conditionsFor[1] = conditionsFor[1].replace(')', '; i++)')
     else conditionsFor[1] = conditionsFor[1].replace(')', '; i--)')
     line = line.replace(ref[0], conditionsFor[0])
@@ -124,14 +190,14 @@ export function doWhileLoopCondition(line) {
  *
  * @param {string} lineArg
  * @example
- * vectorAdd('stuff.io(7) <- 9') // return 'stuff.io(7).add(9)'
+ * vectorAdd('stuff.io(7) &lt;- 9') // return 'stuff.io(7).add(9)'
  * @returns {string} Line of code
  */
 export function vectorAdd(lineArg) {
   let line = lineArg
   // vector.io(n).add(value)
-  while (line.match(/\.io\([0-9a-zA-Z]+\)\s+<-\s+[a-zA-Z0-9 ]/)) {
-    line = line.replace(/<-/, '')
+  while (line.match(/\.io\([0-9a-zA-Z]+\)\s+&lt;-\s+[a-zA-Z0-9 ]/)) {
+    line = line.replace(/&lt;-/, '')
     const exp = line.match(/\S+/g)
     line = `${exp[0]}.add(`
     if (Number.isNaN(+exp[1])) line += `"${exp[1]}"`
@@ -216,3 +282,31 @@ function ifIsEqual(linesArg) {
   })
   return lines
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Mar 21 2020 07:40:40 GMT-0500 (Colombia Standard Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import es from '../lang/es'
 
+/** @module libs/algorithm/i18n */
+
 // import language
 const locale = window.navigator.language.substr(0, 2)
 

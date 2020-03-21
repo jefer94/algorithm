@@ -1,5 +1,7 @@
 import { begin, end, variables, type } from '../i18n'
 
+/** @module libs/algorithm/variables */
+
 export default function (code, store) {
   const literals = ignoreSentences(code)
   const [firstLine, ...lines] = literals.split('\n')

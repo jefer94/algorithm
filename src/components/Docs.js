@@ -41,13 +41,13 @@ function addDoc(name, description, content) {
 
 /**
  * Generate Docs component, with examples
- * 
+ *
  * @todo store and load examples
  * @todo sync in the cloud algorithms
  * @example
  * import React from 'react'
  * import Docs from '/components/Docs'
- * 
+ *
  * export default function () {
  *   return <Docs />
  * }
