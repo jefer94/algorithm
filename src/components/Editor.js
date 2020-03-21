@@ -3,16 +3,48 @@ import PropTypes from 'prop-types'
 // import { editor as monaco } from 'monaco-editor/esm/vs/editor/editor.main'
 import register from '../libs/algorithm/monaco'
 
+/** @module components/Editor */
+
 const ControlledEditor = lazy(() => import('./MonacoWrapper'))
 
+/**
+ * Get height less navbar.
+ *
+ * @returns {number} Height less navbar.
+ */
 function windowHeight() {
   return +window.innerHeight - 71
 }
 
+/**
+ * Get width less navbar.
+ *
+ * @returns {number} Width less navbar.
+ */
 function windowWidth() {
   return +window.innerWidth
 }
 
+/**
+ * @typedef {Object} EditorProps
+ * @property {string} content - Value of editor
+ * @property {callback} onChange - On change send current content
+ */
+
+/**
+ * Edidor wrapper.
+ *
+ * @param {EditorProps} props
+ * @example
+ * // returns <Editor ... />
+ * import React from 'react'
+ * import Editor from '/components/Editor'
+ * 
+ * export default function () {
+ *   return <Editor content="Content" onChange={value => console.log(value) } />
+ * }
+ * @returns {object} <Editor ... />
+ */
 function Editor({ content, onChange }) {
   const [height, setHeight] = useState(windowHeight())
   const [width, setWidth] = useState(windowWidth())

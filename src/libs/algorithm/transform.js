@@ -51,6 +51,7 @@ export default function (code) {
       // and words not in the dictionary
       else js += `${word[key]} `
     })
+    // console.log('js', js)
 
     // this fracment of code delete all space in the start of a line
     // with a style like stack, first reverse the array

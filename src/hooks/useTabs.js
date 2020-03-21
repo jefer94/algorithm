@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useCallback } from 'react'
 import { code } from '../libs/i18n'
 import tabsReducer from '../reducers/tabs'
-import { addTabAction, removeTabAction, changeTabAction, saveTabAction, renameTabAction, defaultsTabsAction } from '../actions/tabs'
+import { addTabAction, removeTabAction, changeTabAction, saveTabAction, defaultsTabsAction } from '../actions/tabs'
 
 const key = '__ALGORITHM_TABS__'
 const defaults = [{

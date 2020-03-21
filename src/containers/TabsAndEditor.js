@@ -4,20 +4,19 @@ import useTabs from '../hooks/useTabs'
 const TabsComponent = lazy(() => import('../components/Tabs'))
 const EditorComponent = lazy(() => import('../components/Editor'))
 
+// export const editor = {
+//   getValue() {
+//     return this.value.getValue()
+//   },
 
-export const editor = {
-  getValue() {
-    return this.value.getValue()
-  },
+//   setValue(value) {
+//     this.value = value
+//   },
 
-  setValue(value) {
-    this.value = value
-  },
-
-  reset() {
-    this.value = null
-  }
-}
+//   reset() {
+//     this.value = null
+//   }
+// }
 
 // const options = {
 //   mode: 'algorithm.es',

@@ -49,6 +49,13 @@ function prepareWord(word) {
     .replace(/\]/g, ')')
 }
 
+/**
+ * Reserve vars in the store.
+ *
+ * @param {object} store - Store of variables.
+ * @param {string} isA - Variable type.
+ * @param {string} word - Variable name.
+ */
 function reserveVars(store, isA, word) {
   switch (isA) {
     case type.int:
@@ -67,6 +74,22 @@ function reserveVars(store, isA, word) {
   }
 }
 
+/**
+ * Ignore algorithm body.
+ *
+ * @param {string} code
+ * @example
+ * const code = [
+ *   'algorithm easy',
+ *   'variables',
+ *   '  easy: boolean',
+ *   'start',
+ *   '   ...',
+ *   'end'
+ * ].join('\n')
+ * ignoreSentences(code)
+ * @returns {string} Get the code, less the body (start ... end).
+ */
 function ignoreSentences(code) {
   return code.replace(code.match(RegExp(`${begin}[\\s\\S]*?${end}$`, 'gm'))[0], '')
 }

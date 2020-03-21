@@ -2,8 +2,19 @@ import { languages, editor } from 'monaco-editor/esm/vs/editor/editor.main'
 // import * as lang from './loader'
 import { algorithmWord, begin, end, forWord, toWord, variables, transpiler, openBracket, closeBracket, write, read, type } from '../../i18n'
 
+/** @module libs/algorithm/Monaco */
+
+/**
+ * Name of new language for Monaco.
+ *
+ * @constant {string}
+ * @default
+ */
 const id = 'algorithm'
 
+/**
+ * Register a new language for Monaco
+ */
 export default function () {
   languages.register({ id })
   // console.log({ tokenizer: lang.language.tokenizer })
@@ -72,5 +83,5 @@ export default function () {
       documentation: 'If-Else Statement'
     }]
   })
-  console.log(languages.getLanguages())
+  // console.log(languages.getLanguages())
 }

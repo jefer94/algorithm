@@ -3,6 +3,8 @@ export const begin = 'inicio'
 export const end = 'fin'
 export const forWord = 'para'
 export const toWord = 'hasta'
+export const trueWord = 'verdadero'
+export const falseWord = 'falso'
 
 export const tokens = {
   // algorithm : js
@@ -105,6 +107,8 @@ export default {
   end,
   forWord,
   toWord,
+  trueWord,
+  falseWord,
   tokens,
   variables,
   transpiler,

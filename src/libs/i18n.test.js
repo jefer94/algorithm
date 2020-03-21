@@ -1,4 +1,4 @@
-import { setLang, algorithmWord, tokens, begin, end, forWord, toWord, variables, transpiler, openBracket, closeBracket, write, read, type, typeError, error, addTab, removeTab, menu, code } from './i18n'
+import { setLang, algorithmWord, tokens, begin, end, forWord, toWord, trueWord, falseWord, variables, transpiler, openBracket, closeBracket, write, read, type, typeError, error, addTab, removeTab, menu, code } from './i18n'
 
 function genericTokens() {
   expect(tokens['<>']).toBe('!==')
@@ -32,6 +32,16 @@ test('ES forWord', () => {
 test('ES toWord', () => {
   setLang('es')
   expect(toWord).toBe('hasta')
+})
+
+test('ES trueWord', () => {
+  setLang('es')
+  expect(trueWord).toBe('verdadero')
+})
+
+test('ES falseWord', () => {
+  setLang('es')
+  expect(falseWord).toBe('falso')
 })
 
 test('ES tokens', () => {

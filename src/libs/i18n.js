@@ -3,6 +3,12 @@ import es from '../lang/es'
 // import language
 const locale = window.navigator.language.substr(0, 2)
 
+/**
+ * Generic conversions of tokens between Javascript and Algorithms.
+ *
+ * @constant {object.<string, string>}
+ * @default
+ */
 export const staticTokens = {
   // algorithm : js
   '<>': '!==',
@@ -19,6 +25,8 @@ export let begin
 export let end
 export let forWord
 export let toWord
+export let trueWord
+export let falseWord
 export let tokens
 export let variables
 export let transpiler
@@ -35,6 +43,13 @@ export let addTab
 export let removeTab
 export let editor
 
+/**
+ * Reload locales by language.
+ *
+ * @param {string} langArg - Language.
+ * @example
+ * setLang('en')
+ */
 export function setLang(langArg) {
   const langcode = langArg || locale
 
@@ -47,6 +62,8 @@ export function setLang(langArg) {
   end = lang.end
   forWord = lang.forWord
   toWord = lang.toWord
+  trueWord = lang.trueWord
+  falseWord = lang.falseWord
   tokens = { ...staticTokens, ...lang.tokens }
   variables = lang.variables
   transpiler = lang.transpiler
@@ -64,12 +81,16 @@ export function setLang(langArg) {
   editor = lang.editor
 }
 
+setLang()
+
 export default {
   algorithmWord,
   begin,
   end,
   forWord,
   toWord,
+  trueWord,
+  falseWord,
   tokens,
   variables,
   transpiler,
@@ -86,5 +107,3 @@ export default {
   removeTab,
   editor
 }
-
-setLang()

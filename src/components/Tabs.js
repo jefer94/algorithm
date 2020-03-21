@@ -6,7 +6,38 @@ import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
 import './Tabs.sass'
 
+/** @module components/Tabs */
 
+/**
+ * @typedef {Object} Tab
+ * @property {string} id - Tab React key
+ * @property {string} name - Tab name
+ * @property {string} content - Tab content
+ * @property {string} active - Tab active
+ */
+
+/**
+ * @typedef {Object} TabsProps
+ * @property {Tab[]} tabs - Icon from FontAwesome
+ * @property {callback} add - Icon from FontAwesome
+ * @property {callback} change - Icon from FontAwesome
+ * @property {callback} remove - Icon from FontAwesome
+ * @property {bool} multiTabsFeature - Icon from FontAwesome
+ */
+
+/**
+ * Tabs component
+ * @param {TabsProps} props
+ * @example
+ * <Tabs
+ *   tabs={[]}
+ *   add={() => addCallback()}
+ *   change={id => changeCallback(id)}
+ *   remove={id => removeCallback(id)}
+ *   multiTabsFeature={false}
+ * />
+ * @returns {object} <Tabs ... />
+ */
 function Tabs({ tabs, add, change, remove, multiTabsFeature }) {
   function addTabComponent() {
     return multiTabsFeature ? (

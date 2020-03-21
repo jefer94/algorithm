@@ -1,6 +1,7 @@
 import { typeError } from '../i18n'
 import keychain from '../keychain'
 
+
 export const io = {
   show: true,
 
@@ -48,6 +49,7 @@ export function read(toRead, variables, lastLine) {
     toReadCopy += `.add(${input})`
   }
   // here in runtime show the mistakes in assignings
+  console.log(variables, variables[toReadCopy], 'copy')
   switch (variables[toReadCopy]) {
     case 'int':
       if (Number.isNaN(Number(input)) || +input !== Math.trunc(input)) return readResponse(`write('${typeError.int}'); io.error();`, newLastLine)
@@ -58,7 +60,7 @@ export function read(toRead, variables, lastLine) {
     case 'string':
       break
     case 'bool':
-      if (Number.isNaN(Number(input)) || +input < 0 || +input > 2) return readResponse(`write('${typeError.bool}'); io.error();`, newLastLine)
+      if (Number.isNaN(Number(input)) || (input === true || input === false)) return readResponse(`write('${typeError.bool}'); io.error();`, newLastLine)
       break
     default:
       throw new Error('Unknow var type')
