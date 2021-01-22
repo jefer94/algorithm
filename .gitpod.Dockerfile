@@ -1,4 +1,4 @@
-FROM node as node
+# FROM node as node
 FROM node:alpine
 EXPOSE 80
 
